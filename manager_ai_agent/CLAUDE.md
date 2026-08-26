@@ -1,7 +1,7 @@
 # Manager AI Agent
 
 > **역할** 의도 해석 → 고수준 정책 생성 → Worker 선택·배포 → Report 해석
-> **상태** Phase 0 · 미착수 — **코드 0줄**
+> **상태** Phase 0 · 부분 구현 — KG JSON 룩업 · 시나리오 2 정책/클라이언트 · graph-inference 순수 코어, L0→L2 전체는 미구현
 > **읽을 절** spec **§2.1**(Manager 컴포넌트) — 그 외 절은 열지 않는다
 > **정본** 구조 `SOT.md` · spec §2.1
 

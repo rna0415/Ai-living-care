@@ -106,7 +106,7 @@
 
 장소·디바이스 이름을 좌표로 해소한다. `manager_ai_agent/knowledge_graph/`의 Phase 0 JSON
 룩업(`entities.json`, D-6)을 Worker Reasoning이 **직접 import**해서 쓴다 — 정식 아키텍처상
-IF-1(Manager AI Core 경유)이어야 하지만 Manager AI Core가 아직 코드 0줄이라 임시로 이렇게
+IF-1(Manager AI Core 경유)이어야 하지만 Manager AI Core의 IF-1 adapter가 아직 없어 임시로 이렇게
 배선했다(근거: `docs/decisions/2026-08-10-worker-side-kg-lookup-phase0.md`).
 
 ```json

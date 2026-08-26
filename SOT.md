@@ -98,10 +98,10 @@
 
 | 스펙 §2 정식 명칭 | 약칭 | 디렉터리 | 주 인터페이스 | Phase | 현재 코드 |
 |---|---|---|---|---|---|
-| Manager AI Core | MAC | `manager_ai_agent/manager_ai_core/` | IF-1·IF-2·IF-3·**IF-4** | 0 | 없음 |
+| Manager AI Core | MAC | `manager_ai_agent/manager_ai_core/` | IF-1·IF-2·IF-3·**IF-4** | 0 | `graph_inference.py` 지원 코어 + 시나리오 2 규칙 정책 (부분) |
 | Manager AI Analyzer | MAA | `manager_ai_agent/manager_ai_analyzer/` | IF-2·IF-1·IF-8 | 0 | 없음 |
 | Manager AI Management System | MAMS | `manager_ai_agent/manager_ai_management_system/` | IF-3·**IF-7** | 0→2 | 없음 |
-| Knowledge Graph | KG | `manager_ai_agent/knowledge_graph/` | IF-1 | 0 | 없음 (G-6) |
+| Knowledge Graph | KG | `manager_ai_agent/knowledge_graph/` | IF-1 | 0 | `kg.py` JSON 장소 룩업 (부분, G-6) |
 | Intent Audit Database | IAD | `manager_ai_agent/intent_audit_database/` | IF-1 | 1 | 없음 |
 | Worker AI Core | WAC | `worker_ai_agent/worker_ai_core/` | **IF-4**·IF-5·IF-3 | 0 | 없음 |
 | Worker AI Analyzer | WAA | `worker_ai_agent/worker_ai_analyzer/` | IF-6·IF-2·IF-8 | 0 | 없음 |

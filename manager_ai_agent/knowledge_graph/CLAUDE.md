@@ -33,7 +33,8 @@
 1.68m로 검증됨)이다. 그 외 이름을 조회하면 좌표를 지어내지 않고 `UnknownLocationError`를 던진다
 — 예를 들어 침실의 `AirconditionerA`는 **그 구역이 맵에서 미탐색이라 아직 등록하지 않았다.**
 
-> ⚠️ **소비처가 Manager AI Core가 아니다.** Manager AI Core가 여전히 코드 0줄이라, Worker의
+> ⚠️ **소비처가 Manager AI Core가 아니다.** Manager AI Core에 graph-inference 순수 코어는 생겼지만
+> IF-1 context adapter가 아직 없어, Worker의
 > `ReasoningModule`이 이 모듈을 **IF-1 없이 직접 import**해서 `resolve_location` MCP tool로
 > 노출하고 있다 (임시 조치, `docs/decisions/2026-08-10-worker-side-kg-lookup-phase0.md`).
 > Manager AI Core/IF-1이 생기면 이 배선을 되돌려야 한다.

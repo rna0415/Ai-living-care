@@ -22,7 +22,7 @@ DB 없음 · HTTP API 없음 (외부 인터페이스는 MCP tool 6종)
 - 순찰 검증(경량): `cd tools/limo-patrol-viz && ./run_coverage.sh`
 - 전체 시뮬: `cd worker_ai_agent/limo-MCP && ros2 launch Simulation/sim_bringup.launch.py`
 - MCP 왕복: `cd worker_ai_agent/limo-MCP && python3 Scenarios/send_goal.py 1.0 0.0`
-- 빌드 / 린트 / 테스트 프레임워크: **없음**
+- 빌드·린트 프레임워크: **없음** · 로봇 비의존 회귀: `make test`
 
 ## 프로젝트 문서 — `@` = 매 세션 자동 로딩 · 무표 = gateway 뒤 lazy
 

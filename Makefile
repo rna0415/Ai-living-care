@@ -11,7 +11,7 @@
 PY ?= $(shell command -v python3 2>/dev/null || command -v python 2>/dev/null || echo python3)
 
 .DEFAULT_GOAL := help
-.PHONY: help hooks check test status spec anchor structure
+.PHONY: help hooks check test manager-test status spec anchor structure
 
 help:
 	@echo "  make hooks   pre-commit 훅 설치 (최초 1회)"
@@ -43,6 +43,10 @@ anchor:
 structure:
 	@$(PY) sot_audit.py > /dev/null && echo "구조 OK" || ($(PY) sot_audit.py; exit 1)
 
-test:
+test: manager-test
 	@echo "── 순찰 커버리지 회귀 (ROS2 불필요) ─────────────────────"
 	@cd tools/limo-patrol-viz && ./run_coverage.sh | tail -4
+
+manager-test:
+	@echo "── Manager graph-inference 회귀 (외부 의존성 없음) ───────"
+	@$(PY) -m unittest manager_ai_agent.manager_ai_core.test_graph_inference

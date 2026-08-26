@@ -9,7 +9,7 @@
 graph TD
     U["사용자 (자연어)"] --> MAC
 
-    subgraph MA["manager_ai_agent/ — 규범만, 코드 없음"]
+    subgraph MA["manager_ai_agent/ — 규범 + Phase 0 일부 코드"]
         MAC["Manager AI Core<br/>Intent Translator"]
         MAA["Manager AI Analyzer<br/>Report 해석·판정"]
         MAMS["Manager AI Mgmt System<br/>Agent Registry"]
@@ -60,21 +60,23 @@ graph TD
 
     classDef norm fill:#eef,stroke:#88a
     classDef impl fill:#efe,stroke:#8a8
+    classDef partial fill:#ffd,stroke:#aa8
     classDef ext fill:#ffe,stroke:#aa8
-    class MAC,MAA,MAMS,KG,IAD,MCLI,WAC,WAA,WAMS,MSRV norm
+    class MAA,MAMS,IAD,MCLI,WAC,WAA,WAMS,MSRV norm
+    class MAC,KG partial
     class SRV,PF,RF,AF,SIM,SCN impl
     class TOOL,U ext
 ```
 
-**파랑 = 규범만(코드 없음) · 초록 = 실제 동작하는 코드 · 노랑 = 외부·도구**
+**파랑 = 규범만(코드 없음) · 연노랑 = 부분 구현 · 초록 = 실제 동작하는 코드 · 노랑 = 외부·도구**
 
 ## 컴포넌트 한 줄 설명
 
-### Manager AI Agent — 전부 미구현 (규범만)
+### Manager AI Agent — Phase 0 일부 구현
 
 | 컴포넌트 | 역할 |
 |---|---|
-| `manager_ai_core/` | 자연어 → Intent Query(L1) → High-level Policy(L2, ECA XML) 변환 |
+| `manager_ai_core/` | 축 라우팅+결정론 규칙 평가 지원 코어와 시나리오 2 규칙 정책. 자연어→L1→범용 L2 전체는 미구현 |
 | `manager_ai_analyzer/` | Worker Report를 해석해 완료·재시도·Worker 전환·에스컬레이션 판정 |
 | `manager_ai_management_system/` | Worker 등록·상태·수명주기 + Agent Registry + Worker 선택 |
 | `knowledge_graph/` | 사용자·공간·디바이스의 관계와 능력 (누가 무엇을 할 수 있는가) |
@@ -128,7 +130,7 @@ Scenarios/send_goal.py
 | L3 | Low-level Policy (디바이스 특화) | `contracts/low_level_policy/` — 미작성 |
 | L4 | 함수 호출 (MCP tool / ROS2 액션) | **구현됨** — `MCP_server.py` tool 6종 |
 
-**현재 L4만 존재한다.** L0~L3 전 계층과 그 사이 변환이 미구현이다.
+**L4 실행 경로와 고립된 Manager Phase 0 지원 모듈만 존재한다.** L0→L1→L2→L3 종단 연결은 미구현이다.
 
 ## 인터페이스 카탈로그
 

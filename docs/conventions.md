@@ -131,13 +131,16 @@ with contextlib.redirect_stdout(sys.stderr):
 
 ## 10. 테스트
 
-**현재 테스트 0건, 린터 설정 0건, CI 0건.** `TODO(확인 필요)` — 프레임워크 미정.
+표준 라이브러리 `unittest`로 Manager graph-inference 17건과 시나리오 2 테스트 4건이 있다.
+graph-inference 17건은 ROS2·DB·LLM 없이 통과한다. 시나리오 2는 Windows에 `tzdata`가 없으면 2건이
+오류난다. 린터 설정은 없고, GitHub Actions는 앵커·구조·구문과 graph-inference 회귀를 실행한다.
 
 포렌식이 확인한 테스트 가능성:
 
 | 모듈 | 즉시 테스트 가능? |
 |---|---|
 | `Reasonings.py` | ✅ **가능** — 주입만으로 전 경로 검증됨. 회귀 방어선으로 삼을 것 |
+| `manager_ai_core/graph_inference.py` | ✅ **검증 중** — scorer·context·관측값 주입과 fail-closed 경계 17건 회귀 |
 | `Actions.py::_goal_xy_yaw` | ⚠️ ROS2 import 스텁 필요 |
 | `Perceptions.py::_on_image` | ⚠️ `sensor_msgs.msg.Image` 스텁 필요 |
 | `MCP_server.py` | ❌ 모듈 최상위에서 `rclpy.init()` + YOLO 다운로드 — `main()` 분리 선행 필요 |

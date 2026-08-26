@@ -29,6 +29,9 @@ jobs:
       - name: 구문
         run: python3 -m compileall -q $(git ls-files '*.py')
 
+      - name: Manager graph-inference 회귀
+        run: python3 -m unittest manager_ai_agent.manager_ai_core.test_graph_inference
+
       - name: 셸 구문
         run: for s in $(git ls-files '*.sh'); do bash -n "$s"; done
 
