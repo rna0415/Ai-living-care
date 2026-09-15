@@ -1,0 +1,94 @@
+{
+  "analytical_at_our_noise": {
+    "noise_frac": 0.15,
+    "specificity": 0.9995709396668031,
+    "sensitivity": 0.9999683287581669
+  },
+  "noise_sweep": [
+    {
+      "noise_frac": 0.05,
+      "specificity": 1.0,
+      "in_cds_range": false
+    },
+    {
+      "noise_frac": 0.1,
+      "specificity": 1.0,
+      "in_cds_range": false
+    },
+    {
+      "noise_frac": 0.15,
+      "specificity": 0.999571,
+      "in_cds_range": false
+    },
+    {
+      "noise_frac": 0.2,
+      "specificity": 0.99379,
+      "in_cds_range": false
+    },
+    {
+      "noise_frac": 0.25,
+      "specificity": 0.97725,
+      "in_cds_range": true
+    },
+    {
+      "noise_frac": 0.3,
+      "specificity": 0.95221,
+      "in_cds_range": true
+    },
+    {
+      "noise_frac": 0.35,
+      "specificity": 0.923436,
+      "in_cds_range": true
+    },
+    {
+      "noise_frac": 0.4,
+      "specificity": 0.89435,
+      "in_cds_range": true
+    },
+    {
+      "noise_frac": 0.45,
+      "specificity": 0.86674,
+      "in_cds_range": true
+    },
+    {
+      "noise_frac": 0.5,
+      "specificity": 0.841345,
+      "in_cds_range": true
+    },
+    {
+      "noise_frac": 0.55,
+      "specificity": 0.818349,
+      "in_cds_range": true
+    },
+    {
+      "noise_frac": 0.6,
+      "specificity": 0.797672,
+      "in_cds_range": true
+    },
+    {
+      "noise_frac": 0.65,
+      "specificity": 0.779122,
+      "in_cds_range": false
+    },
+    {
+      "noise_frac": 0.7,
+      "specificity": 0.762475,
+      "in_cds_range": false
+    },
+    {
+      "noise_frac": 0.75,
+      "specificity": 0.747507,
+      "in_cds_range": false
+    },
+    {
+      "noise_frac": 0.8,
+      "specificity": 0.734014,
+      "in_cds_range": false
+    }
+  ],
+  "crossing_noise_frac": 0.25,
+  "cds_spec_range": [
+    0.78,
+    0.99
+  ]
+}

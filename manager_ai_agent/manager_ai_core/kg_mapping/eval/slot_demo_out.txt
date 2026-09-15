@@ -1,0 +1,14 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 6361.16it/s]
+할머니 지금 괜찮으신지 확인해줘
+  slots=[] (lex=[], emb=[])
+  axes={}
+웨어러블 심박수 동기화가 계속 안 되고 있어
+  slots=['heartrate'] (lex=['heartrate'], emb=['heartrate'])
+  axes={'heartrate': ['onto:saref/WellBeing']}
+찬바람이 계속 들어오는 것 같아
+  slots=['temperature'] (lex=[], emb=['temperature'])
+  axes={'temperature': ['onto:saref/Comfort']}
+아까부터 계속 조용하네, 뭐 하고 계신가 몰라
+  slots=[] (lex=[], emb=[])
+  axes={}

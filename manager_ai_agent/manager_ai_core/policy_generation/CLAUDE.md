@@ -55,4 +55,26 @@ L2 ECA XML)를 아직 안 쓴다 — **자체 내부 dict 모양**으로 판단�
   정본 L2 ECA XML `<action>`으로 어떻게 승격할지는 여전히 TODO(확인 필요) — 다만 이제
   `functions`가 `<required-skill>` 후보에, `params_hint`가 `<condition>` 후보에 더 가깝다.
 
+**tier 분기·에이전트 루프(2026-08-24 추가)**: `generate_sequence()`에 `tier: int = 4`,
+`axis_id`·`hour`·`retriever`(선택) 인자가 추가됐다. tier<=2는 기존 결정론 단발 LLM
+경로 그대로(`_validate`가 functions 정확 일치를 요구). tier>=3(현재 Comfort만)은 LLM
+백엔드가 있고 axis_id·retriever가 넘어오면 `generate_sequence_agentic()`으로 위임 —
+`langgraph.prebuilt.create_react_agent`가 `kg_mapping/graph_tools.py`의 읽기 전용
+도구(+ 이 규칙 판단을 감싼 `evaluate_axis_rules`)를 스스로 반복 호출하는 루프다.
+검증 기준도 갈린다: tier>=3은 `_validate_agentic`이 "functions가 규칙과 정확히
+일치"가 아니라 "선택한 device의 reachable=true function 부분집합"인지만 확인한다 —
+설계도가 tier=4에 허용한 "device_knowledge + function node 제약 안에서 LLM이 실제
+추론"의 구현. 에이전트/검증 실패는 여전히 `_fallback_contract()`로 안전하게 폴백.
+`_build_decision()`은 이제 `device['functions']`에서 `reachable=true`인 것만
+골라 쓴다(전엔 무조건 전부 사용 — 버그 수정).
+
 실행법·의존성은 `../CLAUDE.md`의 「Neo4j 추론 파이프라인」참조.
+
+## `checkin_agent.py` (실험·미승인)
+
+ICOPE Step1 자가보고 도메인(cognition/psychological/vision/hearing — 센서로 못 재고 물어봐야
+아는 값이라 실행 로직이 없던 부분)을 자연스러운 대화 질문으로 건네는 컴포넌트.
+`sequence_generator.py`의 `goal_skeleton`+`{{POLICY}}` 패턴을 재사용한다: LLM은 그래프의
+`ScreeningKnowledge`(WHO ICOPE 표준 문항) 원문을 의역하지 않고 `{{QUESTION}}` 자리표시자에
+그대로 삽입한다 — 검증된 스크리닝 도구 문구를 LLM이 바꾸면 그 도구의 민감도/특이도가
+깨지기 때문.

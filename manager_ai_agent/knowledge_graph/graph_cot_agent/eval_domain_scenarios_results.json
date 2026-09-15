@@ -1,0 +1,138 @@
+[
+  {
+    "id": "1_택배_수령",
+    "grounding": "mr_sf2_door_open_day rationale: \"낮에는 외출/배달/환기 등 정상적 이유로 문을 오래 열어두는 경우가 흔해 오탐 위험이 크다\"",
+    "note": "threshold(30분)보다 한참 짧은, 실제 택배 수령 정도 시간",
+    "is_gap_check": false,
+    "result": {
+      "axis": "Safety",
+      "hour": 15,
+      "source": "deterministic",
+      "subject_id": null,
+      "escalate": false,
+      "severity": "NORMAL",
+      "response_check_item": null,
+      "grounded_on": [],
+      "personalized": false,
+      "medication_flags": [],
+      "a2a_dispatch": null,
+      "retriever_calls": 8
+    },
+    "matches_design_intent": true
+  },
+  {
+    "id": "2_긴_환기",
+    "grounding": "위와 동일 rationale — threshold 30분이 실제로 '긴 환기'까지 버텨주는지",
+    "note": "threshold 바로 아래(25분) — 여유폭 확인",
+    "is_gap_check": false,
+    "result": {
+      "axis": "Safety",
+      "hour": 15,
+      "source": "deterministic",
+      "subject_id": null,
+      "escalate": false,
+      "severity": "NORMAL",
+      "response_check_item": null,
+      "grounded_on": [],
+      "personalized": false,
+      "medication_flags": [],
+      "a2a_dispatch": null,
+      "retriever_calls": 16
+    },
+    "matches_design_intent": true
+  },
+  {
+    "id": "3_정상_야간_수면",
+    "grounding": "mr_wb2_no_motion_night rationale: \"야간에는 수면 중이라 무동작이 정상이다\"",
+    "note": "야간 threshold(8h) 미달 — 정상 수면 패턴",
+    "is_gap_check": false,
+    "result": {
+      "axis": "WellBeing",
+      "hour": 3,
+      "source": "deterministic",
+      "subject_id": null,
+      "escalate": false,
+      "severity": "NORMAL",
+      "response_check_item": null,
+      "grounded_on": [],
+      "personalized": false,
+      "medication_flags": [],
+      "a2a_dispatch": null,
+      "retriever_calls": 26
+    },
+    "matches_design_intent": true
+  },
+  {
+    "id": "4_웨어러블_충전중_단독",
+    "grounding": "mr_wb4_wearable_no_sync rationale: \"웨어러블 동기화 자체는 착용/배터리 문제일 수 있어 단독으로는 약한 신호로만 취급\"",
+    "note": "단독 MILD 신호는 '로봇이 먼저 확인'만 해야 한다(resp_wellbeing_mild 설계) — 보호자 알림(call_caregiver)으로 바로 안 가는지가 핵심",
+    "is_gap_check": false,
+    "result": {
+      "axis": "WellBeing",
+      "hour": 15,
+      "source": "deterministic",
+      "subject_id": null,
+      "escalate": true,
+      "severity": "MILD",
+      "response_check_item": "ci:robot_dispatch",
+      "grounded_on": [
+        "mr_wb4_wearable_no_sync"
+      ],
+      "personalized": false,
+      "medication_flags": [],
+      "a2a_dispatch": {
+        "worker": "cap:limo_robot_agent",
+        "would_call": "execute_policy(check_item_id='ci:robot_dispatch')"
+      },
+      "retriever_calls": 37
+    },
+    "matches_design_intent": true
+  },
+  {
+    "id": "5_야간_주방_방문",
+    "grounding": "mr_wb3_night_kitchen_visit rationale: \"당장 조치하지 않고 패턴으로만 축적\" — 즉 escalate는 당연히 안 해야 하지만, '패턴 기록' 자체는 되고 있는지가 별개 질문",
+    "note": "GAP 확인용 — threshold 필드가 없는 규칙이라 관측값을 뭘 넣어도 절대 안 걸린다. '패턴으로만 기록'하겠다는 설계 의도 자체가 미구현이라는 뜻",
+    "is_gap_check": true,
+    "result": {
+      "axis": "WellBeing",
+      "hour": 3,
+      "source": "deterministic",
+      "subject_id": null,
+      "escalate": false,
+      "severity": "NORMAL",
+      "response_check_item": null,
+      "grounded_on": [],
+      "personalized": false,
+      "medication_flags": [],
+      "a2a_dispatch": null,
+      "retriever_calls": 47
+    },
+    "matches_design_intent": true
+  },
+  {
+    "id": "6_장시간_목욕",
+    "grounding": "mr_sf4_bathroom_prolonged_occupancy — 다른 규칙과 달리 예외 조항이 없다(대조군). \"정확한 분 단위 임계값을 못박은 논문은 없어... 보수적으로 채택\"이라고 스스로 인정",
+    "note": "느긋한 목욕도 20분 넘으면 무조건 발화 — 의도적으로 민감하게 설계된 규칙이라 이게 '오탐'인지 '의도된 보수적 설계'인지는 이 시스템만으로는 못 가른다",
+    "is_gap_check": false,
+    "result": {
+      "axis": "Safety",
+      "hour": 15,
+      "source": "deterministic",
+      "subject_id": null,
+      "escalate": true,
+      "severity": "CONCERN",
+      "response_check_item": "ci:call_caregiver",
+      "grounded_on": [
+        "mr_sf4_bathroom_prolonged_occupancy"
+      ],
+      "personalized": false,
+      "medication_flags": [],
+      "a2a_dispatch": {
+        "worker": "svc:call_caregiver",
+        "would_call": "execute_policy(check_item_id='ci:call_caregiver')"
+      },
+      "retriever_calls": 56
+    },
+    "matches_design_intent": true
+  }
+]

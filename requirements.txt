@@ -8,6 +8,14 @@ sentence-transformers
 # 선택 — ANTHROPIC_API_KEY가 있을 때 sequence_generator.py의 Claude 백엔드에 필요
 anthropic
 
+# tier>=3 axis(현재 Comfort)의 에이전트 루프(ReAct) + Graph RAG 도구 래핑에 필요.
+# Cypher는 여전히 graph_retrieval.py에 고정 — LangChain은 "어떤 도구를 언제 부를지"만
+# 결정하는 오케스트레이션 레이어로만 쓴다(GraphCypherQAChain류의 LLM Cypher 생성은 안 씀).
+langgraph
+langchain-core
+langchain-ollama     # 선택 — 로컬 Ollama 백엔드용 ChatOllama
+langchain-anthropic  # 선택 — ANTHROPIC_API_KEY 있을 때 Claude 백엔드용
+
 # frontend/ ↔ manager_ai_core/api_server.py 실험용 HTTP 게이트웨이 (실험·미승인, requests는 위 3개와 별개로
 # manager_ai_agent/a2a_client/a2a_client.py 가 Worker 전달(표준 A2A, HTTP+JSON-RPC 2.0)에도 씀).
 # worker_ai_agent/mcp_server/a2a_server.py(실험·미승인, D-21)도 fastapi/uvicorn을 그대로 씀 —

@@ -1,0 +1,98 @@
+{
+  "measured_sensitivity_specificity": {
+    "WellBeing/motion(주간)": {
+      "sensitivity": 0.999968,
+      "specificity": 0.999571
+    },
+    "Safety/door_status(야간)": {
+      "sensitivity": 0.999968,
+      "specificity": 0.999571
+    },
+    "Safety/bathroom_occupancy": {
+      "sensitivity": 0.999968,
+      "specificity": 0.999571
+    }
+  },
+  "prevalence_grid": [
+    0.001,
+    0.005,
+    0.01,
+    0.03,
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.5
+  ],
+  "ppv_table": [
+    {
+      "prevalence": 0.001,
+      "ppv": 0.7
+    },
+    {
+      "prevalence": 0.005,
+      "ppv": 0.9213
+    },
+    {
+      "prevalence": 0.01,
+      "ppv": 0.9593
+    },
+    {
+      "prevalence": 0.03,
+      "ppv": 0.9863
+    },
+    {
+      "prevalence": 0.05,
+      "ppv": 0.9919
+    },
+    {
+      "prevalence": 0.1,
+      "ppv": 0.9962
+    },
+    {
+      "prevalence": 0.2,
+      "ppv": 0.9983
+    },
+    {
+      "prevalence": 0.3,
+      "ppv": 0.999
+    },
+    {
+      "prevalence": 0.5,
+      "ppv": 0.9996
+    }
+  ],
+  "ppv_floor_crossing": [
+    {
+      "scenario": "WellBeing/motion(주간)",
+      "prevalence_at_ppv_5.8pct": 3e-05
+    },
+    {
+      "scenario": "Safety/door_status(야간)",
+      "prevalence_at_ppv_5.8pct": 3e-05
+    },
+    {
+      "scenario": "Safety/bathroom_occupancy",
+      "prevalence_at_ppv_5.8pct": 3e-05
+    }
+  ],
+  "cds_literature": {
+    "sensitivity_range": [
+      0.1,
+      1.0
+    ],
+    "specificity_range": [
+      0.78,
+      0.99
+    ],
+    "ppv_range": [
+      0.058,
+      0.54
+    ],
+    "override_rate_range": [
+      0.49,
+      0.96
+    ],
+    "source": "Alert fatigue measurement in clinical decision support: a systematic review, PMC"
+  }
+}

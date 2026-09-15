@@ -1,0 +1,1491 @@
+{
+  "n_rules": 23,
+  "kind_counts": {
+    "hours_gte": 4,
+    "unsupported": 9,
+    "immediate": 2,
+    "minutes_gte": 3,
+    "celsius_below": 2,
+    "celsius_above": 1,
+    "lux_lt": 2
+  },
+  "report_all_rules": {
+    "n": 154,
+    "accuracy": 0.9415584415584416,
+    "macro_f1": 0.9413599840248219,
+    "macro_precision": 0.9735294117647059,
+    "macro_recall": 0.9166350050658562,
+    "weighted_f1": 0.9410444400213954,
+    "labels": [
+      "NORMAL",
+      "INFO",
+      "MILD",
+      "CONCERN"
+    ],
+    "confusion_matrix": [
+      [
+        76,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        6,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        23,
+        0
+      ],
+      [
+        7,
+        0,
+        0,
+        40
+      ]
+    ]
+  },
+  "report_supported_only": {
+    "n": 136,
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "weighted_f1": 1.0,
+    "labels": [
+      "NORMAL",
+      "INFO",
+      "MILD",
+      "CONCERN"
+    ],
+    "confusion_matrix": [
+      [
+        67,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        23,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        40
+      ]
+    ]
+  },
+  "unsupported_rule_ids": [
+    "mr_wb10_locomotion_chair_rise",
+    "mr_wb11_icope_weight_loss_3kg_90d",
+    "mr_wb12_hypoglycemia_level1",
+    "mr_wb13_hypoglycemia_level2",
+    "mr_wb3_night_kitchen_visit",
+    "mr_wb5_weight_gain_hf",
+    "mr_wb6_weight_loss_frailty",
+    "mr_wb7_orthostatic_hypotension",
+    "mr_wb9_medication_repeated_miss"
+  ],
+  "raw_rows": [
+    {
+      "rule_id": "mr_wb1_no_motion_day",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 5.47,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb1_no_motion_day",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 5.24,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb1_no_motion_day",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 4.95,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb1_no_motion_day",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 7.15,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb1_no_motion_day",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 5.94,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb1_no_motion_day",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 0.83,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb1_no_motion_day",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 2.16,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb1_no_motion_day",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 3.54,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb1_no_motion_day",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 3.56,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb1_no_motion_day",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 1.95,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb1_no_motion_day",
+      "kind": "hours_gte",
+      "regime": "boundary",
+      "obs": 4,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb2_no_motion_night",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 16.44,
+      "true_label": "INFO",
+      "pred_label": "INFO",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb2_no_motion_night",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 16.53,
+      "true_label": "INFO",
+      "pred_label": "INFO",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb2_no_motion_night",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 10.76,
+      "true_label": "INFO",
+      "pred_label": "INFO",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb2_no_motion_night",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 15.44,
+      "true_label": "INFO",
+      "pred_label": "INFO",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb2_no_motion_night",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 15.01,
+      "true_label": "INFO",
+      "pred_label": "INFO",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb2_no_motion_night",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 3.1,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb2_no_motion_night",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 2.06,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb2_no_motion_night",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 5.69,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb2_no_motion_night",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 6.65,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb2_no_motion_night",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 2.02,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb2_no_motion_night",
+      "kind": "hours_gte",
+      "regime": "boundary",
+      "obs": 8,
+      "true_label": "INFO",
+      "pred_label": "INFO",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb3_night_kitchen_visit",
+      "kind": "unsupported",
+      "regime": "positive(unsupported)",
+      "obs": 999.0,
+      "true_label": "INFO",
+      "pred_label": "NORMAL",
+      "correct": false
+    },
+    {
+      "rule_id": "mr_wb3_night_kitchen_visit",
+      "kind": "unsupported",
+      "regime": "negative(unsupported)",
+      "obs": 0.0,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb4_wearable_no_sync",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 8.42,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb4_wearable_no_sync",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 7.75,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb4_wearable_no_sync",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 12.09,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb4_wearable_no_sync",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 8.35,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb4_wearable_no_sync",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 13.01,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb4_wearable_no_sync",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 1.7,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb4_wearable_no_sync",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 4.8,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb4_wearable_no_sync",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 4.73,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb4_wearable_no_sync",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 2.4,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb4_wearable_no_sync",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 4.4,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb4_wearable_no_sync",
+      "kind": "hours_gte",
+      "regime": "boundary",
+      "obs": 6,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb5_weight_gain_hf",
+      "kind": "unsupported",
+      "regime": "positive(unsupported)",
+      "obs": 999.0,
+      "true_label": "CONCERN",
+      "pred_label": "NORMAL",
+      "correct": false
+    },
+    {
+      "rule_id": "mr_wb5_weight_gain_hf",
+      "kind": "unsupported",
+      "regime": "negative(unsupported)",
+      "obs": 0.0,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb6_weight_loss_frailty",
+      "kind": "unsupported",
+      "regime": "positive(unsupported)",
+      "obs": 999.0,
+      "true_label": "CONCERN",
+      "pred_label": "NORMAL",
+      "correct": false
+    },
+    {
+      "rule_id": "mr_wb6_weight_loss_frailty",
+      "kind": "unsupported",
+      "regime": "negative(unsupported)",
+      "obs": 0.0,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb7_orthostatic_hypotension",
+      "kind": "unsupported",
+      "regime": "positive(unsupported)",
+      "obs": 999.0,
+      "true_label": "CONCERN",
+      "pred_label": "NORMAL",
+      "correct": false
+    },
+    {
+      "rule_id": "mr_wb7_orthostatic_hypotension",
+      "kind": "unsupported",
+      "regime": "negative(unsupported)",
+      "obs": 0.0,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb8_medication_missed_dose",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 2.73,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb8_medication_missed_dose",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 4.34,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb8_medication_missed_dose",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 3.85,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb8_medication_missed_dose",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 3.37,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb8_medication_missed_dose",
+      "kind": "hours_gte",
+      "regime": "positive",
+      "obs": 2.95,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb8_medication_missed_dose",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 1.56,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb8_medication_missed_dose",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 0.89,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb8_medication_missed_dose",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 0.56,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb8_medication_missed_dose",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 0.62,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb8_medication_missed_dose",
+      "kind": "hours_gte",
+      "regime": "negative",
+      "obs": 0.72,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb8_medication_missed_dose",
+      "kind": "hours_gte",
+      "regime": "boundary",
+      "obs": 2,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb9_medication_repeated_miss",
+      "kind": "unsupported",
+      "regime": "positive(unsupported)",
+      "obs": 999.0,
+      "true_label": "CONCERN",
+      "pred_label": "NORMAL",
+      "correct": false
+    },
+    {
+      "rule_id": "mr_wb9_medication_repeated_miss",
+      "kind": "unsupported",
+      "regime": "negative(unsupported)",
+      "obs": 0.0,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb10_locomotion_chair_rise",
+      "kind": "unsupported",
+      "regime": "positive(unsupported)",
+      "obs": 999.0,
+      "true_label": "CONCERN",
+      "pred_label": "NORMAL",
+      "correct": false
+    },
+    {
+      "rule_id": "mr_wb10_locomotion_chair_rise",
+      "kind": "unsupported",
+      "regime": "negative(unsupported)",
+      "obs": 0.0,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb11_icope_weight_loss_3kg_90d",
+      "kind": "unsupported",
+      "regime": "positive(unsupported)",
+      "obs": 999.0,
+      "true_label": "CONCERN",
+      "pred_label": "NORMAL",
+      "correct": false
+    },
+    {
+      "rule_id": "mr_wb11_icope_weight_loss_3kg_90d",
+      "kind": "unsupported",
+      "regime": "negative(unsupported)",
+      "obs": 0.0,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf1_smoke_detected",
+      "kind": "immediate",
+      "regime": "positive",
+      "obs": true,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf1_smoke_detected",
+      "kind": "immediate",
+      "regime": "negative",
+      "obs": false,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf2_door_open_day",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 42.83,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf2_door_open_day",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 34.24,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf2_door_open_day",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 43.5,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf2_door_open_day",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 64.0,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf2_door_open_day",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 42.8,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf2_door_open_day",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 15.96,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf2_door_open_day",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 20.75,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf2_door_open_day",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 24.39,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf2_door_open_day",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 18.01,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf2_door_open_day",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 17.66,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf2_door_open_day",
+      "kind": "minutes_gte",
+      "regime": "boundary",
+      "obs": 30,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf3_door_open_night",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 8.33,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf3_door_open_night",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 8.73,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf3_door_open_night",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 6.58,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf3_door_open_night",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 7.29,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf3_door_open_night",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 7.86,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf3_door_open_night",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 1.64,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf3_door_open_night",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 3.85,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf3_door_open_night",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 1.72,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf3_door_open_night",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 3.23,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf3_door_open_night",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 3.14,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf3_door_open_night",
+      "kind": "minutes_gte",
+      "regime": "boundary",
+      "obs": 5,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 31.43,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 27.55,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 24.66,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 36.73,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "kind": "minutes_gte",
+      "regime": "positive",
+      "obs": 34.46,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 13.81,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 5.76,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 15.65,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 17.15,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "kind": "minutes_gte",
+      "regime": "negative",
+      "obs": 10.2,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "kind": "minutes_gte",
+      "regime": "boundary",
+      "obs": 20,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf1_temp_too_low",
+      "kind": "celsius_below",
+      "regime": "positive",
+      "obs": 3.71,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf1_temp_too_low",
+      "kind": "celsius_below",
+      "regime": "positive",
+      "obs": 2.35,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf1_temp_too_low",
+      "kind": "celsius_below",
+      "regime": "positive",
+      "obs": 2.13,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf1_temp_too_low",
+      "kind": "celsius_below",
+      "regime": "positive",
+      "obs": 7.97,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf1_temp_too_low",
+      "kind": "celsius_below",
+      "regime": "positive",
+      "obs": 9.46,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf1_temp_too_low",
+      "kind": "celsius_below",
+      "regime": "negative",
+      "obs": 21.4,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf1_temp_too_low",
+      "kind": "celsius_below",
+      "regime": "negative",
+      "obs": 35.85,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf1_temp_too_low",
+      "kind": "celsius_below",
+      "regime": "negative",
+      "obs": 31.98,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf1_temp_too_low",
+      "kind": "celsius_below",
+      "regime": "negative",
+      "obs": 29.3,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf1_temp_too_low",
+      "kind": "celsius_below",
+      "regime": "negative",
+      "obs": 33.92,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf1_temp_too_low",
+      "kind": "celsius_below",
+      "regime": "boundary",
+      "obs": 18,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf3_temp_too_low_night",
+      "kind": "celsius_below",
+      "regime": "positive",
+      "obs": 13.09,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf3_temp_too_low_night",
+      "kind": "celsius_below",
+      "regime": "positive",
+      "obs": 4.81,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf3_temp_too_low_night",
+      "kind": "celsius_below",
+      "regime": "positive",
+      "obs": 3.35,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf3_temp_too_low_night",
+      "kind": "celsius_below",
+      "regime": "positive",
+      "obs": 1.82,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf3_temp_too_low_night",
+      "kind": "celsius_below",
+      "regime": "positive",
+      "obs": 2.63,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf3_temp_too_low_night",
+      "kind": "celsius_below",
+      "regime": "negative",
+      "obs": 27.01,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf3_temp_too_low_night",
+      "kind": "celsius_below",
+      "regime": "negative",
+      "obs": 25.85,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf3_temp_too_low_night",
+      "kind": "celsius_below",
+      "regime": "negative",
+      "obs": 26.61,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf3_temp_too_low_night",
+      "kind": "celsius_below",
+      "regime": "negative",
+      "obs": 27.0,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf3_temp_too_low_night",
+      "kind": "celsius_below",
+      "regime": "negative",
+      "obs": 25.93,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf3_temp_too_low_night",
+      "kind": "celsius_below",
+      "regime": "boundary",
+      "obs": 18,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf4_temp_too_high",
+      "kind": "celsius_above",
+      "regime": "positive",
+      "obs": 36.53,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf4_temp_too_high",
+      "kind": "celsius_above",
+      "regime": "positive",
+      "obs": 41.67,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf4_temp_too_high",
+      "kind": "celsius_above",
+      "regime": "positive",
+      "obs": 32.27,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf4_temp_too_high",
+      "kind": "celsius_above",
+      "regime": "positive",
+      "obs": 48.31,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf4_temp_too_high",
+      "kind": "celsius_above",
+      "regime": "positive",
+      "obs": 41.44,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf4_temp_too_high",
+      "kind": "celsius_above",
+      "regime": "negative",
+      "obs": 8.27,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf4_temp_too_high",
+      "kind": "celsius_above",
+      "regime": "negative",
+      "obs": 24.2,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf4_temp_too_high",
+      "kind": "celsius_above",
+      "regime": "negative",
+      "obs": 23.6,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf4_temp_too_high",
+      "kind": "celsius_above",
+      "regime": "negative",
+      "obs": 23.2,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf4_temp_too_high",
+      "kind": "celsius_above",
+      "regime": "negative",
+      "obs": 9.5,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf4_temp_too_high",
+      "kind": "celsius_above",
+      "regime": "boundary",
+      "obs": 28,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf5_fall_detected",
+      "kind": "immediate",
+      "regime": "positive",
+      "obs": true,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_sf5_fall_detected",
+      "kind": "immediate",
+      "regime": "negative",
+      "obs": false,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb12_hypoglycemia_level1",
+      "kind": "unsupported",
+      "regime": "positive(unsupported)",
+      "obs": 999.0,
+      "true_label": "MILD",
+      "pred_label": "NORMAL",
+      "correct": false
+    },
+    {
+      "rule_id": "mr_wb12_hypoglycemia_level1",
+      "kind": "unsupported",
+      "regime": "negative(unsupported)",
+      "obs": 0.0,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_wb13_hypoglycemia_level2",
+      "kind": "unsupported",
+      "regime": "positive(unsupported)",
+      "obs": 999.0,
+      "true_label": "CONCERN",
+      "pred_label": "NORMAL",
+      "correct": false
+    },
+    {
+      "rule_id": "mr_wb13_hypoglycemia_level2",
+      "kind": "unsupported",
+      "regime": "negative(unsupported)",
+      "obs": 0.0,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf5_low_light_living",
+      "kind": "lux_lt",
+      "regime": "positive",
+      "obs": 12.23,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf5_low_light_living",
+      "kind": "lux_lt",
+      "regime": "positive",
+      "obs": 27.61,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf5_low_light_living",
+      "kind": "lux_lt",
+      "regime": "positive",
+      "obs": 18.19,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf5_low_light_living",
+      "kind": "lux_lt",
+      "regime": "positive",
+      "obs": 13.17,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf5_low_light_living",
+      "kind": "lux_lt",
+      "regime": "positive",
+      "obs": 12.36,
+      "true_label": "MILD",
+      "pred_label": "MILD",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf5_low_light_living",
+      "kind": "lux_lt",
+      "regime": "negative",
+      "obs": 86.16,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf5_low_light_living",
+      "kind": "lux_lt",
+      "regime": "negative",
+      "obs": 98.29,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf5_low_light_living",
+      "kind": "lux_lt",
+      "regime": "negative",
+      "obs": 65.88,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf5_low_light_living",
+      "kind": "lux_lt",
+      "regime": "negative",
+      "obs": 60.2,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf5_low_light_living",
+      "kind": "lux_lt",
+      "regime": "negative",
+      "obs": 68.61,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf5_low_light_living",
+      "kind": "lux_lt",
+      "regime": "boundary",
+      "obs": 50,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf6_dark_hallway_night",
+      "kind": "lux_lt",
+      "regime": "positive",
+      "obs": 38.8,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf6_dark_hallway_night",
+      "kind": "lux_lt",
+      "regime": "positive",
+      "obs": 7.7,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf6_dark_hallway_night",
+      "kind": "lux_lt",
+      "regime": "positive",
+      "obs": 9.35,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf6_dark_hallway_night",
+      "kind": "lux_lt",
+      "regime": "positive",
+      "obs": 30.06,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf6_dark_hallway_night",
+      "kind": "lux_lt",
+      "regime": "positive",
+      "obs": 11.89,
+      "true_label": "CONCERN",
+      "pred_label": "CONCERN",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf6_dark_hallway_night",
+      "kind": "lux_lt",
+      "regime": "negative",
+      "obs": 60.87,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf6_dark_hallway_night",
+      "kind": "lux_lt",
+      "regime": "negative",
+      "obs": 60.18,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf6_dark_hallway_night",
+      "kind": "lux_lt",
+      "regime": "negative",
+      "obs": 73.24,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf6_dark_hallway_night",
+      "kind": "lux_lt",
+      "regime": "negative",
+      "obs": 56.99,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf6_dark_hallway_night",
+      "kind": "lux_lt",
+      "regime": "negative",
+      "obs": 67.65,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    },
+    {
+      "rule_id": "mr_cf6_dark_hallway_night",
+      "kind": "lux_lt",
+      "regime": "boundary",
+      "obs": 50,
+      "true_label": "NORMAL",
+      "pred_label": "NORMAL",
+      "correct": true
+    }
+  ]
+}

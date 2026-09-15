@@ -64,6 +64,30 @@ def _rule_fires(rule: dict, observations: dict, time_ctx: str) -> bool:
             return value > rule["threshold_celsius"]
         return False
 
+    if "threshold_bpm" in rule:
+        direction = rule.get("direction")
+        if direction == "below":
+            return value < rule["threshold_bpm"]
+        if direction == "above":
+            return value > rule["threshold_bpm"]
+        return False
+
+    # (3b) 체중 변화형 — 관측값이 스칼라가 아니라 {delta_kg, direction, days} 딕셔너리.
+    # 단순 "지금 몇 kg냐"가 아니라 "그 기간 동안 몇 kg 변했냐"가 핵심이라 threshold_celsius류와
+    # 다르게 다룬다. direction/기간(관측 window가 규칙의 threshold_days 이내)이 다 맞아야 발화.
+    if "threshold_kg" in rule:
+        if not isinstance(value, dict):
+            return False
+        if value.get("direction") != rule.get("direction"):
+            return False
+        if "threshold_days" in rule and value.get("days") is not None:
+            if value["days"] > rule["threshold_days"]:
+                return False
+        delta = value.get("delta_kg")
+        if delta is None:
+            return False
+        return abs(delta) >= rule["threshold_kg"]
+
     # (4) 모르는 모양의 규칙 → 발화 안 함 (호환성: 안 터지고 조용히 건너뜀)
     return False
 

@@ -1,0 +1,2535 @@
+{
+  "note": "9.2절 진단⑤(영어 전문용어 오염) 수정을 실제로 적용한 검증 — 합성 100개는 eval_synthetic_nl_100.py와 완전히 동일.",
+  "baseline": {
+    "name": "baseline (영어 그대로)",
+    "accuracy": 0.5,
+    "macro_f1": 0.4717187353410263,
+    "per_class_recall": {
+      "WellBeing": 0.2,
+      "Safety": 0.36,
+      "Comfort": 0.48,
+      "KnowledgeLookup": 0.96
+    },
+    "per_class_precision": {
+      "WellBeing": 0.625,
+      "Safety": 0.6923,
+      "Comfort": 0.6316,
+      "KnowledgeLookup": 0.4
+    },
+    "confusion_matrix": [
+      [
+        5,
+        2,
+        4,
+        14
+      ],
+      [
+        3,
+        9,
+        3,
+        10
+      ],
+      [
+        0,
+        1,
+        12,
+        12
+      ],
+      [
+        0,
+        1,
+        0,
+        24
+      ]
+    ],
+    "labels": [
+      "WellBeing",
+      "Safety",
+      "Comfort",
+      "KnowledgeLookup"
+    ],
+    "pred_dist": {
+      "WellBeing": 8,
+      "Safety": 13,
+      "Comfort": 19,
+      "KnowledgeLookup": 60
+    },
+    "rows": [
+      {
+        "text": "할머니 요즘 잘 지내시는지 봐줘",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0318,
+          "Safety": 0.0062,
+          "Comfort": 0.0043,
+          "KnowledgeLookup": 0.1072
+        }
+      },
+      {
+        "text": "아버지 오늘 컨디션 어떤지 확인 좀",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.09,
+          "Safety": 0.0802,
+          "Comfort": 0.0392,
+          "KnowledgeLookup": 0.1076
+        }
+      },
+      {
+        "text": "어머니 밥은 잘 드시고 계신지 궁금해",
+        "true_category": "WellBeing",
+        "predicted_category": "WellBeing",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0562,
+          "Safety": 0.0163,
+          "Comfort": 0.0113,
+          "KnowledgeLookup": 0.0367
+        }
+      },
+      {
+        "text": "할아버지 요즘 기운 없어 보이던데 확인해줄래",
+        "true_category": "WellBeing",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0604,
+          "Safety": 0.0467,
+          "Comfort": 0.1985,
+          "KnowledgeLookup": 0.0645
+        }
+      },
+      {
+        "text": "오늘 움직임이 좀 적으신 것 같은데 괜찮으신지",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0291,
+          "Safety": 0.0349,
+          "Comfort": 0.017,
+          "KnowledgeLookup": 0.058
+        }
+      },
+      {
+        "text": "요즘 계속 방에만 계시는 것 같아서 걱정돼",
+        "true_category": "WellBeing",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0232,
+          "Safety": 0.0437,
+          "Comfort": 0.0808,
+          "KnowledgeLookup": 0.0456
+        }
+      },
+      {
+        "text": "체중이 갑자기 줄었다고 들었는데 확인 가능해?",
+        "true_category": "WellBeing",
+        "predicted_category": "WellBeing",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.1083,
+          "Safety": 0.0815,
+          "Comfort": 0.0565,
+          "KnowledgeLookup": 0.0672
+        }
+      },
+      {
+        "text": "최근에 살이 빠지신 것 같던데 체크해줘",
+        "true_category": "WellBeing",
+        "predicted_category": "Safety",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0092,
+          "Safety": 0.0823,
+          "Comfort": 0.016,
+          "KnowledgeLookup": 0.0361
+        }
+      },
+      {
+        "text": "약 제때 챙겨 드시고 계신지 확인해줘",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0674,
+          "Safety": 0.0404,
+          "Comfort": 0.031,
+          "KnowledgeLookup": 0.1282
+        }
+      },
+      {
+        "text": "오늘 약 드셨는지 좀 봐줄래",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.023,
+          "Safety": 0.0248,
+          "Comfort": 0.0043,
+          "KnowledgeLookup": 0.1738
+        }
+      },
+      {
+        "text": "웨어러블 워치 신호가 며칠째 안 잡히는데 왜 그런지",
+        "true_category": "WellBeing",
+        "predicted_category": "WellBeing",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0897,
+          "Safety": 0.0194,
+          "Comfort": 0.0189,
+          "KnowledgeLookup": 0.0159
+        }
+      },
+      {
+        "text": "심박수 센서가 계속 연결이 안 되는 것 같아",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0211,
+          "Safety": 0.0448,
+          "Comfort": 0.0837,
+          "KnowledgeLookup": 0.1119
+        }
+      },
+      {
+        "text": "어젯밤에 잘 주무셨는지 궁금해",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0289,
+          "Safety": 0.0212,
+          "Comfort": 0.0172,
+          "KnowledgeLookup": 0.1188
+        }
+      },
+      {
+        "text": "밤새 움직임이 없었는데 정상인지 확인해줘",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.042,
+          "Safety": 0.0585,
+          "Comfort": 0.072,
+          "KnowledgeLookup": 0.0844
+        }
+      },
+      {
+        "text": "요즘 걸음걸이가 느려지신 것 같은데",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0103,
+          "Safety": 0.0193,
+          "Comfort": 0.0268,
+          "KnowledgeLookup": 0.0291
+        }
+      },
+      {
+        "text": "의자에서 일어나는 게 힘드신 것 같아",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0552,
+          "Safety": 0.0354,
+          "Comfort": 0.0326,
+          "KnowledgeLookup": 0.0696
+        }
+      },
+      {
+        "text": "혈당 수치가 괜찮으신지 확인해줄 수 있어?",
+        "true_category": "WellBeing",
+        "predicted_category": "WellBeing",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0641,
+          "Safety": 0.0383,
+          "Comfort": 0.0449,
+          "KnowledgeLookup": 0.0591
+        }
+      },
+      {
+        "text": "어제부터 기력이 없어 보이시는데 상태 좀 봐줘",
+        "true_category": "WellBeing",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0507,
+          "Safety": 0.0223,
+          "Comfort": 0.1916,
+          "KnowledgeLookup": 0.0315
+        }
+      },
+      {
+        "text": "며칠째 식사량이 줄어든 것 같아서",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.029,
+          "Safety": 0.0279,
+          "Comfort": 0.0388,
+          "KnowledgeLookup": 0.0471
+        }
+      },
+      {
+        "text": "아침에 일어나셨는지 확인 좀 해줘",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0775,
+          "Safety": 0.0602,
+          "Comfort": 0.0376,
+          "KnowledgeLookup": 0.1797
+        }
+      },
+      {
+        "text": "오늘 하루 종일 어떻게 지내셨는지 요약해줘",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0716,
+          "Safety": 0.0187,
+          "Comfort": 0.0025,
+          "KnowledgeLookup": 0.078
+        }
+      },
+      {
+        "text": "최근 활동량이 줄어든 게 걱정돼",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0172,
+          "Safety": 0.0427,
+          "Comfort": 0.0091,
+          "KnowledgeLookup": 0.0655
+        }
+      },
+      {
+        "text": "혼자 계신데 별일 없으신지 봐줘",
+        "true_category": "WellBeing",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0107,
+          "Safety": 0.0464,
+          "Comfort": 0.087,
+          "KnowledgeLookup": 0.0315
+        }
+      },
+      {
+        "text": "요즘 자주 깜빡깜빡 하시는 것 같아 상태 확인 부탁해",
+        "true_category": "WellBeing",
+        "predicted_category": "WellBeing",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.092,
+          "Safety": 0.0666,
+          "Comfort": 0.0573,
+          "KnowledgeLookup": 0.088
+        }
+      },
+      {
+        "text": "컨디션 체크 한번 해줄래",
+        "true_category": "WellBeing",
+        "predicted_category": "Safety",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0131,
+          "Safety": 0.0329,
+          "Comfort": 0.0142,
+          "KnowledgeLookup": 0.0099
+        }
+      },
+      {
+        "text": "가스레인지 안 끄고 나가신 거 아닌지 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0481,
+          "Safety": 0.061,
+          "Comfort": 0.0221,
+          "KnowledgeLookup": 0.0929
+        }
+      },
+      {
+        "text": "부엌에서 타는 냄새 안 나는지 체크해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0587,
+          "Safety": 0.0816,
+          "Comfort": 0.0392,
+          "KnowledgeLookup": 0.0941
+        }
+      },
+      {
+        "text": "현관문 계속 열려있는 거 아니야?",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0036,
+          "Safety": 0.0622,
+          "Comfort": 0.0312,
+          "KnowledgeLookup": 0.0603
+        }
+      },
+      {
+        "text": "문 안 잠그고 주무신 건 아닌지 걱정돼",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0164,
+          "Safety": 0.0936,
+          "Comfort": 0.0085,
+          "KnowledgeLookup": 0.053
+        }
+      },
+      {
+        "text": "화장실에 너무 오래 계신 것 같은데",
+        "true_category": "Safety",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0078,
+          "Safety": 0.0276,
+          "Comfort": 0.0498,
+          "KnowledgeLookup": 0.0135
+        }
+      },
+      {
+        "text": "욕실에서 안 나오시는데 괜찮으신지 확인 좀",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.1006,
+          "Safety": 0.1478,
+          "Comfort": 0.0378,
+          "KnowledgeLookup": 0.0529
+        }
+      },
+      {
+        "text": "넘어지신 건 아닌지 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0547,
+          "Safety": 0.032,
+          "Comfort": 0.0127,
+          "KnowledgeLookup": 0.0902
+        }
+      },
+      {
+        "text": "갑자기 쓰러지신 것 같으면 바로 알려줘",
+        "true_category": "Safety",
+        "predicted_category": "WellBeing",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0666,
+          "Safety": 0.0335,
+          "Comfort": 0.0369,
+          "KnowledgeLookup": 0.0113
+        }
+      },
+      {
+        "text": "연기 감지되면 즉시 알려줘",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0457,
+          "Safety": 0.0976,
+          "Comfort": 0.032,
+          "KnowledgeLookup": 0.0
+        }
+      },
+      {
+        "text": "화재 위험 없는지 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0327,
+          "Safety": 0.0819,
+          "Comfort": 0.0807,
+          "KnowledgeLookup": 0.0881
+        }
+      },
+      {
+        "text": "밤에 화장실 가시다 넘어지신 건 아닌지",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0331,
+          "Safety": 0.0526,
+          "Comfort": 0.0214,
+          "KnowledgeLookup": 0.0533
+        }
+      },
+      {
+        "text": "문 열어놓고 외출하신 거 아닌지 봐줘",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0159,
+          "Safety": 0.0835,
+          "Comfort": 0.0033,
+          "KnowledgeLookup": 0.0563
+        }
+      },
+      {
+        "text": "낙상 위험 있는지 순찰 좀 돌아줘",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0123,
+          "Safety": 0.1388,
+          "Comfort": 0.0027,
+          "KnowledgeLookup": 0.0571
+        }
+      },
+      {
+        "text": "야간에 이상 소리 나면 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "WellBeing",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.083,
+          "Safety": 0.0487,
+          "Comfort": 0.0321,
+          "KnowledgeLookup": 0.0535
+        }
+      },
+      {
+        "text": "욕조에서 미끄러지신 건 아닌지 걱정돼",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0485,
+          "Safety": 0.0544,
+          "Comfort": 0.0157,
+          "KnowledgeLookup": 0.0569
+        }
+      },
+      {
+        "text": "현관 잠금장치 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.042,
+          "Safety": 0.0324,
+          "Comfort": 0.0719,
+          "KnowledgeLookup": 0.0563
+        }
+      },
+      {
+        "text": "가스 냄새 나는지 체크해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.02,
+          "Safety": 0.0373,
+          "Comfort": 0.0221,
+          "KnowledgeLookup": 0.1213
+        }
+      },
+      {
+        "text": "계단에서 넘어지신 거 아닌지 확인",
+        "true_category": "Safety",
+        "predicted_category": "WellBeing",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.1036,
+          "Safety": 0.0675,
+          "Comfort": 0.0341,
+          "KnowledgeLookup": 0.0794
+        }
+      },
+      {
+        "text": "새벽에 인기척 없는데 괜찮으신지",
+        "true_category": "Safety",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0139,
+          "Safety": 0.0092,
+          "Comfort": 0.1499,
+          "KnowledgeLookup": 0.0209
+        }
+      },
+      {
+        "text": "문 열린 채로 오래 방치돼있는지 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0575,
+          "Safety": 0.1218,
+          "Comfort": 0.0129,
+          "KnowledgeLookup": 0.1157
+        }
+      },
+      {
+        "text": "불이 난 건 아닌지 확인 부탁해",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0804,
+          "Safety": 0.062,
+          "Comfort": 0.037,
+          "KnowledgeLookup": 0.123
+        }
+      },
+      {
+        "text": "화장실 바닥 미끄러워서 걱정되는데 상태 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0611,
+          "Safety": 0.0687,
+          "Comfort": 0.0202,
+          "KnowledgeLookup": 0.0742
+        }
+      },
+      {
+        "text": "밤사이 위험한 일 없었는지 순찰해줘",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0175,
+          "Safety": 0.0871,
+          "Comfort": 0.0489,
+          "KnowledgeLookup": 0.0752
+        }
+      },
+      {
+        "text": "낙상 감지되면 바로 보호자한테 알려줘",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.1098,
+          "Safety": 0.1601,
+          "Comfort": 0.0647,
+          "KnowledgeLookup": 0.0023
+        }
+      },
+      {
+        "text": "문단속 잘 하셨는지 확인 좀",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.077,
+          "Safety": 0.0926,
+          "Comfort": 0.0343,
+          "KnowledgeLookup": 0.1591
+        }
+      },
+      {
+        "text": "방 온도가 너무 낮은 거 아니야?",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.011,
+          "Safety": 0.0314,
+          "Comfort": 0.1861,
+          "KnowledgeLookup": 0.0345
+        }
+      },
+      {
+        "text": "실내가 너무 추운 것 같은데 확인해줘",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0333,
+          "Safety": 0.0313,
+          "Comfort": 0.1025,
+          "KnowledgeLookup": 0.05
+        }
+      },
+      {
+        "text": "집 안이 너무 더운 거 아닌지 봐줘",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0056,
+          "Safety": 0.0266,
+          "Comfort": 0.0457,
+          "KnowledgeLookup": 0.0669
+        }
+      },
+      {
+        "text": "난방 좀 틀어드려야 할 것 같은데",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0,
+          "Safety": 0.0154,
+          "Comfort": 0.0451,
+          "KnowledgeLookup": 0.0481
+        }
+      },
+      {
+        "text": "에어컨 세게 틀어져 있는 거 아닌지",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.014,
+          "Safety": 0.0367,
+          "Comfort": 0.0305,
+          "KnowledgeLookup": 0.0909
+        }
+      },
+      {
+        "text": "거실이 너무 어두운 것 같아",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0131,
+          "Safety": 0.0164,
+          "Comfort": 0.0523,
+          "KnowledgeLookup": 0.0244
+        }
+      },
+      {
+        "text": "조명 좀 밝게 해줘",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0163,
+          "Safety": 0.0,
+          "Comfort": 0.0,
+          "KnowledgeLookup": 0.0837
+        }
+      },
+      {
+        "text": "복도가 캄캄한데 불 좀 켜줘",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.018,
+          "Safety": 0.0158,
+          "Comfort": 0.0219,
+          "KnowledgeLookup": 0.0472
+        }
+      },
+      {
+        "text": "습도가 너무 높은 거 아닌지 확인해줘",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0407,
+          "Safety": 0.0482,
+          "Comfort": 0.0561,
+          "KnowledgeLookup": 0.0881
+        }
+      },
+      {
+        "text": "환기가 잘 안 되는 것 같은데",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0046,
+          "Safety": 0.0366,
+          "Comfort": 0.0452,
+          "KnowledgeLookup": 0.1247
+        }
+      },
+      {
+        "text": "창문 열어서 환기 좀 시켜줘",
+        "true_category": "Comfort",
+        "predicted_category": "Safety",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0149,
+          "Safety": 0.0737,
+          "Comfort": 0.0305,
+          "KnowledgeLookup": 0.0092
+        }
+      },
+      {
+        "text": "실내 공기가 답답한 것 같아",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0156,
+          "Safety": 0.0161,
+          "Comfort": 0.1074,
+          "KnowledgeLookup": 0.0122
+        }
+      },
+      {
+        "text": "밤에 방이 너무 서늘한 거 아닌지",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0141,
+          "Safety": 0.0295,
+          "Comfort": 0.058,
+          "KnowledgeLookup": 0.0655
+        }
+      },
+      {
+        "text": "온도 조절 좀 해줄 수 있어?",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0,
+          "Safety": 0.0035,
+          "Comfort": 0.2389,
+          "KnowledgeLookup": 0.0271
+        }
+      },
+      {
+        "text": "지금 실내 온도 몇 도야?",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0127,
+          "Safety": 0.0066,
+          "Comfort": 0.2085,
+          "KnowledgeLookup": 0.0425
+        }
+      },
+      {
+        "text": "조명 밝기 확인 좀 해줘",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0752,
+          "Safety": 0.0696,
+          "Comfort": 0.0327,
+          "KnowledgeLookup": 0.1003
+        }
+      },
+      {
+        "text": "겨울인데 난방 잘 되고 있는지",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0241,
+          "Safety": 0.0186,
+          "Comfort": 0.0419,
+          "KnowledgeLookup": 0.1126
+        }
+      },
+      {
+        "text": "여름에 냉방 너무 세게 틀어진 거 아닌지",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0234,
+          "Safety": 0.0237,
+          "Comfort": 0.0664,
+          "KnowledgeLookup": 0.0538
+        }
+      },
+      {
+        "text": "습도 조절 좀 해줘",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0,
+          "Safety": 0.0052,
+          "Comfort": 0.0672,
+          "KnowledgeLookup": 0.0397
+        }
+      },
+      {
+        "text": "방이 쾌적한지 확인해줘",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.031,
+          "Safety": 0.0296,
+          "Comfort": 0.1192,
+          "KnowledgeLookup": 0.0557
+        }
+      },
+      {
+        "text": "야간에 조명이 너무 밝아서 수면 방해되지 않는지",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0285,
+          "Safety": 0.0306,
+          "Comfort": 0.0506,
+          "KnowledgeLookup": 0.1257
+        }
+      },
+      {
+        "text": "거실 온도 좀 확인해줄래",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0311,
+          "Safety": 0.061,
+          "Comfort": 0.1946,
+          "KnowledgeLookup": 0.0515
+        }
+      },
+      {
+        "text": "집안 환경이 괜찮은지 전반적으로 봐줘",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0652,
+          "Safety": 0.0217,
+          "Comfort": 0.0874,
+          "KnowledgeLookup": 0.0421
+        }
+      },
+      {
+        "text": "통풍이 잘 되는지 확인 부탁해",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0669,
+          "Safety": 0.0563,
+          "Comfort": 0.029,
+          "KnowledgeLookup": 0.2417
+        }
+      },
+      {
+        "text": "실내가 너무 건조한 거 아닌지",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0105,
+          "Safety": 0.0256,
+          "Comfort": 0.0949,
+          "KnowledgeLookup": 0.0461
+        }
+      },
+      {
+        "text": "이 약 먹어도 되는지 확인해줄 수 있어?",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0356,
+          "Safety": 0.0282,
+          "Comfort": 0.0216,
+          "KnowledgeLookup": 0.3212
+        }
+      },
+      {
+        "text": "혈압약이랑 이 약 같이 먹어도 되나",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0125,
+          "Safety": 0.0102,
+          "Comfort": 0.0171,
+          "KnowledgeLookup": 0.2301
+        }
+      },
+      {
+        "text": "당뇨약 복용 중인데 이 약 괜찮을까",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0294,
+          "Safety": 0.0067,
+          "Comfort": 0.0214,
+          "KnowledgeLookup": 0.1623
+        }
+      },
+      {
+        "text": "이 약 부작용이 뭐가 있는지 알려줘",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0407,
+          "Safety": 0.05,
+          "Comfort": 0.0602,
+          "KnowledgeLookup": 0.1641
+        }
+      },
+      {
+        "text": "지금 먹는 약이랑 상호작용 있는지 확인해줘",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0251,
+          "Safety": 0.0272,
+          "Comfort": 0.0261,
+          "KnowledgeLookup": 0.2499
+        }
+      },
+      {
+        "text": "심부전 있으신데 이 약 드셔도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0201,
+          "Safety": 0.0146,
+          "Comfort": 0.0218,
+          "KnowledgeLookup": 0.2851
+        }
+      },
+      {
+        "text": "이 진단명이면 뭘 조심해야 해?",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0202,
+          "Safety": 0.0093,
+          "Comfort": 0.0069,
+          "KnowledgeLookup": 0.2496
+        }
+      },
+      {
+        "text": "치매 환자한테 이 약 써도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0182,
+          "Safety": 0.0133,
+          "Comfort": 0.0257,
+          "KnowledgeLookup": 0.276
+        }
+      },
+      {
+        "text": "골다공증 있는데 이 약 먹어도 될까",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0146,
+          "Safety": 0.0104,
+          "Comfort": 0.0188,
+          "KnowledgeLookup": 0.2161
+        }
+      },
+      {
+        "text": "이 약 노인한테 위험하다고 들었는데 맞아?",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0277,
+          "Safety": 0.0678,
+          "Comfort": 0.0105,
+          "KnowledgeLookup": 0.0884
+        }
+      },
+      {
+        "text": "수면제 복용해도 되는지 궁금해",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.01,
+          "Safety": 0.0056,
+          "Comfort": 0.017,
+          "KnowledgeLookup": 0.2349
+        }
+      },
+      {
+        "text": "진통제 장기 복용해도 괜찮은지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0415,
+          "Safety": 0.02,
+          "Comfort": 0.0225,
+          "KnowledgeLookup": 0.109
+        }
+      },
+      {
+        "text": "이 약이랑 저 약 같이 먹어도 되나요",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0228,
+          "Safety": 0.0141,
+          "Comfort": 0.0221,
+          "KnowledgeLookup": 0.2297
+        }
+      },
+      {
+        "text": "항생제 복용 중인데 다른 약 먹어도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0167,
+          "Safety": 0.0068,
+          "Comfort": 0.0232,
+          "KnowledgeLookup": 0.3025
+        }
+      },
+      {
+        "text": "이뇨제 복용 중인데 주의할 점이 뭐야",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0154,
+          "Safety": 0.0101,
+          "Comfort": 0.037,
+          "KnowledgeLookup": 0.1414
+        }
+      },
+      {
+        "text": "고혈압 환자가 조심해야 할 약이 뭐야",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0114,
+          "Safety": 0.0101,
+          "Comfort": 0.0158,
+          "KnowledgeLookup": 0.1619
+        }
+      },
+      {
+        "text": "이 약 복용 후 어지러우면 어떻게 해야 해",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0755,
+          "Safety": 0.0079,
+          "Comfort": 0.0154,
+          "KnowledgeLookup": 0.1384
+        }
+      },
+      {
+        "text": "신장 기능 안 좋으신데 이 약 괜찮은지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0793,
+          "Safety": 0.0173,
+          "Comfort": 0.0177,
+          "KnowledgeLookup": 0.0965
+        }
+      },
+      {
+        "text": "벤조디아제핀 계열 약 복용해도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0118,
+          "Safety": 0.0079,
+          "Comfort": 0.0088,
+          "KnowledgeLookup": 0.267
+        }
+      },
+      {
+        "text": "이 질환 있을 때 피해야 할 약이 뭐야",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0224,
+          "Safety": 0.0185,
+          "Comfort": 0.0141,
+          "KnowledgeLookup": 0.173
+        }
+      },
+      {
+        "text": "항응고제 복용 중인데 이 약 먹어도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0179,
+          "Safety": 0.0094,
+          "Comfort": 0.0295,
+          "KnowledgeLookup": 0.319
+        }
+      },
+      {
+        "text": "낙상 위험 높이는 약이 뭐가 있어?",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "Safety",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0156,
+          "Safety": 0.1497,
+          "Comfort": 0.0296,
+          "KnowledgeLookup": 0.0533
+        }
+      },
+      {
+        "text": "이 약 복용 시 음식 제한이 있는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0351,
+          "Safety": 0.0183,
+          "Comfort": 0.0484,
+          "KnowledgeLookup": 0.2093
+        }
+      },
+      {
+        "text": "파킨슨병 환자한테 이 약 써도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0182,
+          "Safety": 0.0133,
+          "Comfort": 0.0257,
+          "KnowledgeLookup": 0.276
+        }
+      },
+      {
+        "text": "약 복용 시간 겹쳐도 괜찮은지 확인해줘",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0762,
+          "Safety": 0.0692,
+          "Comfort": 0.025,
+          "KnowledgeLookup": 0.1306
+        }
+      }
+    ]
+  },
+  "stripped": {
+    "name": "stripped (영어 제거)",
+    "accuracy": 0.49,
+    "macro_f1": 0.4613560364244359,
+    "per_class_recall": {
+      "WellBeing": 0.24,
+      "Safety": 0.28,
+      "Comfort": 0.48,
+      "KnowledgeLookup": 0.96
+    },
+    "per_class_precision": {
+      "WellBeing": 0.6667,
+      "Safety": 0.6364,
+      "Comfort": 0.6316,
+      "KnowledgeLookup": 0.3934
+    },
+    "confusion_matrix": [
+      [
+        6,
+        2,
+        4,
+        13
+      ],
+      [
+        3,
+        7,
+        3,
+        12
+      ],
+      [
+        0,
+        1,
+        12,
+        12
+      ],
+      [
+        0,
+        1,
+        0,
+        24
+      ]
+    ],
+    "labels": [
+      "WellBeing",
+      "Safety",
+      "Comfort",
+      "KnowledgeLookup"
+    ],
+    "pred_dist": {
+      "WellBeing": 9,
+      "Safety": 11,
+      "Comfort": 19,
+      "KnowledgeLookup": 61
+    },
+    "rows": [
+      {
+        "text": "할머니 요즘 잘 지내시는지 봐줘",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0459,
+          "Safety": 0.0073,
+          "Comfort": 0.0049,
+          "KnowledgeLookup": 0.1351
+        }
+      },
+      {
+        "text": "아버지 오늘 컨디션 어떤지 확인 좀",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.1297,
+          "Safety": 0.0951,
+          "Comfort": 0.0445,
+          "KnowledgeLookup": 0.1356
+        }
+      },
+      {
+        "text": "어머니 밥은 잘 드시고 계신지 궁금해",
+        "true_category": "WellBeing",
+        "predicted_category": "WellBeing",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0811,
+          "Safety": 0.0193,
+          "Comfort": 0.0129,
+          "KnowledgeLookup": 0.0463
+        }
+      },
+      {
+        "text": "할아버지 요즘 기운 없어 보이던데 확인해줄래",
+        "true_category": "WellBeing",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0871,
+          "Safety": 0.0554,
+          "Comfort": 0.2256,
+          "KnowledgeLookup": 0.0813
+        }
+      },
+      {
+        "text": "오늘 움직임이 좀 적으신 것 같은데 괜찮으신지",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.042,
+          "Safety": 0.0414,
+          "Comfort": 0.0193,
+          "KnowledgeLookup": 0.0731
+        }
+      },
+      {
+        "text": "요즘 계속 방에만 계시는 것 같아서 걱정돼",
+        "true_category": "WellBeing",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0335,
+          "Safety": 0.0518,
+          "Comfort": 0.0919,
+          "KnowledgeLookup": 0.0574
+        }
+      },
+      {
+        "text": "체중이 갑자기 줄었다고 들었는데 확인 가능해?",
+        "true_category": "WellBeing",
+        "predicted_category": "WellBeing",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.1562,
+          "Safety": 0.0967,
+          "Comfort": 0.0642,
+          "KnowledgeLookup": 0.0846
+        }
+      },
+      {
+        "text": "최근에 살이 빠지신 것 같던데 체크해줘",
+        "true_category": "WellBeing",
+        "predicted_category": "Safety",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0133,
+          "Safety": 0.0975,
+          "Comfort": 0.0182,
+          "KnowledgeLookup": 0.0455
+        }
+      },
+      {
+        "text": "약 제때 챙겨 드시고 계신지 확인해줘",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0972,
+          "Safety": 0.0479,
+          "Comfort": 0.0352,
+          "KnowledgeLookup": 0.1615
+        }
+      },
+      {
+        "text": "오늘 약 드셨는지 좀 봐줄래",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0331,
+          "Safety": 0.0294,
+          "Comfort": 0.0049,
+          "KnowledgeLookup": 0.219
+        }
+      },
+      {
+        "text": "웨어러블 워치 신호가 며칠째 안 잡히는데 왜 그런지",
+        "true_category": "WellBeing",
+        "predicted_category": "WellBeing",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.1294,
+          "Safety": 0.023,
+          "Comfort": 0.0214,
+          "KnowledgeLookup": 0.0201
+        }
+      },
+      {
+        "text": "심박수 센서가 계속 연결이 안 되는 것 같아",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0305,
+          "Safety": 0.0531,
+          "Comfort": 0.0951,
+          "KnowledgeLookup": 0.141
+        }
+      },
+      {
+        "text": "어젯밤에 잘 주무셨는지 궁금해",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0417,
+          "Safety": 0.0252,
+          "Comfort": 0.0195,
+          "KnowledgeLookup": 0.1498
+        }
+      },
+      {
+        "text": "밤새 움직임이 없었는데 정상인지 확인해줘",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0606,
+          "Safety": 0.0694,
+          "Comfort": 0.0819,
+          "KnowledgeLookup": 0.1064
+        }
+      },
+      {
+        "text": "요즘 걸음걸이가 느려지신 것 같은데",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0148,
+          "Safety": 0.0229,
+          "Comfort": 0.0304,
+          "KnowledgeLookup": 0.0367
+        }
+      },
+      {
+        "text": "의자에서 일어나는 게 힘드신 것 같아",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0831,
+          "Safety": 0.0404,
+          "Comfort": 0.0357,
+          "KnowledgeLookup": 0.0914
+        }
+      },
+      {
+        "text": "혈당 수치가 괜찮으신지 확인해줄 수 있어?",
+        "true_category": "WellBeing",
+        "predicted_category": "WellBeing",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0925,
+          "Safety": 0.0454,
+          "Comfort": 0.051,
+          "KnowledgeLookup": 0.0744
+        }
+      },
+      {
+        "text": "어제부터 기력이 없어 보이시는데 상태 좀 봐줘",
+        "true_category": "WellBeing",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0732,
+          "Safety": 0.0265,
+          "Comfort": 0.2178,
+          "KnowledgeLookup": 0.0397
+        }
+      },
+      {
+        "text": "며칠째 식사량이 줄어든 것 같아서",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0418,
+          "Safety": 0.0331,
+          "Comfort": 0.0441,
+          "KnowledgeLookup": 0.0593
+        }
+      },
+      {
+        "text": "아침에 일어나셨는지 확인 좀 해줘",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.1118,
+          "Safety": 0.0714,
+          "Comfort": 0.0428,
+          "KnowledgeLookup": 0.2264
+        }
+      },
+      {
+        "text": "오늘 하루 종일 어떻게 지내셨는지 요약해줘",
+        "true_category": "WellBeing",
+        "predicted_category": "WellBeing",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.1032,
+          "Safety": 0.0222,
+          "Comfort": 0.0029,
+          "KnowledgeLookup": 0.0983
+        }
+      },
+      {
+        "text": "최근 활동량이 줄어든 게 걱정돼",
+        "true_category": "WellBeing",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0248,
+          "Safety": 0.0506,
+          "Comfort": 0.0103,
+          "KnowledgeLookup": 0.0825
+        }
+      },
+      {
+        "text": "혼자 계신데 별일 없으신지 봐줘",
+        "true_category": "WellBeing",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0154,
+          "Safety": 0.055,
+          "Comfort": 0.0988,
+          "KnowledgeLookup": 0.0396
+        }
+      },
+      {
+        "text": "요즘 자주 깜빡깜빡 하시는 것 같아 상태 확인 부탁해",
+        "true_category": "WellBeing",
+        "predicted_category": "WellBeing",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.1326,
+          "Safety": 0.079,
+          "Comfort": 0.0651,
+          "KnowledgeLookup": 0.111
+        }
+      },
+      {
+        "text": "컨디션 체크 한번 해줄래",
+        "true_category": "WellBeing",
+        "predicted_category": "Safety",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0189,
+          "Safety": 0.039,
+          "Comfort": 0.0161,
+          "KnowledgeLookup": 0.0125
+        }
+      },
+      {
+        "text": "가스레인지 안 끄고 나가신 거 아닌지 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0694,
+          "Safety": 0.0723,
+          "Comfort": 0.0251,
+          "KnowledgeLookup": 0.1171
+        }
+      },
+      {
+        "text": "부엌에서 타는 냄새 안 나는지 체크해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0847,
+          "Safety": 0.0967,
+          "Comfort": 0.0445,
+          "KnowledgeLookup": 0.1186
+        }
+      },
+      {
+        "text": "현관문 계속 열려있는 거 아니야?",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0052,
+          "Safety": 0.0737,
+          "Comfort": 0.0355,
+          "KnowledgeLookup": 0.076
+        }
+      },
+      {
+        "text": "문 안 잠그고 주무신 건 아닌지 걱정돼",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0236,
+          "Safety": 0.111,
+          "Comfort": 0.0097,
+          "KnowledgeLookup": 0.0668
+        }
+      },
+      {
+        "text": "화장실에 너무 오래 계신 것 같은데",
+        "true_category": "Safety",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0113,
+          "Safety": 0.0327,
+          "Comfort": 0.0566,
+          "KnowledgeLookup": 0.0171
+        }
+      },
+      {
+        "text": "욕실에서 안 나오시는데 괜찮으신지 확인 좀",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.145,
+          "Safety": 0.1752,
+          "Comfort": 0.043,
+          "KnowledgeLookup": 0.0667
+        }
+      },
+      {
+        "text": "넘어지신 건 아닌지 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0788,
+          "Safety": 0.0379,
+          "Comfort": 0.0144,
+          "KnowledgeLookup": 0.1136
+        }
+      },
+      {
+        "text": "갑자기 쓰러지신 것 같으면 바로 알려줘",
+        "true_category": "Safety",
+        "predicted_category": "WellBeing",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.096,
+          "Safety": 0.0397,
+          "Comfort": 0.0419,
+          "KnowledgeLookup": 0.0142
+        }
+      },
+      {
+        "text": "연기 감지되면 즉시 알려줘",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0659,
+          "Safety": 0.1158,
+          "Comfort": 0.0364,
+          "KnowledgeLookup": 0.0
+        }
+      },
+      {
+        "text": "화재 위험 없는지 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0472,
+          "Safety": 0.0972,
+          "Comfort": 0.0917,
+          "KnowledgeLookup": 0.111
+        }
+      },
+      {
+        "text": "밤에 화장실 가시다 넘어지신 건 아닌지",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0477,
+          "Safety": 0.0623,
+          "Comfort": 0.0243,
+          "KnowledgeLookup": 0.0672
+        }
+      },
+      {
+        "text": "문 열어놓고 외출하신 거 아닌지 봐줘",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0229,
+          "Safety": 0.099,
+          "Comfort": 0.0038,
+          "KnowledgeLookup": 0.0709
+        }
+      },
+      {
+        "text": "낙상 위험 있는지 순찰 좀 돌아줘",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0178,
+          "Safety": 0.1646,
+          "Comfort": 0.0031,
+          "KnowledgeLookup": 0.0719
+        }
+      },
+      {
+        "text": "야간에 이상 소리 나면 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "WellBeing",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.1236,
+          "Safety": 0.0578,
+          "Comfort": 0.0364,
+          "KnowledgeLookup": 0.0674
+        }
+      },
+      {
+        "text": "욕조에서 미끄러지신 건 아닌지 걱정돼",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.07,
+          "Safety": 0.0645,
+          "Comfort": 0.0179,
+          "KnowledgeLookup": 0.0717
+        }
+      },
+      {
+        "text": "현관 잠금장치 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0605,
+          "Safety": 0.0384,
+          "Comfort": 0.0817,
+          "KnowledgeLookup": 0.071
+        }
+      },
+      {
+        "text": "가스 냄새 나는지 체크해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0288,
+          "Safety": 0.0442,
+          "Comfort": 0.0251,
+          "KnowledgeLookup": 0.1528
+        }
+      },
+      {
+        "text": "계단에서 넘어지신 거 아닌지 확인",
+        "true_category": "Safety",
+        "predicted_category": "WellBeing",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.1494,
+          "Safety": 0.08,
+          "Comfort": 0.0387,
+          "KnowledgeLookup": 0.1001
+        }
+      },
+      {
+        "text": "새벽에 인기척 없는데 괜찮으신지",
+        "true_category": "Safety",
+        "predicted_category": "Comfort",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0201,
+          "Safety": 0.011,
+          "Comfort": 0.1703,
+          "KnowledgeLookup": 0.0264
+        }
+      },
+      {
+        "text": "문 열린 채로 오래 방치돼있는지 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.083,
+          "Safety": 0.1444,
+          "Comfort": 0.0147,
+          "KnowledgeLookup": 0.1458
+        }
+      },
+      {
+        "text": "불이 난 건 아닌지 확인 부탁해",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.1159,
+          "Safety": 0.0735,
+          "Comfort": 0.042,
+          "KnowledgeLookup": 0.1551
+        }
+      },
+      {
+        "text": "화장실 바닥 미끄러워서 걱정되는데 상태 확인해줘",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0882,
+          "Safety": 0.0814,
+          "Comfort": 0.023,
+          "KnowledgeLookup": 0.0935
+        }
+      },
+      {
+        "text": "밤사이 위험한 일 없었는지 순찰해줘",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0253,
+          "Safety": 0.1032,
+          "Comfort": 0.0556,
+          "KnowledgeLookup": 0.0947
+        }
+      },
+      {
+        "text": "낙상 감지되면 바로 보호자한테 알려줘",
+        "true_category": "Safety",
+        "predicted_category": "Safety",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.1583,
+          "Safety": 0.1898,
+          "Comfort": 0.0735,
+          "KnowledgeLookup": 0.0029
+        }
+      },
+      {
+        "text": "문단속 잘 하셨는지 확인 좀",
+        "true_category": "Safety",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.111,
+          "Safety": 0.1098,
+          "Comfort": 0.0389,
+          "KnowledgeLookup": 0.2005
+        }
+      },
+      {
+        "text": "방 온도가 너무 낮은 거 아니야?",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0159,
+          "Safety": 0.0372,
+          "Comfort": 0.2114,
+          "KnowledgeLookup": 0.0435
+        }
+      },
+      {
+        "text": "실내가 너무 추운 것 같은데 확인해줘",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.048,
+          "Safety": 0.0371,
+          "Comfort": 0.1164,
+          "KnowledgeLookup": 0.063
+        }
+      },
+      {
+        "text": "집 안이 너무 더운 거 아닌지 봐줘",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0081,
+          "Safety": 0.0316,
+          "Comfort": 0.0519,
+          "KnowledgeLookup": 0.0843
+        }
+      },
+      {
+        "text": "난방 좀 틀어드려야 할 것 같은데",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0,
+          "Safety": 0.0183,
+          "Comfort": 0.0512,
+          "KnowledgeLookup": 0.0606
+        }
+      },
+      {
+        "text": "에어컨 세게 틀어져 있는 거 아닌지",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0307,
+          "Safety": 0.0399,
+          "Comfort": 0.0318,
+          "KnowledgeLookup": 0.1051
+        }
+      },
+      {
+        "text": "거실이 너무 어두운 것 같아",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0189,
+          "Safety": 0.0195,
+          "Comfort": 0.0595,
+          "KnowledgeLookup": 0.0307
+        }
+      },
+      {
+        "text": "조명 좀 밝게 해줘",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0235,
+          "Safety": 0.0,
+          "Comfort": 0.0,
+          "KnowledgeLookup": 0.1054
+        }
+      },
+      {
+        "text": "복도가 캄캄한데 불 좀 켜줘",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.026,
+          "Safety": 0.0187,
+          "Comfort": 0.0249,
+          "KnowledgeLookup": 0.0595
+        }
+      },
+      {
+        "text": "습도가 너무 높은 거 아닌지 확인해줘",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0587,
+          "Safety": 0.0571,
+          "Comfort": 0.0638,
+          "KnowledgeLookup": 0.111
+        }
+      },
+      {
+        "text": "환기가 잘 안 되는 것 같은데",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0066,
+          "Safety": 0.0433,
+          "Comfort": 0.0514,
+          "KnowledgeLookup": 0.1572
+        }
+      },
+      {
+        "text": "창문 열어서 환기 좀 시켜줘",
+        "true_category": "Comfort",
+        "predicted_category": "Safety",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0215,
+          "Safety": 0.0873,
+          "Comfort": 0.0347,
+          "KnowledgeLookup": 0.0116
+        }
+      },
+      {
+        "text": "실내 공기가 답답한 것 같아",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0225,
+          "Safety": 0.0191,
+          "Comfort": 0.122,
+          "KnowledgeLookup": 0.0153
+        }
+      },
+      {
+        "text": "밤에 방이 너무 서늘한 거 아닌지",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0203,
+          "Safety": 0.035,
+          "Comfort": 0.0659,
+          "KnowledgeLookup": 0.0825
+        }
+      },
+      {
+        "text": "온도 조절 좀 해줄 수 있어?",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0,
+          "Safety": 0.0042,
+          "Comfort": 0.2715,
+          "KnowledgeLookup": 0.0342
+        }
+      },
+      {
+        "text": "지금 실내 온도 몇 도야?",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0183,
+          "Safety": 0.0125,
+          "Comfort": 0.237,
+          "KnowledgeLookup": 0.0536
+        }
+      },
+      {
+        "text": "조명 밝기 확인 좀 해줘",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.1085,
+          "Safety": 0.0826,
+          "Comfort": 0.0372,
+          "KnowledgeLookup": 0.1264
+        }
+      },
+      {
+        "text": "겨울인데 난방 잘 되고 있는지",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0347,
+          "Safety": 0.0221,
+          "Comfort": 0.0476,
+          "KnowledgeLookup": 0.1418
+        }
+      },
+      {
+        "text": "여름에 냉방 너무 세게 틀어진 거 아닌지",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0338,
+          "Safety": 0.0281,
+          "Comfort": 0.0755,
+          "KnowledgeLookup": 0.0678
+        }
+      },
+      {
+        "text": "습도 조절 좀 해줘",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0,
+          "Safety": 0.0061,
+          "Comfort": 0.0764,
+          "KnowledgeLookup": 0.05
+        }
+      },
+      {
+        "text": "방이 쾌적한지 확인해줘",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0447,
+          "Safety": 0.0351,
+          "Comfort": 0.1355,
+          "KnowledgeLookup": 0.0702
+        }
+      },
+      {
+        "text": "야간에 조명이 너무 밝아서 수면 방해되지 않는지",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0411,
+          "Safety": 0.0363,
+          "Comfort": 0.0576,
+          "KnowledgeLookup": 0.1584
+        }
+      },
+      {
+        "text": "거실 온도 좀 확인해줄래",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0448,
+          "Safety": 0.0723,
+          "Comfort": 0.2211,
+          "KnowledgeLookup": 0.0649
+        }
+      },
+      {
+        "text": "집안 환경이 괜찮은지 전반적으로 봐줘",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.094,
+          "Safety": 0.0257,
+          "Comfort": 0.0994,
+          "KnowledgeLookup": 0.053
+        }
+      },
+      {
+        "text": "통풍이 잘 되는지 확인 부탁해",
+        "true_category": "Comfort",
+        "predicted_category": "KnowledgeLookup",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0965,
+          "Safety": 0.0668,
+          "Comfort": 0.033,
+          "KnowledgeLookup": 0.3045
+        }
+      },
+      {
+        "text": "실내가 너무 건조한 거 아닌지",
+        "true_category": "Comfort",
+        "predicted_category": "Comfort",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0151,
+          "Safety": 0.0303,
+          "Comfort": 0.1079,
+          "KnowledgeLookup": 0.0581
+        }
+      },
+      {
+        "text": "이 약 먹어도 되는지 확인해줄 수 있어?",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0539,
+          "Safety": 0.0334,
+          "Comfort": 0.0246,
+          "KnowledgeLookup": 0.4048
+        }
+      },
+      {
+        "text": "혈압약이랑 이 약 같이 먹어도 되나",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0205,
+          "Safety": 0.012,
+          "Comfort": 0.0195,
+          "KnowledgeLookup": 0.29
+        }
+      },
+      {
+        "text": "당뇨약 복용 중인데 이 약 괜찮을까",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0456,
+          "Safety": 0.0079,
+          "Comfort": 0.0243,
+          "KnowledgeLookup": 0.2045
+        }
+      },
+      {
+        "text": "이 약 부작용이 뭐가 있는지 알려줘",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0622,
+          "Safety": 0.0593,
+          "Comfort": 0.0684,
+          "KnowledgeLookup": 0.2067
+        }
+      },
+      {
+        "text": "지금 먹는 약이랑 상호작용 있는지 확인해줘",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0362,
+          "Safety": 0.0322,
+          "Comfort": 0.0296,
+          "KnowledgeLookup": 0.3149
+        }
+      },
+      {
+        "text": "심부전 있으신데 이 약 드셔도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0326,
+          "Safety": 0.0173,
+          "Comfort": 0.0247,
+          "KnowledgeLookup": 0.3592
+        }
+      },
+      {
+        "text": "이 진단명이면 뭘 조심해야 해?",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0316,
+          "Safety": 0.0111,
+          "Comfort": 0.0079,
+          "KnowledgeLookup": 0.3145
+        }
+      },
+      {
+        "text": "치매 환자한테 이 약 써도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0295,
+          "Safety": 0.0157,
+          "Comfort": 0.0292,
+          "KnowledgeLookup": 0.3478
+        }
+      },
+      {
+        "text": "골다공증 있는데 이 약 먹어도 될까",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0246,
+          "Safety": 0.0123,
+          "Comfort": 0.0213,
+          "KnowledgeLookup": 0.2723
+        }
+      },
+      {
+        "text": "이 약 노인한테 위험하다고 들었는데 맞아?",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0436,
+          "Safety": 0.0804,
+          "Comfort": 0.0119,
+          "KnowledgeLookup": 0.1114
+        }
+      },
+      {
+        "text": "수면제 복용해도 되는지 궁금해",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0144,
+          "Safety": 0.0066,
+          "Comfort": 0.0193,
+          "KnowledgeLookup": 0.296
+        }
+      },
+      {
+        "text": "진통제 장기 복용해도 괜찮은지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0598,
+          "Safety": 0.0237,
+          "Comfort": 0.0256,
+          "KnowledgeLookup": 0.1373
+        }
+      },
+      {
+        "text": "이 약이랑 저 약 같이 먹어도 되나요",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0352,
+          "Safety": 0.0167,
+          "Comfort": 0.0251,
+          "KnowledgeLookup": 0.2895
+        }
+      },
+      {
+        "text": "항생제 복용 중인데 다른 약 먹어도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.024,
+          "Safety": 0.0081,
+          "Comfort": 0.0264,
+          "KnowledgeLookup": 0.3812
+        }
+      },
+      {
+        "text": "이뇨제 복용 중인데 주의할 점이 뭐야",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0256,
+          "Safety": 0.0119,
+          "Comfort": 0.0421,
+          "KnowledgeLookup": 0.1782
+        }
+      },
+      {
+        "text": "고혈압 환자가 조심해야 할 약이 뭐야",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0165,
+          "Safety": 0.012,
+          "Comfort": 0.0179,
+          "KnowledgeLookup": 0.204
+        }
+      },
+      {
+        "text": "이 약 복용 후 어지러우면 어떻게 해야 해",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.1112,
+          "Safety": 0.0094,
+          "Comfort": 0.0175,
+          "KnowledgeLookup": 0.1744
+        }
+      },
+      {
+        "text": "신장 기능 안 좋으신데 이 약 괜찮은지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.1176,
+          "Safety": 0.0205,
+          "Comfort": 0.0201,
+          "KnowledgeLookup": 0.1216
+        }
+      },
+      {
+        "text": "벤조디아제핀 계열 약 복용해도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.017,
+          "Safety": 0.0094,
+          "Comfort": 0.01,
+          "KnowledgeLookup": 0.3365
+        }
+      },
+      {
+        "text": "이 질환 있을 때 피해야 할 약이 뭐야",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0355,
+          "Safety": 0.0219,
+          "Comfort": 0.0161,
+          "KnowledgeLookup": 0.218
+        }
+      },
+      {
+        "text": "항응고제 복용 중인데 이 약 먹어도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0281,
+          "Safety": 0.0112,
+          "Comfort": 0.0335,
+          "KnowledgeLookup": 0.402
+        }
+      },
+      {
+        "text": "낙상 위험 높이는 약이 뭐가 있어?",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "Safety",
+        "correct": false,
+        "scores": {
+          "WellBeing": 0.0224,
+          "Safety": 0.1775,
+          "Comfort": 0.0336,
+          "KnowledgeLookup": 0.0671
+        }
+      },
+      {
+        "text": "이 약 복용 시 음식 제한이 있는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0541,
+          "Safety": 0.0217,
+          "Comfort": 0.055,
+          "KnowledgeLookup": 0.2638
+        }
+      },
+      {
+        "text": "파킨슨병 환자한테 이 약 써도 되는지",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.0295,
+          "Safety": 0.0157,
+          "Comfort": 0.0292,
+          "KnowledgeLookup": 0.3478
+        }
+      },
+      {
+        "text": "약 복용 시간 겹쳐도 괜찮은지 확인해줘",
+        "true_category": "KnowledgeLookup",
+        "predicted_category": "KnowledgeLookup",
+        "correct": true,
+        "scores": {
+          "WellBeing": 0.1099,
+          "Safety": 0.082,
+          "Comfort": 0.0284,
+          "KnowledgeLookup": 0.1646
+        }
+      }
+    ]
+  },
+  "reference_doc_lengths": {
+    "WellBeing": {
+      "baseline": 682,
+      "stripped": 467
+    },
+    "Safety": {
+      "baseline": 456,
+      "stripped": 387
+    },
+    "Comfort": {
+      "baseline": 292,
+      "stripped": 234
+    },
+    "KnowledgeLookup": {
+      "baseline": 409,
+      "stripped": 315
+    }
+  }
+}

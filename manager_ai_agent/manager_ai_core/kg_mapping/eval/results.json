@@ -1,0 +1,574 @@
+{
+  "method1": {
+    "method": "method1_text_centroid",
+    "accuracy": 0.9444444444444444,
+    "on_topic_n": 18,
+    "correct": 17,
+    "confusion": {
+      "onto:saref/WellBeing": {
+        "onto:saref/WellBeing": 6,
+        "onto:saref/Safety": 1,
+        "onto:saref/Comfort": 0
+      },
+      "onto:saref/Safety": {
+        "onto:saref/WellBeing": 0,
+        "onto:saref/Safety": 6,
+        "onto:saref/Comfort": 0
+      },
+      "onto:saref/Comfort": {
+        "onto:saref/WellBeing": 0,
+        "onto:saref/Safety": 0,
+        "onto:saref/Comfort": 5
+      }
+    },
+    "per_axis": {
+      "onto:saref/WellBeing": {
+        "precision": 1.0,
+        "recall": 0.8571428571428571,
+        "support": 7
+      },
+      "onto:saref/Safety": {
+        "precision": 0.8571428571428571,
+        "recall": 1.0,
+        "support": 6
+      },
+      "onto:saref/Comfort": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 5
+      }
+    },
+    "oos_max_scores": [
+      0.14904830881067502,
+      0.5791939923135062
+    ],
+    "rows": [
+      {
+        "id": 1,
+        "text": "할머니 지금 괜찮으신지 확인해줘",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.8461748290255275,
+        "scores": {
+          "onto:saref/WellBeing": 0.8461748290255275,
+          "onto:saref/Safety": 0.44164313378515446,
+          "onto:saref/Comfort": 0.4153872177617908
+        }
+      },
+      {
+        "id": 2,
+        "text": "할머니가 몇 시간째 움직임이 없는 것 같은데 확인 좀",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.6912057032956026,
+        "scores": {
+          "onto:saref/WellBeing": 0.6912057032956026,
+          "onto:saref/Safety": 0.270364160064888,
+          "onto:saref/Comfort": 0.30118403974775226
+        }
+      },
+      {
+        "id": 3,
+        "text": "웨어러블 심박수 동기화가 계속 안 되고 있어",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.344187811103887,
+        "scores": {
+          "onto:saref/WellBeing": 0.344187811103887,
+          "onto:saref/Safety": 0.3041503925901181,
+          "onto:saref/Comfort": 0.2570514174426078
+        }
+      },
+      {
+        "id": 4,
+        "text": "밤에 할머니가 주방을 왔다갔다 하시던데 별일 없는지",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.6023539264390729,
+        "scores": {
+          "onto:saref/WellBeing": 0.6023539264390729,
+          "onto:saref/Safety": 0.37856737732132917,
+          "onto:saref/Comfort": 0.45389577692464445
+        }
+      },
+      {
+        "id": 5,
+        "text": "낮에 너무 오래 활동이 없으면 낙상 아닌지 걱정돼",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.46938098469877615,
+        "scores": {
+          "onto:saref/WellBeing": 0.46938098469877615,
+          "onto:saref/Safety": 0.3945338918822411,
+          "onto:saref/Comfort": 0.46894544014564604
+        }
+      },
+      {
+        "id": 6,
+        "text": "부엌에서 연기 냄새가 나는 것 같아, 확인해줘",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Safety",
+        "pred_score": 0.5367260865262633,
+        "scores": {
+          "onto:saref/WellBeing": 0.30679984226084894,
+          "onto:saref/Safety": 0.5367260865262633,
+          "onto:saref/Comfort": 0.47545947630379976
+        }
+      },
+      {
+        "id": 7,
+        "text": "현관문이 계속 열려있는 것 같은데 확인 좀",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Safety",
+        "pred_score": 0.6544707028423823,
+        "scores": {
+          "onto:saref/WellBeing": 0.3476309534225171,
+          "onto:saref/Safety": 0.6544707028423823,
+          "onto:saref/Comfort": 0.37579957053114377
+        }
+      },
+      {
+        "id": 8,
+        "text": "밤중에 문이 열려있으면 위험하니까 바로 알려줘",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Safety",
+        "pred_score": 0.6502168494564068,
+        "scores": {
+          "onto:saref/WellBeing": 0.3376339657664053,
+          "onto:saref/Safety": 0.6502168494564068,
+          "onto:saref/Comfort": 0.3858204977239993
+        }
+      },
+      {
+        "id": 9,
+        "text": "화재 감지되면 즉시 알림 보내줘",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Safety",
+        "pred_score": 0.5000526718851631,
+        "scores": {
+          "onto:saref/WellBeing": 0.16522208765571034,
+          "onto:saref/Safety": 0.5000526718851631,
+          "onto:saref/Comfort": 0.25249975171400546
+        }
+      },
+      {
+        "id": 10,
+        "text": "누가 몰래 들어온 건 아닌지 집안 좀 살펴봐줘",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Safety",
+        "pred_score": 0.6721779735191468,
+        "scores": {
+          "onto:saref/WellBeing": 0.5026377651619903,
+          "onto:saref/Safety": 0.6721779735191468,
+          "onto:saref/Comfort": 0.49035805703838303
+        }
+      },
+      {
+        "id": 11,
+        "text": "가스레인지 안 끄고 나온 것 같아 확인해줘",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Safety",
+        "pred_score": 0.6151806115171635,
+        "scores": {
+          "onto:saref/WellBeing": 0.42250846957425425,
+          "onto:saref/Safety": 0.6151806115171635,
+          "onto:saref/Comfort": 0.5140802126724004
+        }
+      },
+      {
+        "id": 12,
+        "text": "방이 너무 추운 것 같은데 온도 좀 확인해줘",
+        "gold_axis": "onto:saref/Comfort",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.8552367707277754,
+        "scores": {
+          "onto:saref/WellBeing": 0.46666577323804737,
+          "onto:saref/Safety": 0.49886496630458316,
+          "onto:saref/Comfort": 0.8552367707277754
+        }
+      },
+      {
+        "id": 13,
+        "text": "거실 온도가 적정한지 알려줘",
+        "gold_axis": "onto:saref/Comfort",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.72654271248287,
+        "scores": {
+          "onto:saref/WellBeing": 0.36847264366096766,
+          "onto:saref/Safety": 0.43421373269431984,
+          "onto:saref/Comfort": 0.72654271248287
+        }
+      },
+      {
+        "id": 14,
+        "text": "밤에 방 온도 너무 낮아지지 않게 신경 써줘",
+        "gold_axis": "onto:saref/Comfort",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.7662617002237719,
+        "scores": {
+          "onto:saref/WellBeing": 0.3552943535523919,
+          "onto:saref/Safety": 0.5166161971589324,
+          "onto:saref/Comfort": 0.7662617002237719
+        }
+      },
+      {
+        "id": 15,
+        "text": "여름철 실내가 너무 더운 것 같아, 확인 좀",
+        "gold_axis": "onto:saref/Comfort",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.7005733829691122,
+        "scores": {
+          "onto:saref/WellBeing": 0.285135116241169,
+          "onto:saref/Safety": 0.4309815857109119,
+          "onto:saref/Comfort": 0.7005733829691122
+        }
+      },
+      {
+        "id": 16,
+        "text": "노인분 계신 방은 몇 도로 유지하는 게 좋을까",
+        "gold_axis": "onto:saref/Comfort",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.5409934269020423,
+        "scores": {
+          "onto:saref/WellBeing": 0.5231436393935914,
+          "onto:saref/Safety": 0.3308504673853215,
+          "onto:saref/Comfort": 0.5409934269020423
+        }
+      },
+      {
+        "id": 17,
+        "text": "오늘 할머니 컨디션이랑 방 온도 둘 다 체크해줘",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.7455625956090526,
+        "scores": {
+          "onto:saref/WellBeing": 0.7455625956090526,
+          "onto:saref/Safety": 0.4423276770607339,
+          "onto:saref/Comfort": 0.6642394655071635
+        }
+      },
+      {
+        "id": 18,
+        "text": "밤에 아무 소리도 안 나는데 정상인지 궁금해",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/Safety",
+        "pred_score": 0.5327567395434264,
+        "scores": {
+          "onto:saref/WellBeing": 0.43274650084688043,
+          "onto:saref/Safety": 0.5327567395434264,
+          "onto:saref/Comfort": 0.4243663921159718
+        }
+      },
+      {
+        "id": 19,
+        "text": "파스타 맛있게 만드는 법 알려줘",
+        "gold_axis": null,
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.14904830881067502,
+        "scores": {
+          "onto:saref/WellBeing": 0.06096781780143738,
+          "onto:saref/Safety": 0.10471564377642134,
+          "onto:saref/Comfort": 0.14904830881067502
+        }
+      },
+      {
+        "id": 20,
+        "text": "오늘 서울 날씨 어때?",
+        "gold_axis": null,
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.5791939923135062,
+        "scores": {
+          "onto:saref/WellBeing": 0.384151013884556,
+          "onto:saref/Safety": 0.43894037044423756,
+          "onto:saref/Comfort": 0.5791939923135062
+        }
+      }
+    ]
+  },
+  "method2": {
+    "method": "method2_graph_grounded",
+    "accuracy": 0.8333333333333334,
+    "on_topic_n": 18,
+    "correct": 15,
+    "confusion": {
+      "onto:saref/WellBeing": {
+        "onto:saref/WellBeing": 6,
+        "onto:saref/Safety": 0,
+        "onto:saref/Comfort": 1
+      },
+      "onto:saref/Safety": {
+        "onto:saref/WellBeing": 0,
+        "onto:saref/Safety": 4,
+        "onto:saref/Comfort": 2
+      },
+      "onto:saref/Comfort": {
+        "onto:saref/WellBeing": 0,
+        "onto:saref/Safety": 0,
+        "onto:saref/Comfort": 5
+      }
+    },
+    "per_axis": {
+      "onto:saref/WellBeing": {
+        "precision": 1.0,
+        "recall": 0.8571428571428571,
+        "support": 7
+      },
+      "onto:saref/Safety": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "support": 6
+      },
+      "onto:saref/Comfort": {
+        "precision": 0.625,
+        "recall": 1.0,
+        "support": 5
+      }
+    },
+    "oos_max_scores": [
+      0.07663074361537232,
+      0.23189144112127785
+    ],
+    "rows": [
+      {
+        "id": 1,
+        "text": "할머니 지금 괜찮으신지 확인해줘",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.27701014613959424,
+        "scores": {
+          "onto:saref/WellBeing": 0.27701014613959424,
+          "onto:saref/Safety": 0.15610701048989156,
+          "onto:saref/Comfort": 0.2702717075475273
+        }
+      },
+      {
+        "id": 2,
+        "text": "할머니가 몇 시간째 움직임이 없는 것 같은데 확인 좀",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.24048039790293738,
+        "scores": {
+          "onto:saref/WellBeing": 0.24048039790293738,
+          "onto:saref/Safety": 0.07827131748610501,
+          "onto:saref/Comfort": 0.14739111358717763
+        }
+      },
+      {
+        "id": 3,
+        "text": "웨어러블 심박수 동기화가 계속 안 되고 있어",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.4390873666941817,
+        "scores": {
+          "onto:saref/WellBeing": 0.4390873666941817,
+          "onto:saref/Safety": 0.24045565783500547,
+          "onto:saref/Comfort": 0.306674703144036
+        }
+      },
+      {
+        "id": 4,
+        "text": "밤에 할머니가 주방을 왔다갔다 하시던데 별일 없는지",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.17697020703220862,
+        "scores": {
+          "onto:saref/WellBeing": 0.17697020703220862,
+          "onto:saref/Safety": 0.14428498798099823,
+          "onto:saref/Comfort": 0.17079328353007503
+        }
+      },
+      {
+        "id": 5,
+        "text": "낮에 너무 오래 활동이 없으면 낙상 아닌지 걱정돼",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.44781027534744083,
+        "scores": {
+          "onto:saref/WellBeing": 0.44781027534744083,
+          "onto:saref/Safety": 0.2436393828689745,
+          "onto:saref/Comfort": 0.28128608887715917
+        }
+      },
+      {
+        "id": 6,
+        "text": "부엌에서 연기 냄새가 나는 것 같아, 확인해줘",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Safety",
+        "pred_score": 0.33696185709876997,
+        "scores": {
+          "onto:saref/WellBeing": 0.1677826944640863,
+          "onto:saref/Safety": 0.33696185709876997,
+          "onto:saref/Comfort": 0.3159579531430058
+        }
+      },
+      {
+        "id": 7,
+        "text": "현관문이 계속 열려있는 것 같은데 확인 좀",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.2702242225207072,
+        "scores": {
+          "onto:saref/WellBeing": 0.25749999600133244,
+          "onto:saref/Safety": 0.2421224097876311,
+          "onto:saref/Comfort": 0.2702242225207072
+        }
+      },
+      {
+        "id": 8,
+        "text": "밤중에 문이 열려있으면 위험하니까 바로 알려줘",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Safety",
+        "pred_score": 0.40224576868340056,
+        "scores": {
+          "onto:saref/WellBeing": 0.37814235389186807,
+          "onto:saref/Safety": 0.40224576868340056,
+          "onto:saref/Comfort": 0.2781231672695117
+        }
+      },
+      {
+        "id": 9,
+        "text": "화재 감지되면 즉시 알림 보내줘",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Safety",
+        "pred_score": 0.46984480899795106,
+        "scores": {
+          "onto:saref/WellBeing": 0.2922174270948136,
+          "onto:saref/Safety": 0.46984480899795106,
+          "onto:saref/Comfort": 0.26353537362643575
+        }
+      },
+      {
+        "id": 10,
+        "text": "누가 몰래 들어온 건 아닌지 집안 좀 살펴봐줘",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.26030711724068545,
+        "scores": {
+          "onto:saref/WellBeing": 0.2330470103598128,
+          "onto:saref/Safety": 0.23224497073968167,
+          "onto:saref/Comfort": 0.26030711724068545
+        }
+      },
+      {
+        "id": 11,
+        "text": "가스레인지 안 끄고 나온 것 같아 확인해줘",
+        "gold_axis": "onto:saref/Safety",
+        "pred_axis": "onto:saref/Safety",
+        "pred_score": 0.27736964161142097,
+        "scores": {
+          "onto:saref/WellBeing": 0.22090335305918335,
+          "onto:saref/Safety": 0.27736964161142097,
+          "onto:saref/Comfort": 0.254825270179042
+        }
+      },
+      {
+        "id": 12,
+        "text": "방이 너무 추운 것 같은데 온도 좀 확인해줘",
+        "gold_axis": "onto:saref/Comfort",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.4666477412553088,
+        "scores": {
+          "onto:saref/WellBeing": 0.32422862058516017,
+          "onto:saref/Safety": 0.2323038951196862,
+          "onto:saref/Comfort": 0.4666477412553088
+        }
+      },
+      {
+        "id": 13,
+        "text": "거실 온도가 적정한지 알려줘",
+        "gold_axis": "onto:saref/Comfort",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.5012301037426479,
+        "scores": {
+          "onto:saref/WellBeing": 0.2364974387331117,
+          "onto:saref/Safety": 0.2559331997956235,
+          "onto:saref/Comfort": 0.5012301037426479
+        }
+      },
+      {
+        "id": 14,
+        "text": "밤에 방 온도 너무 낮아지지 않게 신경 써줘",
+        "gold_axis": "onto:saref/Comfort",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.4548175303100389,
+        "scores": {
+          "onto:saref/WellBeing": 0.3419910926881877,
+          "onto:saref/Safety": 0.29176287101666476,
+          "onto:saref/Comfort": 0.4548175303100389
+        }
+      },
+      {
+        "id": 15,
+        "text": "여름철 실내가 너무 더운 것 같아, 확인 좀",
+        "gold_axis": "onto:saref/Comfort",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.35813197342873276,
+        "scores": {
+          "onto:saref/WellBeing": 0.2204168125258797,
+          "onto:saref/Safety": 0.19455218137944627,
+          "onto:saref/Comfort": 0.35813197342873276
+        }
+      },
+      {
+        "id": 16,
+        "text": "노인분 계신 방은 몇 도로 유지하는 게 좋을까",
+        "gold_axis": "onto:saref/Comfort",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.47309038450337965,
+        "scores": {
+          "onto:saref/WellBeing": 0.3203929293912877,
+          "onto:saref/Safety": 0.1917582207614696,
+          "onto:saref/Comfort": 0.47309038450337965
+        }
+      },
+      {
+        "id": 17,
+        "text": "오늘 할머니 컨디션이랑 방 온도 둘 다 체크해줘",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.4306165167089799,
+        "scores": {
+          "onto:saref/WellBeing": 0.33104016082364707,
+          "onto:saref/Safety": 0.23407587809721983,
+          "onto:saref/Comfort": 0.4306165167089799
+        }
+      },
+      {
+        "id": 18,
+        "text": "밤에 아무 소리도 안 나는데 정상인지 궁금해",
+        "gold_axis": "onto:saref/WellBeing",
+        "pred_axis": "onto:saref/WellBeing",
+        "pred_score": 0.2648323188073944,
+        "scores": {
+          "onto:saref/WellBeing": 0.2648323188073944,
+          "onto:saref/Safety": 0.22565047047058476,
+          "onto:saref/Comfort": 0.19769789019247663
+        }
+      },
+      {
+        "id": 19,
+        "text": "파스타 맛있게 만드는 법 알려줘",
+        "gold_axis": null,
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.07663074361537232,
+        "scores": {
+          "onto:saref/WellBeing": 0.031385462349214154,
+          "onto:saref/Safety": 0.05828520888284379,
+          "onto:saref/Comfort": 0.07663074361537232
+        }
+      },
+      {
+        "id": 20,
+        "text": "오늘 서울 날씨 어때?",
+        "gold_axis": null,
+        "pred_axis": "onto:saref/Comfort",
+        "pred_score": 0.23189144112127785,
+        "scores": {
+          "onto:saref/WellBeing": 0.2141613339959651,
+          "onto:saref/Safety": 0.1791269779176423,
+          "onto:saref/Comfort": 0.23189144112127785
+        }
+      }
+    ]
+  }
+}

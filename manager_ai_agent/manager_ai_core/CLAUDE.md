@@ -56,19 +56,37 @@ IF-1 바인딩 → L1 JSON → L2 XML)과 **스키마·흐름이 다르다** —
 **판단(위험도·에스컬레이션)은 코드가 규칙으로 결정**하고 **LLM(Ollama/Claude)은 조립만** 한다.
 그래프는 **읽기 전용(MATCH)** 으로만 접근한다.
 
+**tier 시스템(2026-08-24 추가, `manager_orchestrator_design.md` 반영)**: Axis마다
+불변 tier(1~4)가 있어 LLM에게 허용된 재량 상한을 정한다. tier=1(WellBeing·Safety)에서
+axis_knowledge가 없으면 그래프 설계 오류로 보고 `no_relation` + 관리자 escalation
+로그(`logs/admin_escalations.log`, JSON-lines, git-ignored)를 남기고, tier<=2는
+`sequence_generator.py`도 지금처럼 결정론 경로만 쓴다. tier=4(현재 Comfort만)는
+axis_knowledge가 없으면 정상 HITL로 `need_more_knowledge`를 반환하고, 있으면
+LangGraph 기반 에이전트가 도구 호출을 스스로 반복하는 루프로 명령을 조립한다(아래
+`graph_tools.py`). tier 2~3의 실제 차등 동작은 미정 — 지금은 tier=4와 동일 취급
+(`pipeline.py`/`policy_generation/CLAUDE.md` 참조). **의도적 설계 편차**: 이 에이전트
+루프도 Cypher는 LLM이 생성하지 않는다 — `graph_tools.py`가 감싸는 건 이미 고정된
+`graph_retrieval.py` 쿼리뿐이고, 에이전트는 "어떤 도구를 언제 부를지"만 결정한다
+(`GraphCypherQAChain`류의 LLM Cypher 생성 패턴은 read-only/Cypher-격리 원칙과
+충돌해서 의도적으로 안 씀).
+
 ### 파일
 
 | 파일 | 역할 |
 |---|---|
-| `pipeline.py` | 라우팅 → C1 → C2 → 안전 게이트 → C3 통합. 5개 시나리오 데모 포함 |
+| `pipeline.py` | 라우팅 → tier×OOS 스코프 판별 → C1 → C2 → 안전 게이트 → device fallback → C3 통합. 7개 시나리오 데모 포함 |
 | `trace_demo.py` | 한 시나리오가 단계마다 어떤 데이터로 변하는지 펼쳐 보는 학습용 |
 | `call_trace_demo.py` | 어떤 함수가 어떤 순서로 호출되는지 추적 |
-| `kg_mapping/graph_retrieval.py` | C1 — Neo4j 조회 (읽기 전용 Cypher) |
+| `kg_mapping/graph_retrieval.py` | C1 — Neo4j 조회 (읽기 전용 Cypher). axis의 tier도 함께 반환 |
+| `kg_mapping/graph_tools.py` | tier>=3 에이전트 루프용 LangChain Tool 래퍼(읽기 전용, 새 Cypher 없음) |
 | `kg_mapping/axis_routing.py` | 자연어 → 축 라우팅 (ko-sroberta 임베딩, 폴백 포함) |
 | `kg_mapping/axis_centroids.json` | 축별 임베딩 중심값 (진짜 임베딩 모드에 필요) |
 | `policy_generation/rule_evaluator.py` | C2 — 규칙 평가(판단, 코드, 결정론적) |
-| `policy_generation/sequence_generator.py` | C3 — 로봇 intent 생성. 백엔드: Ollama(무료) → Claude(유료) → mock |
+| `policy_generation/sequence_generator.py` | C3 — 로봇 intent 생성. tier<=2 결정론/단발 LLM, tier>=3 LangGraph 에이전트 루프. 백엔드: Ollama(무료) → Claude(유료) → mock |
+| `logs/admin_escalations.log` | tier=1 축의 axis_knowledge 누락 시 관리자 escalation 기록(JSON-lines, git-ignored) |
 | `api_server.py` | **HTTP 게이트웨이(2026-08-18 추가, 별도 실험·미승인)** — `../../frontend/`가 POST하는 자연어를 받아 `pipeline.run()`으로 처리하고 결과를 반환하는 동시에 `../a2a_client/a2a_client.py`(표준 A2A, HTTP+JSON-RPC 2.0)로 Worker에 전달. root `CLAUDE.md`의 "HTTP API 없음"과 충돌 — `../../frontend/CLAUDE.md` 참조 |
+| `end_to_end.py` | **별도 조립 파이프라인(2026-09-01 설계, 실험·미승인)** — `pipeline.py`(slot 하나씩 threshold 라우팅)를 대체하지 않고 병존. "포괄적 질의 → 관련 지식 top-k 동시 추출"(`kg_mapping/knowledge_retriever.py`) → `worker_agent.py` 관측값 → C2 판단 → InterventionPolicy 분기 → C3 조립 순서로 동작 |
+| `worker_agent.py` | Manager가 확인이 필요하다고 판단한 slot의 실제(또는 mock) 관측값을 가져오는 Worker(실험·미승인). 함수 시그니처를 나중에 실제 MCP tool-call로 그대로 옮길 수 있게 설계 |
 
 ### 실행 준비물
 
@@ -79,6 +97,9 @@ IF-1 바인딩 → L1 JSON → L2 XML)과 **스키마·흐름이 다르다** —
 2. `pip install neo4j` (필수) · `pip install sentence-transformers`(선택 — 없으면 라우팅이
    단어겹침 폴백으로 내려간다) · `pip install anthropic`(선택 — Claude 백엔드 쓸 때만)
 3. **Ollama**(선택, C3 무료 로컬 LLM) — `ollama pull qwen2.5:7b`. 안 떠 있으면 C3는 자동 mock 폴백.
+4. tier>=3(현재 Comfort) 에이전트 루프를 실제로 태우려면 `pip install langgraph
+   langchain-core langchain-ollama langchain-anthropic`도 필요(선택 — 없거나 백엔드가
+   mock이면 tier와 무관하게 결정론 경로로 안전하게 떨어진다).
 
 ```bash
 cd manager_ai_agent/manager_ai_core
@@ -105,6 +126,13 @@ python -m uvicorn api_server:app --reload --port 8000
 | C3 생성 | ✅ Ollama 무료 로컬 또는 Claude — 둘 다 없으면 mock |
 | 라우팅 임베딩 | ✅ sentence-transformers 설치 시 진짜(ko-sroberta) · 없으면 폴백(단어겹침) |
 | 로봇 실제 실행 | ❌ 없음 (intent까지만) |
+
+### `versions/` — 프레임워크 4종 비교 실험 (2026-09-01, 실험·미승인)
+
+같은 시나리오("할머니 괜찮은지 확인해줘", motion 5시간 무동작 + 심박 38bpm 서맥)를 서로 코드도
+프레임워크도 겹치지 않는 4가지 방식(v1 기존 그래프RAG+결정론, v2 BDI, v3 형식검증(Z3),
+v4 효율성 라우팅)으로 구현해 비교한 기록. `README.md`만 있고 실행 코드는 각 `v*_*/`
+서브디렉터리 참조. 정본 파이프라인에 반영되지 않은 비교 실험.
 
 ### 팀과 정할 것
 

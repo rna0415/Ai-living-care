@@ -1,0 +1,141 @@
+{
+  "boundary_montecarlo": [
+    {
+      "scenario": "WellBeing/motion(주간)",
+      "rule_id": "mr_wb1_no_motion_day",
+      "regime": "확실히_정상",
+      "true_value": 2.0,
+      "threshold": 4.0,
+      "unit": "h",
+      "escalate_rate": 0.0,
+      "n_trials": 200,
+      "specificity": 1.0
+    },
+    {
+      "scenario": "WellBeing/motion(주간)",
+      "rule_id": "mr_wb1_no_motion_day",
+      "regime": "경계",
+      "true_value": 4.0,
+      "threshold": 4.0,
+      "unit": "h",
+      "escalate_rate": 0.505,
+      "n_trials": 200
+    },
+    {
+      "scenario": "WellBeing/motion(주간)",
+      "rule_id": "mr_wb1_no_motion_day",
+      "regime": "확실히_위험",
+      "true_value": 6.4,
+      "threshold": 4.0,
+      "unit": "h",
+      "escalate_rate": 1.0,
+      "n_trials": 200,
+      "sensitivity": 1.0
+    },
+    {
+      "scenario": "Safety/door_status(야간)",
+      "rule_id": "mr_sf3_door_open_night",
+      "regime": "확실히_정상",
+      "true_value": 2.5,
+      "threshold": 5.0,
+      "unit": "min",
+      "escalate_rate": 0.005,
+      "n_trials": 200,
+      "specificity": 0.995
+    },
+    {
+      "scenario": "Safety/door_status(야간)",
+      "rule_id": "mr_sf3_door_open_night",
+      "regime": "경계",
+      "true_value": 5.0,
+      "threshold": 5.0,
+      "unit": "min",
+      "escalate_rate": 0.445,
+      "n_trials": 200
+    },
+    {
+      "scenario": "Safety/door_status(야간)",
+      "rule_id": "mr_sf3_door_open_night",
+      "regime": "확실히_위험",
+      "true_value": 8.0,
+      "threshold": 5.0,
+      "unit": "min",
+      "escalate_rate": 1.0,
+      "n_trials": 200,
+      "sensitivity": 1.0
+    },
+    {
+      "scenario": "Safety/bathroom_occupancy",
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "regime": "확실히_정상",
+      "true_value": 10.0,
+      "threshold": 20.0,
+      "unit": "min",
+      "escalate_rate": 0.0,
+      "n_trials": 200,
+      "specificity": 1.0
+    },
+    {
+      "scenario": "Safety/bathroom_occupancy",
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "regime": "경계",
+      "true_value": 20.0,
+      "threshold": 20.0,
+      "unit": "min",
+      "escalate_rate": 0.495,
+      "n_trials": 200
+    },
+    {
+      "scenario": "Safety/bathroom_occupancy",
+      "rule_id": "mr_sf4_bathroom_prolonged_occupancy",
+      "regime": "확실히_위험",
+      "true_value": 32.0,
+      "threshold": 20.0,
+      "unit": "min",
+      "escalate_rate": 1.0,
+      "n_trials": 200,
+      "sensitivity": 1.0
+    }
+  ],
+  "personalization_boundary": [
+    {
+      "observation_celsius": 17.5,
+      "subject": "김옥순(취약군)",
+      "escalate": true,
+      "used_personalized_threshold": true
+    },
+    {
+      "observation_celsius": 17.5,
+      "subject": "박말순(비취약군)",
+      "escalate": true,
+      "used_personalized_threshold": false
+    },
+    {
+      "observation_celsius": 19.0,
+      "subject": "김옥순(취약군)",
+      "escalate": true,
+      "used_personalized_threshold": true
+    },
+    {
+      "observation_celsius": 19.0,
+      "subject": "박말순(비취약군)",
+      "escalate": false,
+      "used_personalized_threshold": false
+    },
+    {
+      "observation_celsius": 20.5,
+      "subject": "김옥순(취약군)",
+      "escalate": false,
+      "used_personalized_threshold": false
+    },
+    {
+      "observation_celsius": 20.5,
+      "subject": "박말순(비취약군)",
+      "escalate": false,
+      "used_personalized_threshold": false
+    }
+  ],
+  "personalization_diverges_at_19c": true,
+  "n_trials_per_condition": 200,
+  "noise_frac": 0.15
+}

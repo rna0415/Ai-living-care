@@ -1,0 +1,22 @@
+[
+  {"id": 1, "text": "할머니 지금 괜찮으신지 확인해줘", "gold_axis": "onto:saref/WellBeing"},
+  {"id": 2, "text": "할머니가 몇 시간째 움직임이 없는 것 같은데 확인 좀", "gold_axis": "onto:saref/WellBeing"},
+  {"id": 3, "text": "웨어러블 심박수 동기화가 계속 안 되고 있어", "gold_axis": "onto:saref/WellBeing"},
+  {"id": 4, "text": "밤에 할머니가 주방을 왔다갔다 하시던데 별일 없는지", "gold_axis": "onto:saref/WellBeing"},
+  {"id": 5, "text": "낮에 너무 오래 활동이 없으면 낙상 아닌지 걱정돼", "gold_axis": "onto:saref/WellBeing"},
+  {"id": 6, "text": "부엌에서 연기 냄새가 나는 것 같아, 확인해줘", "gold_axis": "onto:saref/Safety"},
+  {"id": 7, "text": "현관문이 계속 열려있는 것 같은데 확인 좀", "gold_axis": "onto:saref/Safety"},
+  {"id": 8, "text": "밤중에 문이 열려있으면 위험하니까 바로 알려줘", "gold_axis": "onto:saref/Safety"},
+  {"id": 9, "text": "화재 감지되면 즉시 알림 보내줘", "gold_axis": "onto:saref/Safety"},
+  {"id": 10, "text": "누가 몰래 들어온 건 아닌지 집안 좀 살펴봐줘", "gold_axis": "onto:saref/Safety"},
+  {"id": 11, "text": "가스레인지 안 끄고 나온 것 같아 확인해줘", "gold_axis": "onto:saref/Safety"},
+  {"id": 12, "text": "방이 너무 추운 것 같은데 온도 좀 확인해줘", "gold_axis": "onto:saref/Comfort"},
+  {"id": 13, "text": "거실 온도가 적정한지 알려줘", "gold_axis": "onto:saref/Comfort"},
+  {"id": 14, "text": "밤에 방 온도 너무 낮아지지 않게 신경 써줘", "gold_axis": "onto:saref/Comfort"},
+  {"id": 15, "text": "여름철 실내가 너무 더운 것 같아, 확인 좀", "gold_axis": "onto:saref/Comfort"},
+  {"id": 16, "text": "노인분 계신 방은 몇 도로 유지하는 게 좋을까", "gold_axis": "onto:saref/Comfort"},
+  {"id": 17, "text": "오늘 할머니 컨디션이랑 방 온도 둘 다 체크해줘", "gold_axis": "onto:saref/WellBeing"},
+  {"id": 18, "text": "밤에 아무 소리도 안 나는데 정상인지 궁금해", "gold_axis": "onto:saref/WellBeing"},
+  {"id": 19, "text": "파스타 맛있게 만드는 법 알려줘", "gold_axis": null},
+  {"id": 20, "text": "오늘 서울 날씨 어때?", "gold_axis": null}
+]

@@ -29,7 +29,7 @@ from rule_evaluator import evaluate
 from sequence_generator import generate_sequence, _choose_backend
 from pipeline import (
     determine_active_axes, build_observations,
-    pick_escalation_device, safety_gate, AXIS_BY_ID,
+    select_goal_device, safety_gate, AXIS_BY_ID,
 )
 from axis_routing import get_axis_scores, THRESHOLD, USING_REAL_EMBEDDINGS
 
@@ -72,11 +72,12 @@ def trace(query: str, hour: int):
             print("#" * 68)
 
             # ── 단계 2: C1 그래프 조회 ──────────────────────────────
-            _hr(f"2단계 [C1 그래프 조회]  '{label}' 축에서 기기·규칙을 Neo4j로 조회")
+            _hr(f"2단계 [C1 그래프 조회]  '{label}' 축에서 tier·기기·규칙을 Neo4j로 조회")
             ctx = g.fetch_axis_context(axis_id)
+            print(f"  tier: {ctx['tier']}  (LLM에게 허용된 재량 상한, 불변)")
             print(f"  가져온 기기 {len(ctx['devices'])}개:")
             for d in ctx["devices"]:
-                fns = [f["name"] for f in d["functions"]]
+                fns = [f"{f['name']}(reachable={f.get('reachable')})" for f in d["functions"]]
                 print(f"     - {d['device_id']:26s} slot={d['slot']:14s} "
                       f"cost={d['cost_hint']:4s} risk={d['risk_tier']}")
                 print(f"       기능={fns}  상태(State)={d['states']}")
@@ -108,19 +109,27 @@ def trace(query: str, hour: int):
                 print("  발화한 규칙: 없음")
             print(f"  ▶ should_escalate = {evaluation['should_escalate']}")
 
-            # ── 단계 5: 코드 게이트 ────────────────────────────────
-            _hr("5단계 [안전 게이트]  위험 기기(로봇)는 저비용 센서를 먼저 거쳤는지 코드가 확인")
-            device = pick_escalation_device(ctx)
+            # ── 단계 5: device fallback + 코드 게이트 ───────────────
+            _hr("5단계 [device fallback + 안전 게이트]  reachable한 device를 순서대로 시도, "
+                "위험 기기(로봇)는 저비용 센서를 먼저 거쳤는지 코드가 확인")
+            device, tried = select_goal_device(ctx["devices"])
+            if len(tried) > 1:
+                print(f"  device fallback: {tried[:-1]} 실패 → {device['device_id'] if device else 'None'} 사용")
             ok, reason = safety_gate(ctx, device, obs)
-            print(f"  에스컬레이션 후보 기기: {device['device_id'] if device else '없음'}")
+            print(f"  목표 기기: {device['device_id'] if device else '없음(no_device)'}")
             print(f"  게이트 통과? {ok} ({reason})")
             gated_device = device if ok else None
 
-            # ── 단계 6: C3 생성 (조립) ─────────────────────────────
-            _hr(f"6단계 [C3 생성=조립]  판단 결과를 로봇 intent로 조립 (백엔드: {_choose_backend()})")
-            seq = generate_sequence(label, evaluation, gated_device, ctx["rules"])
+            # ── 단계 6: C3 생성 (조립, tier<=2 결정론 / tier>=3 에이전트 루프) ─────
+            _hr(f"6단계 [C3 생성=조립]  판단 결과를 로봇 intent로 조립 "
+                f"(tier={ctx['tier']}, 백엔드: {_choose_backend()})")
+            seq = generate_sequence(label, evaluation, gated_device, ctx["rules"],
+                                    tier=ctx["tier"], axis_id=axis_id, hour=hour, retriever=g)
             print("  최종 결과:")
             print(json.dumps(seq, ensure_ascii=False, indent=4))
+            if seq.get("agent_trace"):
+                print(f"  [에이전트 루프] {len(seq['agent_trace'])}회 도구 호출: "
+                      f"{[t['tool'] for t in seq['agent_trace']]}")
 
 
 if __name__ == "__main__":

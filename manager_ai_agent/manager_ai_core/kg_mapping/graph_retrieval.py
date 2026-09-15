@@ -1,21 +1,30 @@
 """
 graph_retrieval.py  —  C1: 그래프 조회 (RAG retrieval)
 
+v3 스키마(2026-08-31, Axis 제거·AxisKnowledge 승격) 대응 버전.
+
 역할:
-    축(axis)이 정해지면 Neo4j 지식그래프에서 "판단에 필요한 재료"를 뽑아
+    slot(예: "motion")이 정해지면 Neo4j 지식그래프에서 "판단에 필요한 재료"를 뽑아
     하나의 context 묶음으로 돌려준다. 조회만 하고 판단은 하지 않는다
     (판단은 C2 rule_evaluator, 생성은 C3 sequence_generator 담당).
 
-설계 원칙 (준상님 handoff.md 준수):
-    1. read-only  — State 말고는 어떤 노드도 CREATE/SET 하지 않는다.
-    2. 데이터 주도 — 축/기기/슬롯 이름을 코드에 하드코딩하지 않는다.
-                     그래프에 있는 걸 그대로 읽는다. 준상님이 축이나 기기를
-                     추가/수정해도 이 코드는 안 바뀐다.
-    3. 격리       — 그래프에 대한 모든 Cypher는 이 파일에만 있다.
-                     스키마(관계/속성 이름)가 바뀌면 여기만 고치면 된다.
+    axis 개념은 더 이상 검색 대상이 아니다 — retriever(임베딩/LLM)가 문장에서 직접
+    slot을 찾아내고, 그 slot으로 AxisKnowledge를 곧장 조회한다("두 번 검색" 문제 해소,
+    docs/decisions/ 참조 없이 이 파일 docstring만으로 이해되게 아래에 원리를 남긴다):
+    이전엔 문장→axis(1차 검색)→그 axis의 axis_knowledge 전부 훑기(2차 검색)였는데,
+    axis가 사람이 붙인 또 다른 "단어"일 뿐이라 1차 검색 자체가 불안정했다. slot은
+    물리 센서 종류를 가리키는 구체명사라 그 문제가 훨씬 덜하고, AxisKnowledge가 이미
+    slot 필드를 갖고 있어 그래프 재구조화만으로 검색을 한 번으로 줄일 수 있었다.
 
-이 파일 하나만 실행해도(python graph_retrieval.py) 실제 그래프에서 WellBeing
-축의 재료가 어떻게 뽑히는지 눈으로 볼 수 있다.
+설계 원칙 (변함없음):
+    1. read-only  — State 말고는 어떤 노드도 CREATE/SET 하지 않는다.
+    2. 데이터 주도 — slot/기기 이름을 코드에 하드코딩하지 않는다.
+    3. 격리       — 그래프에 대한 모든 Cypher는 이 파일에만 있다.
+
+tier: 이제 Axis가 아니라 AxisKnowledge 각 rule의 속성이다. 같은 slot 안의 rule들이
+서로 다른 tier를 가질 수도 있으므로(지금 데이터는 안 그렇지만), fetch_knowledge_context()는
+그 slot의 rule tier 중 최솟값(가장 보수적인 tier)을 대표값으로 반환한다 — 재량 상한은
+항상 더 엄격한 쪽으로 접어야 안전하기 때문.
 """
 
 import os
@@ -53,11 +62,12 @@ NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD", "livingcare123")
 # Cypher — 모든 그래프 지식은 여기에만. (원칙 3: 격리)
 # ---------------------------------------------------------------------
 
-# 한 축에 딸린 기기들 + 각 기기의 기능/상태/기기지식을 한 번에 조회.
-# 리스트 컴프리헨션의 WHERE x IS NOT NULL 은 "기능/상태가 없는 기기"에서
-# [null] 이 섞여 들어오는 걸 막아준다 (OPTIONAL MATCH 부작용 방어).
+# 한 slot에 딸린 device들 + 각 device의 기능/상태/기기지식. AxisKnowledge를 거쳐
+# APPLIES_TO로 연결된 device를 찾는다(N:M — 여러 rule이 같은 device를 공유할 수 있어
+# WITH DISTINCT d로 먼저 중복을 접는다).
 _DEVICES_QUERY = """
-MATCH (a:Axis {id: $axis_id})-[:HAS_DEVICE]->(d:Device)
+MATCH (r:AxisKnowledge {slot: $slot})-[:APPLIES_TO]->(d:Device)
+WITH DISTINCT d
 OPTIONAL MATCH (d)-[:HAS_FUNCTION]->(f:Function)
 OPTIONAL MATCH (d)-[:HAS_STATE]->(s:State)
 OPTIONAL MATCH (d)-[:HAS_DEVICE_KNOWLEDGE]->(dk:DeviceKnowledge)
@@ -72,18 +82,20 @@ RETURN d.device_id   AS device_id,
 ORDER BY d.cost_hint, d.device_id
 """
 
-# 한 축에 딸린 판단 규칙(AxisKnowledge)을 통째로 조회.
-# properties(k) 로 규칙의 모든 속성을 그대로 가져온다 - 어떤 속성이 있는지
-# 미리 알 필요 없이, 규칙에 threshold_hours가 있든 threshold_celsius가 있든
-# 그대로 넘겨서 C2가 알아서 해석한다 (원칙 2: 데이터 주도).
+# 한 slot에 해당하는 판단규칙(AxisKnowledge)을 통째로 조회 — day/night 등 세부
+# time_context 필터링은 여기서 안 하고 rule_evaluator.py(C2)가 결정론으로 한다.
 _RULES_QUERY = """
-MATCH (a:Axis {id: $axis_id})-[:HAS_AXIS_KNOWLEDGE]->(k:AxisKnowledge)
-RETURN properties(k) AS rule
+MATCH (r:AxisKnowledge {slot: $slot})
+RETURN properties(r) AS rule
 """
 
-_LABEL_QUERY = "MATCH (a:Axis {id: $axis_id}) RETURN a.label AS label"
+_ALL_KNOWLEDGE_QUERY = "MATCH (r:AxisKnowledge) RETURN properties(r) AS rule ORDER BY r.slot, r.rule_id"
 
-_ALL_AXES_QUERY = "MATCH (a:Axis) RETURN a.id AS id, a.label AS label ORDER BY a.label"
+_ALL_SLOTS_QUERY = """
+MATCH (r:AxisKnowledge)
+RETURN r.slot AS slot, min(r.tier) AS tier, count(r) AS rule_count
+ORDER BY slot
+"""
 
 
 class GraphRetriever:
@@ -92,13 +104,11 @@ class GraphRetriever:
     def __init__(self, uri=NEO4J_URI, user=NEO4J_USER, password=NEO4J_PASSWORD):
         # DeviceKnowledge(아직 0개)나 State.value(아직 null) 관련 "존재하지 않음"
         # 알림은 지금 단계에선 예상된 빈칸이라, 서버가 아예 안 보내도록 끈다.
-        # 나중에 채워지면 자동으로 사라질 잡음이라 동작엔 영향 없음.
         try:
             self._driver = GraphDatabase.driver(
                 uri, auth=(user, password), notifications_min_severity="OFF"
             )
         except TypeError:
-            # 드라이버 버전이 이 옵션을 모르면 그냥 알림을 남겨둔다 (동작엔 영향 없음)
             self._driver = GraphDatabase.driver(uri, auth=(user, password))
 
     def close(self):
@@ -112,47 +122,53 @@ class GraphRetriever:
 
     # --- 공개 API ------------------------------------------------------
 
-    def list_axes(self) -> list[dict]:
-        """그래프에 있는 모든 축을 반환. (라우팅 결과 검증/디버깅용)"""
+    def list_slots(self) -> list[dict]:
+        """그래프에 있는 모든 slot과 대표 tier를 반환. (라우팅/검증/디버깅용)"""
         with self._driver.session() as session:
-            return session.execute_read(lambda tx: tx.run(_ALL_AXES_QUERY).data())
+            return session.execute_read(lambda tx: tx.run(_ALL_SLOTS_QUERY).data())
 
-    def fetch_axis_context(self, axis_id: str) -> dict:
+    def list_all_knowledge(self) -> list[dict]:
+        """모든 AxisKnowledge를 반환 — retriever 학습 데이터/후보 문서 풀 구성용."""
+        with self._driver.session() as session:
+            rows = session.execute_read(lambda tx: tx.run(_ALL_KNOWLEDGE_QUERY).data())
+        return [row["rule"] for row in rows]
+
+    def fetch_knowledge_context(self, slot: str) -> dict:
         """
-        한 축의 context 묶음을 반환:
+        한 slot의 context 묶음을 반환:
             {
-              "axis_id": "onto:saref/WellBeing",
-              "label":   "WellBeing",
+              "slot":    "motion",
+              "tier":    1,        # 이 slot에 걸린 rule들의 tier 중 최솟값(보수적으로)
               "devices": [ {device_id, slot, risk_tier, cost_hint,
                             functions[], states[], device_knowledge[]}, ... ],
-              "rules":   [ {rule_id, slot, threshold_*, severity, rationale, ...}, ... ],
+              "rules":   [ {rule_id, slot, threshold_*, severity, rationale, tier, ...}, ... ],
             }
         """
         with self._driver.session() as session:
-            label = session.execute_read(
-                lambda tx: tx.run(_LABEL_QUERY, axis_id=axis_id).single()
-            )
             devices = session.execute_read(
-                lambda tx: tx.run(_DEVICES_QUERY, axis_id=axis_id).data()
+                lambda tx: tx.run(_DEVICES_QUERY, slot=slot).data()
             )
             rule_rows = session.execute_read(
-                lambda tx: tx.run(_RULES_QUERY, axis_id=axis_id).data()
+                lambda tx: tx.run(_RULES_QUERY, slot=slot).data()
             )
 
+        rules = [row["rule"] for row in rule_rows]
+        tiers = [r["tier"] for r in rules if r.get("tier") is not None]
+
         return {
-            "axis_id": axis_id,
-            "label": label["label"] if label else axis_id,
+            "slot": slot,
+            "tier": min(tiers) if tiers else 1,  # 못 찾으면 가장 보수적인 1로 폴백
             "devices": devices,
-            "rules": [row["rule"] for row in rule_rows],
+            "rules": rules,
         }
 
-    def fetch_context_package(self, axis_ids: list[str]) -> dict[str, dict]:
-        """여러 축(multi-label)을 한꺼번에. axis_id -> context 딕셔너리."""
-        return {axis_id: self.fetch_axis_context(axis_id) for axis_id in axis_ids}
+    def fetch_context_package(self, slots: list[str]) -> dict[str, dict]:
+        """여러 slot(multi-label)을 한꺼번에. slot -> context 딕셔너리."""
+        return {slot: self.fetch_knowledge_context(slot) for slot in slots}
 
 
 # ---------------------------------------------------------------------
-# 단독 실행 데모: 실제 그래프에서 WellBeing 재료가 어떻게 뽑히는지 확인
+# 단독 실행 데모: 실제 그래프에서 motion slot의 재료가 어떻게 뽑히는지 확인
 # ---------------------------------------------------------------------
 if __name__ == "__main__":
     import sys
@@ -164,10 +180,10 @@ if __name__ == "__main__":
         pass
 
     with GraphRetriever() as g:
-        print("=== 그래프에 있는 축 목록 ===")
-        for axis in g.list_axes():
-            print(f"  {axis['label']:12s} {axis['id']}")
+        print("=== 그래프에 있는 slot 목록 ===")
+        for slot in g.list_slots():
+            print(f"  tier={slot['tier']}  {slot['slot']:12s} rules={slot['rule_count']}")
 
-        print("\n=== WellBeing 축 context 묶음 ===")
-        ctx = g.fetch_axis_context("onto:saref/WellBeing")
+        print("\n=== motion slot context 묶음 ===")
+        ctx = g.fetch_knowledge_context("motion")
         print(json.dumps(ctx, ensure_ascii=False, indent=2))

@@ -1,0 +1,465 @@
+{
+  "items": [
+    {
+      "id": "intent1",
+      "text": "오늘 옥순님 괜찮은지 확인해줘",
+      "source": "Intent.raw_text",
+      "true_category": "WellBeing",
+      "predicted_category": "WellBeing",
+      "routing_scores": {
+        "WellBeing": 0.0822,
+        "Safety": 0.0378,
+        "Comfort": 0.0113,
+        "KnowledgeLookup": 0.0513
+      },
+      "routing_correct": true,
+      "flow": "immediate_action",
+      "e2e_testable": true,
+      "result": {
+        "axis": "WellBeing",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": null,
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:robot_dispatch",
+        "grounded_on": [
+          "mr_wb1_no_motion_day"
+        ],
+        "personalized": false,
+        "medication_flags": [],
+        "a2a_dispatch": {
+          "worker": "cap:limo_robot_agent",
+          "would_call": "execute_policy(check_item_id='ci:robot_dispatch')"
+        },
+        "retriever_calls": 11
+      },
+      "knowledge_correct": true,
+      "device_correct": true,
+      "policy_correct": true,
+      "all_correct": true
+    },
+    {
+      "id": "intent2",
+      "text": "갑수님 낙상 나면 바로 알려줘",
+      "source": "Intent.raw_text",
+      "true_category": "Safety",
+      "predicted_category": "Safety",
+      "routing_scores": {
+        "WellBeing": 0.0644,
+        "Safety": 0.1043,
+        "Comfort": 0.0318,
+        "KnowledgeLookup": 0.0028
+      },
+      "routing_correct": true,
+      "flow": "conditional_registration",
+      "e2e_testable": false,
+      "reason_not_testable": "execution_timing=conditional — ConditionRegistration 플로우 미구현"
+    },
+    {
+      "id": "intent3",
+      "text": "[system] fall_event triggered for lee_gapsu_003",
+      "source": "Intent.raw_text(system)",
+      "true_category": "Safety",
+      "predicted_category": "WellBeing",
+      "routing_scores": {
+        "WellBeing": 0.1365,
+        "Safety": 0.0356,
+        "Comfort": 0.0684,
+        "KnowledgeLookup": 0.0329
+      },
+      "routing_correct": false,
+      "flow": "immediate_action",
+      "e2e_testable": true,
+      "result": {
+        "axis": "Safety",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": null,
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:call_caregiver",
+        "grounded_on": [
+          "mr_sf5_fall_detected"
+        ],
+        "personalized": false,
+        "medication_flags": [],
+        "a2a_dispatch": {
+          "worker": "svc:call_caregiver",
+          "would_call": "execute_policy(check_item_id='ci:call_caregiver')"
+        },
+        "retriever_calls": 20
+      },
+      "knowledge_correct": true,
+      "device_correct": true,
+      "policy_correct": true,
+      "all_correct": false
+    },
+    {
+      "id": "intent4",
+      "text": "글리부리드 계속 먹어도 되나요?",
+      "source": "Intent.raw_text",
+      "true_category": "KnowledgeLookup",
+      "predicted_category": "KnowledgeLookup",
+      "routing_scores": {
+        "WellBeing": 0.0,
+        "Safety": 0.0035,
+        "Comfort": 0.0098,
+        "KnowledgeLookup": 0.1788
+      },
+      "routing_correct": true,
+      "flow": "knowledge_lookup",
+      "e2e_testable": false,
+      "reason_not_testable": "needs_action=false — IntentKnowledgeLookup 플로우 미구현"
+    },
+    {
+      "id": "intent5",
+      "text": "이뇨제 계속 먹어도 되는지, 혈압 문제 생기면 다시 알려줘",
+      "source": "Intent.raw_text",
+      "true_category": "KnowledgeLookup",
+      "predicted_category": "KnowledgeLookup",
+      "routing_scores": {
+        "WellBeing": 0.0333,
+        "Safety": 0.0351,
+        "Comfort": 0.0536,
+        "KnowledgeLookup": 0.1935
+      },
+      "routing_correct": true,
+      "flow": "knowledge_lookup",
+      "e2e_testable": false,
+      "reason_not_testable": "needs_action=false — IntentKnowledgeLookup 플로우 미구현"
+    },
+    {
+      "id": "obs_wellbeing",
+      "text": "평소 어떻게 지내는지/괜찮은지 확인",
+      "source": "ObservationSelectionPolicy.goal_pattern",
+      "true_category": "WellBeing",
+      "predicted_category": "WellBeing",
+      "routing_scores": {
+        "WellBeing": 0.158,
+        "Safety": 0.0267,
+        "Comfort": 0.0126,
+        "KnowledgeLookup": 0.0417
+      },
+      "routing_correct": true,
+      "flow": "immediate_action",
+      "e2e_testable": true,
+      "result": {
+        "axis": "WellBeing",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": null,
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:robot_dispatch",
+        "grounded_on": [
+          "mr_wb1_no_motion_day"
+        ],
+        "personalized": false,
+        "medication_flags": [],
+        "a2a_dispatch": {
+          "worker": "cap:limo_robot_agent",
+          "would_call": "execute_policy(check_item_id='ci:robot_dispatch')"
+        },
+        "retriever_calls": 31
+      },
+      "knowledge_correct": true,
+      "device_correct": true,
+      "policy_correct": true,
+      "all_correct": true
+    },
+    {
+      "id": "obs_safety",
+      "text": "위험한 상황인지 확인",
+      "source": "ObservationSelectionPolicy.goal_pattern",
+      "true_category": "Safety",
+      "predicted_category": "Safety",
+      "routing_scores": {
+        "WellBeing": 0.0421,
+        "Safety": 0.1482,
+        "Comfort": 0.0233,
+        "KnowledgeLookup": 0.0372
+      },
+      "routing_correct": true,
+      "flow": "immediate_action",
+      "e2e_testable": true,
+      "result": {
+        "axis": "Safety",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": null,
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:call_caregiver",
+        "grounded_on": [
+          "mr_sf5_fall_detected"
+        ],
+        "personalized": false,
+        "medication_flags": [],
+        "a2a_dispatch": {
+          "worker": "svc:call_caregiver",
+          "would_call": "execute_policy(check_item_id='ci:call_caregiver')"
+        },
+        "retriever_calls": 40
+      },
+      "knowledge_correct": true,
+      "device_correct": true,
+      "policy_correct": true,
+      "all_correct": true
+    },
+    {
+      "id": "obs_comfort",
+      "text": "환경이 쾌적한지 확인",
+      "source": "ObservationSelectionPolicy.goal_pattern",
+      "true_category": "Comfort",
+      "predicted_category": "Comfort",
+      "routing_scores": {
+        "WellBeing": 0.0393,
+        "Safety": 0.0334,
+        "Comfort": 0.1812,
+        "KnowledgeLookup": 0.0452
+      },
+      "routing_correct": true,
+      "flow": "llm_agent",
+      "e2e_testable": false,
+      "reason_not_testable": "Comfort축은 LLM 에이전트 경로(API 키 없음)"
+    },
+    {
+      "id": "resp_wb_concern",
+      "text": "장시간 무동작/체중 급변/이동성 저하 등 WellBeing 이상 신호",
+      "source": "ResponseSelectionPolicy.problem_pattern",
+      "true_category": "WellBeing",
+      "predicted_category": "WellBeing",
+      "routing_scores": {
+        "WellBeing": 0.3422,
+        "Safety": 0.0678,
+        "Comfort": 0.0124,
+        "KnowledgeLookup": 0.0058
+      },
+      "routing_correct": true,
+      "flow": "immediate_action",
+      "e2e_testable": true,
+      "result": {
+        "axis": "WellBeing",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": null,
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:robot_dispatch",
+        "grounded_on": [
+          "mr_wb1_no_motion_day"
+        ],
+        "personalized": false,
+        "medication_flags": [],
+        "a2a_dispatch": {
+          "worker": "cap:limo_robot_agent",
+          "would_call": "execute_policy(check_item_id='ci:robot_dispatch')"
+        },
+        "retriever_calls": 51
+      },
+      "knowledge_correct": true,
+      "device_correct": true,
+      "policy_correct": true,
+      "all_correct": true
+    },
+    {
+      "id": "resp_sf_concern",
+      "text": "연기 감지/야간 장시간 문 개방/욕실 장시간 체류",
+      "source": "ResponseSelectionPolicy.problem_pattern",
+      "true_category": "Safety",
+      "predicted_category": "Safety",
+      "routing_scores": {
+        "WellBeing": 0.031,
+        "Safety": 0.3472,
+        "Comfort": 0.0073,
+        "KnowledgeLookup": 0.0019
+      },
+      "routing_correct": true,
+      "flow": "immediate_action",
+      "e2e_testable": true,
+      "result": {
+        "axis": "Safety",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": null,
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:call_caregiver",
+        "grounded_on": [
+          "mr_sf1_smoke_detected"
+        ],
+        "personalized": false,
+        "medication_flags": [],
+        "a2a_dispatch": {
+          "worker": "svc:call_caregiver",
+          "would_call": "execute_policy(check_item_id='ci:call_caregiver')"
+        },
+        "retriever_calls": 60
+      },
+      "knowledge_correct": true,
+      "device_correct": true,
+      "policy_correct": true,
+      "all_correct": true
+    },
+    {
+      "id": "resp_cf_mild",
+      "text": "실내 온도 이상(너무 낮음/높음)",
+      "source": "ResponseSelectionPolicy.problem_pattern",
+      "true_category": "Comfort",
+      "predicted_category": "Comfort",
+      "routing_scores": {
+        "WellBeing": 0.0192,
+        "Safety": 0.0068,
+        "Comfort": 0.3074,
+        "KnowledgeLookup": 0.0083
+      },
+      "routing_correct": true,
+      "flow": "llm_agent",
+      "e2e_testable": false,
+      "reason_not_testable": "Comfort축은 LLM 에이전트 경로(API 키 없음)"
+    },
+    {
+      "id": "resp_wb_mild",
+      "text": "웨어러블 미동기화, 복약 1회 누락, 저혈당 Level1(54~70mg/dL) 등 약한 신호",
+      "source": "ResponseSelectionPolicy.problem_pattern",
+      "true_category": "WellBeing",
+      "predicted_category": "WellBeing",
+      "routing_scores": {
+        "WellBeing": 0.2621,
+        "Safety": 0.0253,
+        "Comfort": 0.0054,
+        "KnowledgeLookup": 0.02
+      },
+      "routing_correct": true,
+      "flow": "immediate_action",
+      "e2e_testable": true,
+      "result": {
+        "axis": "WellBeing",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": null,
+        "escalate": true,
+        "severity": "MILD",
+        "response_check_item": "ci:robot_dispatch",
+        "grounded_on": [
+          "mr_wb4_wearable_no_sync"
+        ],
+        "personalized": false,
+        "medication_flags": [],
+        "a2a_dispatch": {
+          "worker": "cap:limo_robot_agent",
+          "would_call": "execute_policy(check_item_id='ci:robot_dispatch')"
+        },
+        "retriever_calls": 71
+      },
+      "knowledge_correct": true,
+      "device_correct": true,
+      "policy_correct": true,
+      "all_correct": true
+    },
+    {
+      "id": "resp_sf_mild",
+      "text": "주간 문 장시간 개방 등 약한 안전신호",
+      "source": "ResponseSelectionPolicy.problem_pattern",
+      "true_category": "Safety",
+      "predicted_category": "Safety",
+      "routing_scores": {
+        "WellBeing": 0.0605,
+        "Safety": 0.3105,
+        "Comfort": 0.0138,
+        "KnowledgeLookup": 0.014
+      },
+      "routing_correct": true,
+      "flow": "immediate_action",
+      "e2e_testable": true,
+      "result": {
+        "axis": "Safety",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": null,
+        "escalate": true,
+        "severity": "MILD",
+        "response_check_item": "ci:robot_dispatch",
+        "grounded_on": [
+          "mr_sf2_door_open_day"
+        ],
+        "personalized": false,
+        "medication_flags": [],
+        "a2a_dispatch": {
+          "worker": "cap:limo_robot_agent",
+          "would_call": "execute_policy(check_item_id='ci:robot_dispatch')"
+        },
+        "retriever_calls": 80
+      },
+      "knowledge_correct": true,
+      "device_correct": true,
+      "policy_correct": true,
+      "all_correct": true
+    },
+    {
+      "id": "kq_1",
+      "text": "이 약 먹어도 되는지 / 복용해도 되는지",
+      "source": "KnowledgeQueryPolicy.goal_pattern",
+      "true_category": "KnowledgeLookup",
+      "predicted_category": "KnowledgeLookup",
+      "routing_scores": {
+        "WellBeing": 0.0133,
+        "Safety": 0.0099,
+        "Comfort": 0.0151,
+        "KnowledgeLookup": 0.3337
+      },
+      "routing_correct": true,
+      "flow": "knowledge_lookup",
+      "e2e_testable": false,
+      "reason_not_testable": ""
+    },
+    {
+      "id": "kq_2",
+      "text": "지금 먹는 약이랑 같이 먹어도 되는지",
+      "source": "KnowledgeQueryPolicy.goal_pattern",
+      "true_category": "KnowledgeLookup",
+      "predicted_category": "KnowledgeLookup",
+      "routing_scores": {
+        "WellBeing": 0.008,
+        "Safety": 0.0143,
+        "Comfort": 0.0184,
+        "KnowledgeLookup": 0.2971
+      },
+      "routing_correct": true,
+      "flow": "knowledge_lookup",
+      "e2e_testable": false,
+      "reason_not_testable": ""
+    },
+    {
+      "id": "kq_3",
+      "text": "이 질환에 대해 뭘 조심해야 하는지",
+      "source": "KnowledgeQueryPolicy.goal_pattern",
+      "true_category": "KnowledgeLookup",
+      "predicted_category": "KnowledgeLookup",
+      "routing_scores": {
+        "WellBeing": 0.0119,
+        "Safety": 0.0122,
+        "Comfort": 0.0107,
+        "KnowledgeLookup": 0.2286
+      },
+      "routing_correct": true,
+      "flow": "knowledge_lookup",
+      "e2e_testable": false,
+      "reason_not_testable": ""
+    }
+  ],
+  "summary": {
+    "routing_accuracy": 0.9375,
+    "routing_macro_f1": 0.9444444444444444,
+    "n_total": 16,
+    "n_e2e_testable": 8,
+    "stage_pass_rates": {
+      "라우팅": 0.875,
+      "지식조회": 1.0,
+      "device 호출": 1.0,
+      "정책 반영": 1.0,
+      "전체(4개 동시)": 0.875
+    }
+  }
+}

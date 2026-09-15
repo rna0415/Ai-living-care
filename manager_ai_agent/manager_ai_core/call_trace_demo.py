@@ -40,11 +40,17 @@ def _wrap(label, fn):
 
 # pipeline 네임스페이스의 단계 함수들을 감싼다 (pipeline이 이 이름으로 호출하므로)
 for name in ["get_axis_scores", "determine_active_axes", "build_observations",
-             "pick_escalation_device", "safety_gate", "evaluate", "generate_sequence"]:
+             "select_goal_device", "safety_gate", "evaluate", "generate_sequence"]:
     setattr(pipeline, name, _wrap("pipeline", getattr(pipeline, name)))
 
-# sequence_generator 내부 함수들도 감싼다 (generate_sequence가 내부에서 호출 → 중첩으로 보임)
-for name in ["_choose_backend", "_build_prompt", "_ollama_intent", "_mock_intent", "_claude_intent"]:
+# sequence_generator 내부 함수들도 감싼다 (generate_sequence가 내부에서 호출 → 중첩으로 보임).
+# generate_sequence_agentic/_validate_agentic/_get_chat_model은 tier>=3(현재 Comfort)
+# 에이전트 루프를 탈 때만 실제로 찍힌다 — 이 파일이 이름 목록만으로 존재 여부를
+# 확인하지 않는 구조라서, 예전엔 이미 사라진 이름(_build_prompt 등)이 방치돼 있었다
+# (2026-08-24, select_goal_device 개명 작업 중 발견해 함께 정리).
+for name in ["_choose_backend", "_build_decision", "_call_ollama", "_call_claude",
+             "_fallback_contract", "_validate", "generate_sequence_agentic",
+             "_validate_agentic", "_get_chat_model"]:
     setattr(sequence_generator, name, _wrap("sequence_generator", getattr(sequence_generator, name)))
 
 # GraphRetriever.fetch_axis_context (C1 조회)도 감싼다
@@ -76,18 +82,24 @@ def drive(query: str, hour: int, g: GraphRetriever):
 
     for axis_id in active:
         label = AXIS_BY_ID[axis_id]["label"]
-        print(f"  [단계 2] '{label}' 축: C1 그래프 조회")
+        print(f"  [단계 2] '{label}' 축: C1 그래프 조회(tier 포함)")
         ctx = g.fetch_axis_context(axis_id)
+        print(f"        → tier={ctx['tier']}")
         print(f"  [단계 3] 관측값 구성")
         obs, _m = pipeline.build_observations(ctx)
         print(f"  [단계 4] C2 규칙 평가(판단)")
         ev = pipeline.evaluate(ctx["rules"], obs, hour)
-        print(f"  [단계 5] 에스컬레이션 후보 선택 + 안전 게이트")
-        dev = pipeline.pick_escalation_device(ctx)
+        print(f"  [단계 5] device fallback 선택 + 안전 게이트")
+        dev, tried = pipeline.select_goal_device(ctx["devices"])
+        if len(tried) > 1:
+            print(f"        → fallback: {tried[:-1]} 실패 → {dev['device_id'] if dev else 'None'}")
         ok, _r = pipeline.safety_gate(ctx, dev, obs)
-        print(f"  [단계 6] C3 생성(조립)  ← 이 안에서 아래 함수들이 중첩 호출됨")
-        seq = pipeline.generate_sequence(label, ev, dev if ok else None, ctx["rules"])
+        print(f"  [단계 6] C3 생성(조립, tier={ctx['tier']})  ← 이 안에서 아래 함수들이 중첩 호출됨")
+        seq = pipeline.generate_sequence(label, ev, dev if ok else None, ctx["rules"],
+                                         tier=ctx["tier"], axis_id=axis_id, hour=hour, retriever=g)
         print(f"        → 결과: escalate={seq['escalate']}, source={seq['source']}")
+        if seq.get("agent_trace"):
+            print(f"        → 에이전트 루프 도구 호출: {[t['tool'] for t in seq['agent_trace']]}")
     print()
 
 

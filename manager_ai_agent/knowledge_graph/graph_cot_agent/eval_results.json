@@ -1,0 +1,670 @@
+{
+  "cases": [
+    {
+      "case_id": "wb_day_concern_subj:kim_oksun_001",
+      "axis": "WellBeing",
+      "subject_id": "subj:kim_oksun_001",
+      "result": {
+        "axis": "WellBeing",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": "subj:kim_oksun_001",
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:robot_dispatch",
+        "grounded_on": [
+          "mr_wb1_no_motion_day"
+        ],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_diuretic_orthostatic",
+            "drug": "furosemide",
+            "drug_class": "Diuretic (loop/thiazide)",
+            "recommendation": "monitor_orthostatic_bp"
+          },
+          {
+            "rule_id": "mk_benzodiazepine_avoid",
+            "drug": "lorazepam",
+            "drug_class": "Benzodiazepine",
+            "recommendation": "avoid"
+          },
+          {
+            "rule_id": "mk_opioid_benzo_combo",
+            "drug": "lorazepam",
+            "drug_class": "Opioid + Benzodiazepine 병용",
+            "recommendation": "avoid_concurrent_use"
+          }
+        ],
+        "a2a_dispatch": {
+          "worker": "cap:limo_robot_agent",
+          "would_call": "execute_policy(check_item_id='ci:robot_dispatch')"
+        },
+        "retriever_calls": 12
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "wb_night_normal_subj:kim_oksun_001",
+      "axis": "WellBeing",
+      "subject_id": "subj:kim_oksun_001",
+      "result": {
+        "axis": "WellBeing",
+        "hour": 3,
+        "source": "deterministic",
+        "subject_id": "subj:kim_oksun_001",
+        "escalate": false,
+        "severity": "NORMAL",
+        "response_check_item": null,
+        "grounded_on": [],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_diuretic_orthostatic",
+            "drug": "furosemide",
+            "drug_class": "Diuretic (loop/thiazide)",
+            "recommendation": "monitor_orthostatic_bp"
+          },
+          {
+            "rule_id": "mk_benzodiazepine_avoid",
+            "drug": "lorazepam",
+            "drug_class": "Benzodiazepine",
+            "recommendation": "avoid"
+          },
+          {
+            "rule_id": "mk_opioid_benzo_combo",
+            "drug": "lorazepam",
+            "drug_class": "Opioid + Benzodiazepine 병용",
+            "recommendation": "avoid_concurrent_use"
+          }
+        ],
+        "a2a_dispatch": null,
+        "retriever_calls": 11
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "sf_fall_detected_subj:kim_oksun_001",
+      "axis": "Safety",
+      "subject_id": "subj:kim_oksun_001",
+      "result": {
+        "axis": "Safety",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": "subj:kim_oksun_001",
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:call_caregiver",
+        "grounded_on": [
+          "mr_sf5_fall_detected"
+        ],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_diuretic_orthostatic",
+            "drug": "furosemide",
+            "drug_class": "Diuretic (loop/thiazide)",
+            "recommendation": "monitor_orthostatic_bp"
+          },
+          {
+            "rule_id": "mk_benzodiazepine_avoid",
+            "drug": "lorazepam",
+            "drug_class": "Benzodiazepine",
+            "recommendation": "avoid"
+          },
+          {
+            "rule_id": "mk_opioid_benzo_combo",
+            "drug": "lorazepam",
+            "drug_class": "Opioid + Benzodiazepine 병용",
+            "recommendation": "avoid_concurrent_use"
+          }
+        ],
+        "a2a_dispatch": {
+          "worker": "svc:call_caregiver",
+          "would_call": "execute_policy(check_item_id='ci:call_caregiver')"
+        },
+        "retriever_calls": 10
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "sf_no_fall_subj:kim_oksun_001",
+      "axis": "Safety",
+      "subject_id": "subj:kim_oksun_001",
+      "result": {
+        "axis": "Safety",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": "subj:kim_oksun_001",
+        "escalate": false,
+        "severity": "NORMAL",
+        "response_check_item": null,
+        "grounded_on": [],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_diuretic_orthostatic",
+            "drug": "furosemide",
+            "drug_class": "Diuretic (loop/thiazide)",
+            "recommendation": "monitor_orthostatic_bp"
+          },
+          {
+            "rule_id": "mk_benzodiazepine_avoid",
+            "drug": "lorazepam",
+            "drug_class": "Benzodiazepine",
+            "recommendation": "avoid"
+          },
+          {
+            "rule_id": "mk_opioid_benzo_combo",
+            "drug": "lorazepam",
+            "drug_class": "Opioid + Benzodiazepine 병용",
+            "recommendation": "avoid_concurrent_use"
+          }
+        ],
+        "a2a_dispatch": null,
+        "retriever_calls": 9
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "wb_day_concern_subj:park_malsun_002",
+      "axis": "WellBeing",
+      "subject_id": "subj:park_malsun_002",
+      "result": {
+        "axis": "WellBeing",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": "subj:park_malsun_002",
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:robot_dispatch",
+        "grounded_on": [
+          "mr_wb1_no_motion_day"
+        ],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_sulfonylurea_avoid",
+            "drug": "glyburide",
+            "drug_class": "Sulfonylurea",
+            "recommendation": "avoid_as_first_or_second_line"
+          }
+        ],
+        "a2a_dispatch": {
+          "worker": "cap:limo_robot_agent",
+          "would_call": "execute_policy(check_item_id='ci:robot_dispatch')"
+        },
+        "retriever_calls": 12
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "wb_night_normal_subj:park_malsun_002",
+      "axis": "WellBeing",
+      "subject_id": "subj:park_malsun_002",
+      "result": {
+        "axis": "WellBeing",
+        "hour": 3,
+        "source": "deterministic",
+        "subject_id": "subj:park_malsun_002",
+        "escalate": false,
+        "severity": "NORMAL",
+        "response_check_item": null,
+        "grounded_on": [],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_sulfonylurea_avoid",
+            "drug": "glyburide",
+            "drug_class": "Sulfonylurea",
+            "recommendation": "avoid_as_first_or_second_line"
+          }
+        ],
+        "a2a_dispatch": null,
+        "retriever_calls": 11
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "sf_fall_detected_subj:park_malsun_002",
+      "axis": "Safety",
+      "subject_id": "subj:park_malsun_002",
+      "result": {
+        "axis": "Safety",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": "subj:park_malsun_002",
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:call_caregiver",
+        "grounded_on": [
+          "mr_sf5_fall_detected"
+        ],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_sulfonylurea_avoid",
+            "drug": "glyburide",
+            "drug_class": "Sulfonylurea",
+            "recommendation": "avoid_as_first_or_second_line"
+          }
+        ],
+        "a2a_dispatch": {
+          "worker": "svc:call_caregiver",
+          "would_call": "execute_policy(check_item_id='ci:call_caregiver')"
+        },
+        "retriever_calls": 10
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "sf_no_fall_subj:park_malsun_002",
+      "axis": "Safety",
+      "subject_id": "subj:park_malsun_002",
+      "result": {
+        "axis": "Safety",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": "subj:park_malsun_002",
+        "escalate": false,
+        "severity": "NORMAL",
+        "response_check_item": null,
+        "grounded_on": [],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_sulfonylurea_avoid",
+            "drug": "glyburide",
+            "drug_class": "Sulfonylurea",
+            "recommendation": "avoid_as_first_or_second_line"
+          }
+        ],
+        "a2a_dispatch": null,
+        "retriever_calls": 9
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "wb_day_concern_subj:lee_gapsu_003",
+      "axis": "WellBeing",
+      "subject_id": "subj:lee_gapsu_003",
+      "result": {
+        "axis": "WellBeing",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": "subj:lee_gapsu_003",
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:robot_dispatch",
+        "grounded_on": [
+          "mr_wb1_no_motion_day"
+        ],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_antipsychotic_dementia",
+            "drug": "risperidone",
+            "drug_class": "Antipsychotic",
+            "recommendation": "avoid_for_dementia_behavioral_symptoms"
+          },
+          {
+            "rule_id": "mk_anticholinergic_dementia",
+            "drug": "diphenhydramine",
+            "drug_class": "Anticholinergic (1세대 항히스타민 등)",
+            "recommendation": "avoid_in_dementia"
+          }
+        ],
+        "a2a_dispatch": {
+          "worker": "cap:limo_robot_agent",
+          "would_call": "execute_policy(check_item_id='ci:robot_dispatch')"
+        },
+        "retriever_calls": 12
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "wb_night_normal_subj:lee_gapsu_003",
+      "axis": "WellBeing",
+      "subject_id": "subj:lee_gapsu_003",
+      "result": {
+        "axis": "WellBeing",
+        "hour": 3,
+        "source": "deterministic",
+        "subject_id": "subj:lee_gapsu_003",
+        "escalate": false,
+        "severity": "NORMAL",
+        "response_check_item": null,
+        "grounded_on": [],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_antipsychotic_dementia",
+            "drug": "risperidone",
+            "drug_class": "Antipsychotic",
+            "recommendation": "avoid_for_dementia_behavioral_symptoms"
+          },
+          {
+            "rule_id": "mk_anticholinergic_dementia",
+            "drug": "diphenhydramine",
+            "drug_class": "Anticholinergic (1세대 항히스타민 등)",
+            "recommendation": "avoid_in_dementia"
+          }
+        ],
+        "a2a_dispatch": null,
+        "retriever_calls": 11
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "sf_fall_detected_subj:lee_gapsu_003",
+      "axis": "Safety",
+      "subject_id": "subj:lee_gapsu_003",
+      "result": {
+        "axis": "Safety",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": "subj:lee_gapsu_003",
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:call_caregiver",
+        "grounded_on": [
+          "mr_sf5_fall_detected"
+        ],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_antipsychotic_dementia",
+            "drug": "risperidone",
+            "drug_class": "Antipsychotic",
+            "recommendation": "avoid_for_dementia_behavioral_symptoms"
+          },
+          {
+            "rule_id": "mk_anticholinergic_dementia",
+            "drug": "diphenhydramine",
+            "drug_class": "Anticholinergic (1세대 항히스타민 등)",
+            "recommendation": "avoid_in_dementia"
+          }
+        ],
+        "a2a_dispatch": {
+          "worker": "svc:call_caregiver",
+          "would_call": "execute_policy(check_item_id='ci:call_caregiver')"
+        },
+        "retriever_calls": 10
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "sf_no_fall_subj:lee_gapsu_003",
+      "axis": "Safety",
+      "subject_id": "subj:lee_gapsu_003",
+      "result": {
+        "axis": "Safety",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": "subj:lee_gapsu_003",
+        "escalate": false,
+        "severity": "NORMAL",
+        "response_check_item": null,
+        "grounded_on": [],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_antipsychotic_dementia",
+            "drug": "risperidone",
+            "drug_class": "Antipsychotic",
+            "recommendation": "avoid_for_dementia_behavioral_symptoms"
+          },
+          {
+            "rule_id": "mk_anticholinergic_dementia",
+            "drug": "diphenhydramine",
+            "drug_class": "Anticholinergic (1세대 항히스타민 등)",
+            "recommendation": "avoid_in_dementia"
+          }
+        ],
+        "a2a_dispatch": null,
+        "retriever_calls": 9
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "wb_night_info_boundary_regression",
+      "axis": "WellBeing",
+      "subject_id": "subj:kim_oksun_001",
+      "result": {
+        "axis": "WellBeing",
+        "hour": 3,
+        "source": "deterministic",
+        "subject_id": "subj:kim_oksun_001",
+        "escalate": false,
+        "severity": "INFO",
+        "response_check_item": null,
+        "grounded_on": [
+          "mr_wb2_no_motion_night"
+        ],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_diuretic_orthostatic",
+            "drug": "furosemide",
+            "drug_class": "Diuretic (loop/thiazide)",
+            "recommendation": "monitor_orthostatic_bp"
+          },
+          {
+            "rule_id": "mk_benzodiazepine_avoid",
+            "drug": "lorazepam",
+            "drug_class": "Benzodiazepine",
+            "recommendation": "avoid"
+          },
+          {
+            "rule_id": "mk_opioid_benzo_combo",
+            "drug": "lorazepam",
+            "drug_class": "Opioid + Benzodiazepine 병용",
+            "recommendation": "avoid_concurrent_use"
+          }
+        ],
+        "a2a_dispatch": null,
+        "retriever_calls": 11
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "wb_day_boundary_exact",
+      "axis": "WellBeing",
+      "subject_id": "subj:park_malsun_002",
+      "result": {
+        "axis": "WellBeing",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": "subj:park_malsun_002",
+        "escalate": true,
+        "severity": "CONCERN",
+        "response_check_item": "ci:robot_dispatch",
+        "grounded_on": [
+          "mr_wb1_no_motion_day"
+        ],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_sulfonylurea_avoid",
+            "drug": "glyburide",
+            "drug_class": "Sulfonylurea",
+            "recommendation": "avoid_as_first_or_second_line"
+          }
+        ],
+        "a2a_dispatch": {
+          "worker": "cap:limo_robot_agent",
+          "would_call": "execute_policy(check_item_id='ci:robot_dispatch')"
+        },
+        "retriever_calls": 12
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    },
+    {
+      "case_id": "wb_day_boundary_under",
+      "axis": "WellBeing",
+      "subject_id": "subj:lee_gapsu_003",
+      "result": {
+        "axis": "WellBeing",
+        "hour": 15,
+        "source": "deterministic",
+        "subject_id": "subj:lee_gapsu_003",
+        "escalate": false,
+        "severity": "NORMAL",
+        "response_check_item": null,
+        "grounded_on": [],
+        "personalized": false,
+        "medication_flags": [
+          {
+            "rule_id": "mk_antipsychotic_dementia",
+            "drug": "risperidone",
+            "drug_class": "Antipsychotic",
+            "recommendation": "avoid_for_dementia_behavioral_symptoms"
+          },
+          {
+            "rule_id": "mk_anticholinergic_dementia",
+            "drug": "diphenhydramine",
+            "drug_class": "Anticholinergic (1세대 항히스타민 등)",
+            "recommendation": "avoid_in_dementia"
+          }
+        ],
+        "a2a_dispatch": null,
+        "retriever_calls": 11
+      },
+      "checks": {
+        "escalate": true,
+        "severity": true,
+        "response_check_item": true,
+        "personalization": true,
+        "required_fields": true,
+        "task_dispatch": true
+      },
+      "all_pass": true
+    }
+  ],
+  "metrics": {
+    "policy_fit_rate": 1.0,
+    "field_error_rate": {
+      "escalate": 0.0,
+      "severity": 0.0,
+      "response_check_item": 0.0,
+      "personalization": 0.0,
+      "required_fields": 0.0,
+      "task_dispatch": 0.0
+    },
+    "task_success_rate": 1.0,
+    "n_cases": 15,
+    "n_escalated": 7
+  }
+}
