@@ -1,0 +1,105 @@
+{
+  "@context": [
+    "https://www.w3.org/2022/wot/td/v1.1",
+    { "id": "https://example.org/pilot-vocab#" }
+  ],
+  "title": "amr-fleet-1",
+  "@type": "id:mobile-robot",
+  "description": "라이다(LiDAR)와 카메라 센서로 맵을 그리고 스스로 장애물을 회피하며 자재를 이송하는 자율이동로봇입니다.",
+  "aliases": ["이송 로봇", "자율이동로봇", "물류 로봇"],
+  "location": "charging_dock_1",
+  "properties": {
+    "location": {
+      "@type": "id:current-location",
+      "type": "string",
+      "enum": [
+        "charging_dock_1",
+        "warehouse_pallet_zone",
+        "assembly_line_A",
+        "elevator_hall_1f",
+        "elevator_hall_2f",
+        "cleanroom_entrance",
+        "narrow_aisle_3"
+      ],
+      "readOnly": true
+    },
+    "current_task": {
+      "@type": "id:running-state",
+      "type": "string",
+      "readOnly": true
+    },
+    "battery": {
+      "@type": "id:battery-level",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "unit": "%",
+      "readOnly": true
+    }
+  },
+  "actions": {
+    "plan_and_navigate": {
+      "@type": "id:navigate-to",
+      "input": {
+        "type": "object",
+        "required": ["destination"],
+        "properties": {
+          "destination": { "type": "string" }
+        }
+      }
+    },
+    "spot_turn": {
+      "@type": "id:spot-turn",
+      "input": {
+        "type": "object",
+        "required": ["angle_deg"],
+        "properties": {
+          "angle_deg": {
+            "type": "number",
+            "minimum": -360.0,
+            "maximum": 360.0,
+            "unit": "degree"
+          }
+        }
+      }
+    },
+    "pick_and_place": {
+      "@type": "id:pick-and-place",
+      "input": {
+        "type": "object",
+        "required": ["target_object"],
+        "properties": {
+          "target_object": { "type": "string" }
+        }
+      }
+    },
+    "ride_elevator": {
+      "@type": "id:ride-elevator",
+      "input": {
+        "type": "object",
+        "required": ["target_floor"],
+        "properties": {
+          "target_floor": {
+            "type": "integer",
+            "minimum": -5,
+            "maximum": 100
+          }
+        }
+      }
+    },
+    "request_auto_door_open": {
+      "@type": "id:open-door",
+      "input": {
+        "type": "object",
+        "required": ["door_id"],
+        "properties": {
+          "door_id": { "type": "string" }
+        }
+      }
+    },
+    "self_localization_recovery": {
+      "@type": "id:recover-localization"
+    }
+  },
+  "events": {}
+}
