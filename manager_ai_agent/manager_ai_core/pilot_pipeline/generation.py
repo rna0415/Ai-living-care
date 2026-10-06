@@ -1,6 +1,6 @@
 """생성 — 프롬프트를 만들고 LLM 을 불러 Rule JSON 원본을 얻는다.
 
-LLM 은 교체 가능하다(MockLLM / OllamaLLM / AnthropicLLM). 출력은 검증 전의 원본이며,
+LLM 은 교체 가능하다(MockLLM / ClaudeCLILLM / AnthropicLLM. OllamaLLM 은 주석으로 남겨 두었다). 출력은 검증 전의 원본이며,
 파싱 실패는 retries 만큼 다시 시도한 뒤 오류로 돌려준다. LLM 은 후보 안의 값만 쓰고,
 이행할 수 없으면 {"unsupported": "<이유>"} 로 거부할 수 있다 (SPEC §9).
 """
@@ -10,6 +10,8 @@ from __future__ import annotations
 import json
 import os
 import re
+import subprocess
+import tempfile
 from pathlib import Path
 
 _SCHEMA_PATH = Path(__file__).resolve().parents[3] / "docs" / "pilot-spec" / "rule.schema.json"
@@ -101,21 +103,63 @@ class MockLLM:
         return json.dumps({"unsupported": f"mock: {row.get('invalid_reason', 'invalid')}"})
 
 
-class OllamaLLM:
-    def __init__(self, model: str = "qwen2.5:7b", url: str | None = None, seed: int = 0):
-        self.name = f"ollama:{model}"
-        self._model, self._seed = model, seed
-        self._url = (url or os.environ.get("OLLAMA_URL", "http://localhost:11434")).rstrip("/")
+# ---- Ollama (로컬 모델) — 지금은 쓰지 않아 주석으로 남겨 둔다 ----------------
+# 다시 쓰려면 아래 주석을 풀고, pipeline.py 의 --llm 선택지와 분기(ollama)도 함께 푼다.
+# 이 머신에는 Ollama 가 설치돼 있지 않다(2026-10-07 확인).
+#
+# class OllamaLLM:
+#     def __init__(self, model: str = "qwen2.5:7b", url: str | None = None, seed: int = 0):
+#         self.name = f"ollama:{model}"
+#         self._model, self._seed = model, seed
+#         self._url = (url or os.environ.get("OLLAMA_URL", "http://localhost:11434")).rstrip("/")
+#
+#     def complete(self, messages: list[dict], temperature: float = 0.0) -> str:
+#         import requests
+#
+#         resp = requests.post(f"{self._url}/api/chat", timeout=300, json={
+#             "model": self._model, "messages": messages, "stream": False, "format": "json",
+#             "options": {"temperature": temperature, "seed": self._seed},
+#         })
+#         resp.raise_for_status()
+#         return resp.json()["message"]["content"]
+
+
+class ClaudeCLILLM:
+    """Claude Code CLI(`claude -p`)로 LLM 을 부른다 — API 키 없이 구독 로그인을 쓴다.
+
+    - 빈 임시 폴더에서 실행한다: 현재 폴더의 CLAUDE.md·프로젝트 메모리가 입력에 섞이지 않게 하려는 것이다.
+    - `--tools ""` 로 도구를 끄고 `--system-prompt` 로 기본 시스템 프롬프트를 바꾼다.
+    - `--bare` 는 쓰지 않는다(구독 OAuth 를 읽지 않고 API 키만 받는다).
+    - CLI 에 temperature 옵션이 없어 `temperature` 인자는 무시된다. 같은 입력이라도 출력이 달라질 수 있다.
+    """
+
+    def __init__(self, model: str = "sonnet", timeout: int = 180, claude_bin: str = "claude"):
+        self.name = f"claude-cli:{model}"
+        self._model, self._timeout, self._bin = model, timeout, claude_bin
+
+    @staticmethod
+    def _flatten(messages: list[dict]) -> str:
+        parts = []
+        for m in messages:
+            if m["role"] == "assistant":
+                parts.append("출력(JSON): " + m["content"])
+            elif m["role"] == "user":
+                parts.append(m["content"])
+        return "\n\n".join(parts)
+
+    def _command(self, system: str) -> list[str]:
+        return [self._bin, "-p", "--model", self._model, "--output-format", "text",
+                "--tools", "", "--system-prompt", system,
+                "--no-session-persistence", "--disable-slash-commands"]
 
     def complete(self, messages: list[dict], temperature: float = 0.0) -> str:
-        import requests
-
-        resp = requests.post(f"{self._url}/api/chat", timeout=300, json={
-            "model": self._model, "messages": messages, "stream": False, "format": "json",
-            "options": {"temperature": temperature, "seed": self._seed},
-        })
-        resp.raise_for_status()
-        return resp.json()["message"]["content"]
+        system = "\n".join(m["content"] for m in messages if m["role"] == "system")
+        with tempfile.TemporaryDirectory() as workdir:
+            proc = subprocess.run(self._command(system), input=self._flatten(messages),
+                                  capture_output=True, text=True, cwd=workdir, timeout=self._timeout)
+        if proc.returncode != 0:
+            raise RuntimeError(f"claude -p 실패(코드 {proc.returncode}): {proc.stderr.strip()[:300]}")
+        return proc.stdout
 
 
 class AnthropicLLM:

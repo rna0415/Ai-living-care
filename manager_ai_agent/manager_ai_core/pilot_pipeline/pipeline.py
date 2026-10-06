@@ -63,7 +63,8 @@ def main(argv=None) -> int:
     ap.add_argument("--vocab", required=True)
     ap.add_argument("--gold", required=True)
     ap.add_argument("--out", required=True)
-    ap.add_argument("--llm", choices=["mock", "ollama", "anthropic"], default="mock")
+    # Ollama 는 지금 쓰지 않아 선택지에서 뺐다(generation.py 에 주석으로 보존): choices=["mock", "ollama", ...]
+    ap.add_argument("--llm", choices=["mock", "claude-cli", "anthropic"], default="mock")
     ap.add_argument("--model", default=None)
     ap.add_argument("--embedder", choices=["none", "st"], default="none")
     ap.add_argument("--runs", type=int, default=1)
@@ -78,8 +79,10 @@ def main(argv=None) -> int:
     gold = _read_jsonl(args.gold)
     if args.llm == "mock":
         llm = generation.MockLLM(gold, graph)
-    elif args.llm == "ollama":
-        llm = generation.OllamaLLM(args.model or "qwen2.5:7b")
+    elif args.llm == "claude-cli":
+        llm = generation.ClaudeCLILLM(args.model or "sonnet")
+    # elif args.llm == "ollama":   # 다시 쓰려면 generation.OllamaLLM 과 함께 푼다
+    #     llm = generation.OllamaLLM(args.model or "qwen2.5:7b")
     else:
         llm = generation.AnthropicLLM(args.model or "claude-haiku-4-5-20251001")
     embedder = retrieval.SentenceEmbedder.load() if args.embedder == "st" else None

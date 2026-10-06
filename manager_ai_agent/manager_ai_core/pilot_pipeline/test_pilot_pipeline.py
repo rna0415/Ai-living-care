@@ -5,9 +5,12 @@
 
 import copy
 import json
+import os
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from manager_ai_agent.manager_ai_core.pilot_pipeline import assign, generation, pipeline, retrieval, validator
 from manager_ai_agent.manager_ai_core.pilot_pipeline.graph_stub import StubGraph
@@ -302,6 +305,56 @@ class GenerationTest(unittest.TestCase):
         text = "\n".join(m["content"] for m in generation.build_messages("A실 조명 켜 줘", ["A실", "조명", "켜다"], c, g))
         self.assertIn("lamp-a", text)
         self.assertIn("후보에 없는", text)
+
+
+class ClaudeCLITest(unittest.TestCase):
+    """claude -p 를 실제로 부르지 않고 명령 구성과 격리 조건만 확인한다."""
+
+    MESSAGES = [
+        {"role": "system", "content": "시스템 지시"},
+        {"role": "user", "content": "요청: 예시\n어구: ['a']"},
+        {"role": "assistant", "content": '{"ex": 1}'},
+        {"role": "user", "content": "[후보]\n...\n요청: 실제\n어구: ['b']\nJSON:"},
+    ]
+
+    def run_with(self, completed):
+        seen = {}
+
+        def fake_run(cmd, **kw):
+            seen.update(cmd=cmd, **kw)
+            seen["cwd_existed"] = os.path.isdir(kw["cwd"])
+            return completed
+
+        with mock.patch.object(subprocess, "run", fake_run):
+            out = generation.ClaudeCLILLM("sonnet").complete(self.MESSAGES, temperature=0.7)
+        return out, seen
+
+    def test_command_isolation(self):
+        out, seen = self.run_with(subprocess.CompletedProcess([], 0, stdout='{"ok": true}', stderr=""))
+        self.assertEqual(out, '{"ok": true}')
+        cmd = seen["cmd"]
+        self.assertEqual(cmd[:2], ["claude", "-p"])
+        self.assertEqual(cmd[cmd.index("--tools") + 1], "")  # 도구 끔
+        self.assertEqual(cmd[cmd.index("--system-prompt") + 1], "시스템 지시")
+        self.assertNotIn("--bare", cmd)  # --bare 는 구독 로그인을 못 읽는다
+        self.assertTrue(seen["cwd_existed"])
+        self.assertNotIn(str(ROOT), seen["cwd"])  # 레포 밖의 빈 폴더 → CLAUDE.md 가 섞이지 않는다
+        self.assertIn("출력(JSON): " + '{"ex": 1}', seen["input"])  # 예시 출력이 보존된다
+        self.assertTrue(seen["input"].rstrip().endswith("JSON:"))
+        self.assertNotIn("시스템 지시", seen["input"])  # 시스템 지시는 입력이 아니라 --system-prompt 로
+
+    def test_nonzero_exit_is_an_llm_error_not_a_crash(self):
+        class Fail:
+            name = "x"
+
+            def complete(self, messages, temperature=0.0):
+                raise RuntimeError("claude -p 실패(코드 1)")
+
+        r = generation.generate(Fail(), [], retries=1)
+        self.assertIsNone(r["output"])
+        self.assertIn("llm error", r["error"])
+        with self.assertRaises(RuntimeError):
+            self.run_with(subprocess.CompletedProcess([], 1, stdout="", stderr="로그인 필요"))
 
 
 GOLD = [
