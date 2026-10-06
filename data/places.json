@@ -1,0 +1,139 @@
+{
+  "places": [
+    {
+      "id": "home",
+      "aliases": ["홈", "시작 위치", "복귀 지점", "원점"],
+      "pose": { "x": 3.5, "y": 1.0, "yaw": 0.0, "frame": "map" }
+    },
+    {
+      "id": "dining_area",
+      "aliases": ["식탁 구역", "식탁", "다이닝룸"],
+      "pose": { "x": 8.1, "y": 1.71, "yaw": 0.0, "frame": "map" }
+    },
+    {
+      "id": "upper_left_room",
+      "aliases": ["좌상단 방", "왼쪽 방", "서재"],
+      "pose": { "x": -7.77, "y": 0.56, "yaw": 0.0, "frame": "map" }
+    },
+    {
+      "id": "bedroom",
+      "aliases": ["침실", "안방", "침대 방"],
+      "pose": { "x": -4.4, "y": 1.7, "yaw": 2.96, "frame": "map" }
+    },
+    {
+      "id": "living_room",
+      "aliases": ["거실", "소파 구역"],
+      "pose": { "x": -0.6, "y": 2.45, "yaw": 0.0, "frame": "map" }
+    },
+    {
+      "id": "kitchen",
+      "aliases": ["주방", "부엌"],
+      "pose": { "x": 6.9, "y": -3.05, "yaw": 0.0, "frame": "map" }
+    },
+    {
+      "id": "request_origin",
+      "aliases": ["물 요청 위치", "요청 위치"],
+      "pose": { "x": 3.5, "y": 1.0, "yaw": 0.0, "frame": "map" }
+    },
+    {
+      "id": "entrance",
+      "aliases": ["현관", "신발장", "입구"],
+      "pose": { "x": 3.0, "y": -3.9, "yaw": -0.77, "frame": "map" }
+    },
+    {
+      "id": "bed",
+      "aliases": ["침대", "침대 앞"],
+      "pose": { "x": -4.4, "y": 1.7, "yaw": 2.96, "frame": "map" }
+    },
+    {
+      "id": "sofa",
+      "aliases": ["소파", "소파 앞"],
+      "pose": { "x": 2.6, "y": 0.05, "yaw": -2.89, "frame": "map" }
+    },
+    {
+      "id": "refrigerator",
+      "aliases": ["냉장고", "냉장고 앞"],
+      "pose": { "x": 6.95, "y": -1.45, "yaw": 0.24, "frame": "map" }
+    },
+    {
+      "id": "wardrobe",
+      "aliases": ["옷장", "옷장 앞"],
+      "pose": { "x": -4.1, "y": 0.95, "yaw": 1.02, "frame": "map" }
+    },
+    {
+      "id": "reading_desk",
+      "aliases": ["책상", "침실 책상"],
+      "pose": { "x": -8.0, "y": 0.55, "yaw": 2.15, "frame": "map" }
+    },
+    {
+      "id": "air_conditioner",
+      "aliases": ["에어컨", "거실 에어컨", "현관 에어컨"],
+      "pose": { "x": -1.25, "y": -3.6, "yaw": -2.0, "frame": "map" }
+    },
+    {
+      "id": "air_conditioner_bedroom",
+      "aliases": ["침실 에어컨", "안방 에어컨"],
+      "pose": { "x": -8.05, "y": 1.0, "yaw": 2.25, "frame": "map" }
+    },
+    {
+      "id": "charging_dock_1",
+      "aliases": ["1번 충전 도크", "충전 스테이션", "AMR 충전소"],
+      "pose": null
+    },
+    {
+      "id": "assembly_line_A",
+      "aliases": ["A 조립 라인", "조립 1구역", "조립 라인 A"],
+      "pose": null
+    },
+    {
+      "id": "assembly_line_B",
+      "aliases": ["B 조립 라인", "조립 2구역", "조립 라인 B"],
+      "pose": null
+    },
+    {
+      "id": "cnc_machine_1",
+      "aliases": ["1호 CNC 머신", "CNC 선반", "CNC 가공기"],
+      "pose": null
+    },
+    {
+      "id": "press_machine_2",
+      "aliases": ["2호 프레스기", "프레스 머신"],
+      "pose": null
+    },
+    {
+      "id": "inspection_desk",
+      "aliases": ["검사대", "품질 검사 구역"],
+      "pose": null
+    },
+    {
+      "id": "packing_area",
+      "aliases": ["포장 구역", "패킹 존", "포장 라인"],
+      "pose": null
+    },
+    {
+      "id": "warehouse_pallet_zone",
+      "aliases": ["창고 파레트 구역", "파레트 적재장", "자재 창고"],
+      "pose": null
+    },
+    {
+      "id": "elevator_hall_1f",
+      "aliases": ["1층 승강기 홀", "1층 엘리베이터 앞"],
+      "pose": null
+    },
+    {
+      "id": "elevator_hall_2f",
+      "aliases": ["2층 승강기 홀", "2층 엘리베이터 앞"],
+      "pose": null
+    },
+    {
+      "id": "cleanroom_entrance",
+      "aliases": ["클린룸 입구", "에어샤워 앞"],
+      "pose": null
+    },
+    {
+      "id": "narrow_aisle_3",
+      "aliases": ["3번 좁은 통로", "협소 통로 3"],
+      "pose": null
+    }
+  ]
+}
