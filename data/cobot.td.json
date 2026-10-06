@@ -42,7 +42,9 @@
       "@type": "id:equipment-state",
       "description": "현재 로봇에 장착 가능하거나 사용 가능한 엔드이펙터(툴)의 목록을 나타낸다.",
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "readOnly": true
     }
   },
@@ -56,9 +58,13 @@
         "properties": {
           "tool_type": {
             "type": "string",
-            "enum": ["vacuum_pad", "electric_gripper", "electromagnet"]
+            "enum": ["vacuum_pad", "electric_gripper", "electromagnet"],
+            "description": "부품을 집기 위해 사용할 툴 종류"
           },
-          "target_object": { "type": "string" }
+          "target_object": {
+            "type": "string",
+            "description": "이동시킬 부품의 이름 또는 ID"
+          }
         }
       }
     },
@@ -71,7 +77,8 @@
         "properties": {
           "pattern": {
             "type": "string",
-            "enum": ["zigzag", "cross", "straight"]
+            "enum": ["zigzag", "cross", "straight"],
+            "description": "파레트 적재 패턴"
           }
         }
       }
@@ -87,7 +94,10 @@
         "type": "object",
         "required": ["target_part"],
         "properties": {
-          "target_part": { "type": "string" }
+          "target_part": {
+            "type": "string",
+            "description": "빈(Bin) 안에서 찾아낼 부품의 이름"
+          }
         }
       }
     },
@@ -98,7 +108,10 @@
         "type": "object",
         "required": ["machine_name"],
         "properties": {
-          "machine_name": { "type": "string" }
+          "machine_name": {
+            "type": "string",
+            "description": "텐딩 작업을 수행할 설비의 이름 (예: cnc_lathe_1)"
+          }
         }
       }
     },
@@ -117,7 +130,8 @@
             "type": "number",
             "minimum": -360.0,
             "maximum": 360.0,
-            "unit": "degree"
+            "unit": "degree",
+            "description": "부품을 회전시킬 각도(도)"
           }
         }
       }
