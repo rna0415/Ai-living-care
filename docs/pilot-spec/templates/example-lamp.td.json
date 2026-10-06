@@ -1,0 +1,48 @@
+{
+  "@context": [
+    "https://www.w3.org/2022/wot/td/v1.1",
+    { "id": "https://example.org/pilot-vocab#" }
+  ],
+  "title": "lamp-a",
+  "@type": "id:light",
+  "description": "A실 천장 조명. 켜고 끌 수 있고 밝기를 바꿀 수 있다.",
+  "aliases": ["A실 조명", "A실 불", "A실 전등"],
+  "location": "room_a",
+  "properties": {
+    "power": {
+      "@type": "id:running-state",
+      "description": "조명이 켜져 있는지 꺼져 있는지 나타낸다.",
+      "type": "string",
+      "enum": ["on", "off"],
+      "readOnly": true
+    }
+  },
+  "actions": {
+    "turnOn": {
+      "@type": "id:turn-on",
+      "description": "조명을 켠다."
+    },
+    "turnOff": {
+      "@type": "id:turn-off",
+      "description": "조명을 끈다."
+    },
+    "setBrightness": {
+      "@type": "id:set-value",
+      "description": "조명의 밝기를 퍼센트로 설정한다.",
+      "input": {
+        "type": "object",
+        "required": ["value"],
+        "properties": {
+          "value": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "unit": "%",
+            "description": "밝기. 0은 꺼짐, 100은 최대."
+          }
+        }
+      }
+    }
+  },
+  "events": {}
+}

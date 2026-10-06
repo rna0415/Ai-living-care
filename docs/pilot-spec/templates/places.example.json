@@ -1,0 +1,14 @@
+{
+  "places": [
+    {
+      "id": "room_a",
+      "aliases": ["A실", "에이실"],
+      "pose": null
+    },
+    {
+      "id": "room_b",
+      "aliases": ["B실", "비실"],
+      "pose": { "x": 3.5, "y": 1.0, "yaw": 0.0, "frame": "map" }
+    }
+  ]
+}

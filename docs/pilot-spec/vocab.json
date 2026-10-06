@@ -1,0 +1,46 @@
+{
+  "version": "0.1",
+  "note": "Identity 어휘 시드. TD의 @type 값(접두사 id: 뒤의 이름)은 모두 여기에 있어야 한다. 새 값은 기존 부모 아래에만 추가하고 이 파일에 반드시 적는다. 슬롯은 조상 클래스로 정해진다(MotionAction→motion-action, PerceptionAction→perception-action, ControlAction→control-action).",
+  "identities": [
+    { "id": "Action", "parent": null },
+    { "id": "MotionAction", "parent": "Action" },
+    { "id": "navigate-to", "parent": "MotionAction", "description": "목적지 장소로 이동한다" },
+    { "id": "follow-waypoints", "parent": "MotionAction", "description": "장소 목록을 순서대로 이동한다" },
+    { "id": "stop-motion", "parent": "MotionAction", "description": "이동을 멈춘다" },
+    { "id": "look-around", "parent": "MotionAction", "description": "제자리에서 둘러본다" },
+    { "id": "PerceptionAction", "parent": "Action" },
+    { "id": "capture-image", "parent": "PerceptionAction", "description": "카메라 이미지를 얻는다" },
+    { "id": "detect-objects", "parent": "PerceptionAction", "description": "물체를 검출한다" },
+    { "id": "ControlAction", "parent": "Action" },
+    { "id": "turn-on", "parent": "ControlAction", "description": "기기를 켠다" },
+    { "id": "turn-off", "parent": "ControlAction", "description": "기기를 끈다" },
+    { "id": "start", "parent": "ControlAction", "description": "동작을 시작한다" },
+    { "id": "stop", "parent": "ControlAction", "description": "동작을 멈춘다" },
+    { "id": "set-value", "parent": "ControlAction", "description": "값(속도, 밝기 등)을 설정한다" },
+
+    { "id": "Property", "parent": null },
+    { "id": "battery-level", "parent": "Property" },
+    { "id": "current-location", "parent": "Property" },
+    { "id": "running-state", "parent": "Property" },
+    { "id": "speed", "parent": "Property" },
+    { "id": "temperature", "parent": "Property" },
+
+    { "id": "Event", "parent": null },
+    { "id": "request-event", "parent": "Event" },
+    { "id": "user-request", "parent": "request-event" },
+    { "id": "system-event", "parent": "Event" },
+    { "id": "goal-reached", "parent": "system-event" },
+    { "id": "task-failed", "parent": "system-event" },
+    { "id": "jam-detected", "parent": "system-event" },
+
+    { "id": "ObjectClass", "parent": null },
+    { "id": "person", "parent": "ObjectClass" },
+
+    { "id": "DeviceType", "parent": null },
+    { "id": "mobile-robot", "parent": "DeviceType" },
+    { "id": "conveyor", "parent": "DeviceType" },
+    { "id": "robot-arm", "parent": "DeviceType" },
+    { "id": "light", "parent": "DeviceType" },
+    { "id": "sensor", "parent": "DeviceType" }
+  ]
+}

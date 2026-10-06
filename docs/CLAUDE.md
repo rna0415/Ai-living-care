@@ -13,6 +13,7 @@
 | `decisions/` | **결정 정본 — 결정 하나가 파일 하나** (충돌 0). `decisions.md` 는 2026-08-08 까지의 동결 이력 | **정본** |
 | `safety/` | **미해소 안전 결함 정본 (D-18)** — 하나가 파일 하나. 절차는 `status.md`, 목록은 `make status` 맨 위 | **정본** |
 | `architecture.md` · `api-spec.md` · `conventions.md` · `standards/`(I-D·기고문 원고) · `papers/`(논문 원고) · `status.md`(지금 작업에 영향 주는 것) · `status-defects.md`(F-1~F-63 이력, 자동 로딩 안 됨) | 파생 문서 | 정본 |
+| `pilot-spec/` | KG 스키마 파일럿 명세 — A·B·C 공통 계약(Rule 스키마·어휘·TD·라벨 형식·그래프 인터페이스), `check_spec.py` 통과 (2026-10-06) — 아직 결정 아님 | 참고 |
 | `spec/` | **설계 정본.** 정규화 용어, IF-1~IF-8, L0~L4, A2A-over-MCP 바인딩, 로드맵, 표준화 항목 | **정본** |
 | `context/` | 배경 — A2A 개념 매핑, RCP/MCP 결정 기록, ViLaR-IMO 연계, 연구 자료 계보 | 참고 |
 | `handoff/` | 세션 인수인계 — 왜 그렇게 했는지, 다시 겪지 않아도 될 함정 | 참고 |
