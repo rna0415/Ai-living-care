@@ -48,7 +48,10 @@
         "type": "object",
         "required": ["destination"],
         "properties": {
-          "destination": { "type": "string" }
+          "destination": {
+            "type": "string",
+            "description": "이동할 목적지의 장소 이름이나 좌표 식별자"
+          }
         }
       }
     },
@@ -63,7 +66,8 @@
             "type": "number",
             "minimum": -360.0,
             "maximum": 360.0,
-            "unit": "degree"
+            "unit": "degree",
+            "description": "제자리에서 회전할 각도(도)"
           }
         }
       }
@@ -75,7 +79,10 @@
         "type": "object",
         "required": ["target_object"],
         "properties": {
-          "target_object": { "type": "string" }
+          "target_object": {
+            "type": "string",
+            "description": "들어올려 이동시킬 대상 파레트나 대차의 이름 또는 ID"
+          }
         }
       }
     },
@@ -89,7 +96,8 @@
           "target_floor": {
             "type": "integer",
             "minimum": -5,
-            "maximum": 100
+            "maximum": 100,
+            "description": "이동할 목적 층의 숫자 (예: 지하 1층은 -1, 지상 2층은 2)"
           }
         }
       }
@@ -101,7 +109,10 @@
         "type": "object",
         "required": ["door_id"],
         "properties": {
-          "door_id": { "type": "string" }
+          "door_id": {
+            "type": "string",
+            "description": "개방을 요청할 자동문의 식별 ID"
+          }
         }
       }
     },
