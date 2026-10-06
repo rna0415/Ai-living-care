@@ -12,6 +12,7 @@
     "location": {
       "@type": "id:current-location",
       "description": "로봇의 현재 맵 상 위치(공간, 가구, 기기 앞 등)를 나타낸다.",
+      "aliases": ["위치", "현재 위치", "장소", "어디"],
       "type": "string",
       "enum": [
         "home",
@@ -35,12 +36,14 @@
     "carrying": {
       "@type": "id:carrying-state",
       "description": "로봇이 현재 들고 있거나 운반 중인 물체의 이름을 나타낸다. 아무것도 없으면 null이다.",
+      "aliases": ["소지품", "운반물", "들고 있는 물건", "적재물"],
       "type": "string",
       "readOnly": true
     },
     "battery": {
       "@type": "id:battery-level",
       "description": "로봇의 현재 배터리 잔량을 퍼센트로 나타낸다.",
+      "aliases": ["배터리", "배터리 잔량", "전원", "충전 상태"],
       "type": "integer",
       "minimum": 0,
       "maximum": 100,
@@ -52,6 +55,7 @@
     "plan_and_navigate": {
       "@type": "id:navigate-to",
       "description": "주어진 X, Y 목표 지점으로의 경로를 계획하고 이동한다.",
+      "aliases": ["이동하다", "가다", "접근하다", "향하다"],
       "input": {
         "type": "object",
         "required": ["x", "y"],
@@ -70,6 +74,7 @@
     "navigate_waypoints": {
       "@type": "id:follow-waypoints",
       "description": "주어진 여러 경유지(웨이포인트) 목록을 순서대로 주행한다.",
+      "aliases": ["순찰하다", "순찰", "순서대로 이동하다", "경유하다", "차례대로 가다"],
       "input": {
         "type": "object",
         "required": ["waypoints"],
@@ -91,6 +96,7 @@
     "track_target": {
       "@type": "id:track-object",
       "description": "카메라로 타겟 물체를 인식하고 일정 거리를 유지하며 주행(추적)한다.",
+      "aliases": ["추적하다", "따라가다", "유지하다", "쫓아가다"],
       "input": {
         "type": "object",
         "required": ["target_name", "distance"],
@@ -110,15 +116,18 @@
     },
     "follow_line": {
       "@type": "id:follow-line",
-      "description": "바닥에 표시된 유도선을 인식하고 선을 유지하며 주행한다."
+      "description": "바닥에 표시된 유도선을 인식하고 선을 유지하며 주행한다.",
+      "aliases": ["선 따라가다", "유도선 주행하다", "라인 트레이싱"]
     },
     "stop": {
       "@type": "id:stop-motion",
-      "description": "현재 진행 중인 이동, 추적, 주행 명령을 즉시 취소하고 정지한다."
+      "description": "현재 진행 중인 이동, 추적, 주행 명령을 즉시 취소하고 정지한다.",
+      "aliases": ["정지하다", "멈추다", "취소하다", "중단하다", "서다"]
     },
     "look_around": {
       "@type": "id:look-around",
       "description": "제자리에서 일정 각도로 회전하며 주변 환경을 스캔한다.",
+      "aliases": ["둘러보다", "스캔하다", "주변 확인하다", "회전하며 보다"],
       "input": {
         "type": "object",
         "required": ["steps", "step_deg"],
@@ -136,15 +145,18 @@
     },
     "detect_objects": {
       "@type": "id:detect-objects",
-      "description": "현재 카메라 시야에 있는 물체들의 종류와 위치(바운딩 박스)를 파악한다."
+      "description": "현재 카메라 시야에 있는 물체들의 종류와 위치(바운딩 박스)를 파악한다.",
+      "aliases": ["물체 인식하다", "파악하다", "검출하다", "찾다"]
     },
     "get_camera_snapshot": {
       "@type": "id:capture-image",
-      "description": "카메라를 사용하여 현재 시야의 사진을 촬영한다."
+      "description": "카메라를 사용하여 현재 시야의 사진을 촬영한다.",
+      "aliases": ["사진 촬영하다", "사진 찍다", "캡처하다", "스냅샷"]
     },
     "pick_object": {
       "@type": "id:pick-object",
       "description": "지정된 물체를 집어 든다.",
+      "aliases": ["집다", "집어들다", "잡다", "들다", "옮기다"],
       "input": {
         "type": "object",
         "required": ["object_name"],
@@ -159,6 +171,7 @@
     "place_object": {
       "@type": "id:place-object",
       "description": "현재 들고 있는 지정된 물체를 제자리에 내려놓는다.",
+      "aliases": ["내려놓다", "놓다", "두다", "옮기다"],
       "input": {
         "type": "object",
         "required": ["object_name"],
@@ -173,6 +186,7 @@
     "send_ir_signal": {
       "@type": "id:send-ir-signal",
       "description": "IR 리모컨 신호를 송신하여 외부 기기(에어컨 등)를 제어한다.",
+      "aliases": ["켜다", "끄다", "제어하다", "신호 보내다", "조작하다"],
       "input": {
         "type": "object",
         "required": ["device", "command"],
