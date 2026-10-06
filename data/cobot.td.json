@@ -12,6 +12,7 @@
     "location": {
       "@type": "id:current-location",
       "description": "협동로봇이 설치되어 있거나 작업 중인 공장 내 위치를 나타낸다.",
+      "aliases": ["위치", "현재 위치", "장소", "어디"],
       "type": "string",
       "enum": [
         "assembly_line_A",
@@ -26,12 +27,14 @@
     "current_task": {
       "@type": "id:running-state",
       "description": "로봇이 현재 수행 중인 작업의 이름이나 상태를 나타낸다.",
+      "aliases": ["작업", "현재 작업", "미션", "상태"],
       "type": "string",
       "readOnly": true
     },
     "battery": {
       "@type": "id:battery-level",
       "description": "이동형 베이스가 있을 경우 배터리 잔량을 퍼센트로 나타낸다. 고정형인 경우 상시 100이다.",
+      "aliases": ["배터리", "배터리 잔량", "전원", "충전 상태"],
       "type": "integer",
       "minimum": 0,
       "maximum": 100,
@@ -41,6 +44,7 @@
     "available_tools": {
       "@type": "id:equipment-state",
       "description": "현재 로봇에 장착 가능하거나 사용 가능한 엔드이펙터(툴)의 목록을 나타낸다.",
+      "aliases": ["툴", "도구", "장착 장비", "엔드이펙터", "사용 가능한 툴"],
       "type": "array",
       "items": {
         "type": "string"
@@ -52,6 +56,7 @@
     "pick_and_place": {
       "@type": "id:pick-and-place",
       "description": "진공패드, 전동그리퍼, 전자석 등을 사용해 부품을 집어서 지정된 위치로 이동시킨다.",
+      "aliases": ["옮기다", "집다", "집어 옮기다", "이동시키다", "가져다 놓다"],
       "input": {
         "type": "object",
         "required": ["tool_type", "target_object"],
@@ -71,6 +76,7 @@
     "palletize": {
       "@type": "id:palletize",
       "description": "지그재그, 교차 적재 등의 패턴에 맞춰 파레트에 부품을 차곡차곡 쌓는다.",
+      "aliases": ["쌓다", "적재하다", "차곡차곡 쌓다", "파레타이징"],
       "input": {
         "type": "object",
         "required": ["pattern"],
@@ -85,11 +91,13 @@
     },
     "depalletize": {
       "@type": "id:depalletize",
-      "description": "파레트에 적재된 부품이나 박스를 걷어내어 컨베이어나 작업대로 옮긴다."
+      "description": "파레트에 적재된 부품이나 박스를 걷어내어 컨베이어나 작업대로 옮긴다.",
+      "aliases": ["걷어내다", "내리다", "디파레타이징", "치우다"]
     },
     "bin_picking": {
       "@type": "id:bin-picking",
       "description": "3D 비전 센서를 사용하여 무작위로 쌓여 있는 부품의 자세를 인식한 뒤, 간섭 없이 정확히 집어낸다.",
+      "aliases": ["집어내다", "빈피킹", "찾아서 집다", "꺼내다"],
       "input": {
         "type": "object",
         "required": ["target_part"],
@@ -104,6 +112,7 @@
     "machine_tending": {
       "@type": "id:machine-tending",
       "description": "CNC 선반, 사출성형기 등의 도어를 열고 가공할 소재를 투입한 뒤 완성품을 꺼낸다.",
+      "aliases": ["투입하다", "머신 텐딩", "가공 지원하다", "설비 지원"],
       "input": {
         "type": "object",
         "required": ["machine_name"],
@@ -117,11 +126,13 @@
     },
     "sort": {
       "@type": "id:sort-item",
-      "description": "검사 결과에 따라 불량품을 별도의 트레이나 폐기함으로 분리한다."
+      "description": "검사 결과에 따라 불량품을 별도의 트레이나 폐기함으로 분리한다.",
+      "aliases": ["분리하다", "분류하다", "선별하다", "나누다"]
     },
     "orient": {
       "@type": "id:orient-item",
       "description": "조립이나 가공이 가능하도록 부품의 각도와 방향을 회전시켜 정렬한다.",
+      "aliases": ["회전하다", "정렬하다", "방향 맞추다", "돌리다"],
       "input": {
         "type": "object",
         "required": ["angle_deg"],
