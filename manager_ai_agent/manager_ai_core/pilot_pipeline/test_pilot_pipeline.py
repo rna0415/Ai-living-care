@@ -341,7 +341,11 @@ class ClaudeCLITest(unittest.TestCase):
         return out, seen
 
     def test_command_isolation(self):
-        out, seen = self.run_with(subprocess.CompletedProcess([], 0, stdout='{"ok": true}', stderr=""))
+        envelope = json.dumps({"result": '{"ok": true}', "total_cost_usd": 0.01,
+                               "usage": {"input_tokens": 2, "cache_read_input_tokens": 3000,
+                                         "cache_creation_input_tokens": 300, "output_tokens": 90},
+                               "modelUsage": {"claude-sonnet-5-5": {}}})
+        out, seen = self.run_with(subprocess.CompletedProcess([], 0, stdout=envelope, stderr=""))
         self.assertEqual(out, '{"ok": true}')
         cmd = seen["cmd"]
         self.assertEqual(cmd[:2], ["claude", "-p"])
@@ -349,11 +353,23 @@ class ClaudeCLITest(unittest.TestCase):
         self.assertEqual(cmd[cmd.index("--system-prompt") + 1], "시스템 지시")
         self.assertNotIn("--bare", cmd)  # --bare 는 구독 로그인을 못 읽는다
         self.assertIn("--strict-mcp-config", cmd)  # 빠지면 호출마다 입력이 12만 토큰이 된다
+        self.assertEqual(cmd[cmd.index("--output-format") + 1], "json")
         self.assertTrue(seen["cwd_existed"])
         self.assertNotIn(str(ROOT), seen["cwd"])  # 레포 밖의 빈 폴더 → CLAUDE.md 가 섞이지 않는다
         self.assertIn("출력(JSON): " + '{"ex": 1}', seen["input"])  # 예시 출력이 보존된다
         self.assertTrue(seen["input"].rstrip().endswith("JSON:"))
         self.assertNotIn("시스템 지시", seen["input"])  # 시스템 지시는 입력이 아니라 --system-prompt 로
+
+    def test_envelope_gives_model_id_and_token_counts(self):
+        llm = generation.ClaudeCLILLM("sonnet")
+        envelope = json.dumps({"result": "본문", "total_cost_usd": 0.0141,
+                               "usage": {"input_tokens": 2, "cache_read_input_tokens": 0,
+                                         "cache_creation_input_tokens": 3303, "output_tokens": 90},
+                               "modelUsage": {"claude-sonnet-5-5": {}}})
+        self.assertEqual(llm._unwrap(envelope), "본문")
+        self.assertEqual(llm.name, "claude-cli:claude-sonnet-5-5")
+        self.assertEqual((llm.last_meta["input_tokens"], llm.last_meta["output_tokens"]), (3305, 90))
+        self.assertEqual(llm._unwrap("봉투 아님"), "봉투 아님")  # 봉투가 아니면 본문 그대로
 
     def test_nonzero_exit_is_an_llm_error_not_a_crash(self):
         class Fail:

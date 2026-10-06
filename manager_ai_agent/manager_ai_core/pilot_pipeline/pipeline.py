@@ -49,6 +49,7 @@ def run_one(row: dict, graph, llm, embedder=None, *, run: int = 1, temperature: 
         "raw_llm_output": raw, "attempts": gen["attempts"],
         "validation": validation, "verdict": verdict, "final_rule": final_rule,
         "assigned_devices": assigned, "clarification": clarification, "reason": reason,
+        "llm_meta": getattr(llm, "last_meta", None),
     }
 
 

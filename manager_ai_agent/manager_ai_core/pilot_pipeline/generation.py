@@ -132,12 +132,14 @@ class ClaudeCLILLM:
     - `--strict-mcp-config` 로 MCP 서버를 하나도 싣지 않는다. 빼면 사소한 호출도 입력이 약 12만 토큰이 된다
       (2026-10-07 실측: 사용자 환경의 MCP 서버 설명이 전부 실려 576 토큰 → 123,823 토큰).
     - `--bare` 는 쓰지 않는다(구독 OAuth 를 읽지 않고 API 키만 받는다).
+    - 출력은 JSON 봉투로 받아 실제 모델 ID 와 토큰 수를 `last_meta` 에 남긴다.
     - CLI 에 temperature 옵션이 없어 `temperature` 인자는 무시된다. 같은 입력이라도 출력이 달라질 수 있다.
     """
 
     def __init__(self, model: str = "sonnet", timeout: int = 180, claude_bin: str = "claude"):
-        self.name = f"claude-cli:{model}"
+        self.name = f"claude-cli:{model}"  # 첫 호출 뒤에는 실제 모델 ID 로 바뀐다 (예: claude-cli:claude-sonnet-5-5)
         self._model, self._timeout, self._bin = model, timeout, claude_bin
+        self.last_meta: dict | None = None  # 마지막 호출의 모델 ID·토큰 수·비용
 
     @staticmethod
     def _flatten(messages: list[dict]) -> str:
@@ -150,7 +152,7 @@ class ClaudeCLILLM:
         return "\n\n".join(parts)
 
     def _command(self, system: str) -> list[str]:
-        return [self._bin, "-p", "--model", self._model, "--output-format", "text",
+        return [self._bin, "-p", "--model", self._model, "--output-format", "json",
                 "--tools", "", "--system-prompt", system,
                 "--no-session-persistence", "--disable-slash-commands",
                 "--strict-mcp-config"]  # 연결된 MCP 서버의 도구 설명이 호출마다 12만 토큰씩 딸려 오는 것을 막는다
@@ -162,7 +164,27 @@ class ClaudeCLILLM:
                                   capture_output=True, text=True, cwd=workdir, timeout=self._timeout)
         if proc.returncode != 0:
             raise RuntimeError(f"claude -p 실패(코드 {proc.returncode}): {proc.stderr.strip()[:300]}")
-        return proc.stdout
+        return self._unwrap(proc.stdout)
+
+    def _unwrap(self, stdout: str) -> str:
+        """--output-format json 의 봉투에서 답과 메타데이터(모델 ID·토큰)를 꺼낸다."""
+        try:
+            envelope = json.loads(stdout)
+            text = envelope["result"]
+        except (ValueError, KeyError, TypeError):
+            return stdout  # 봉투가 아니면 본문 그대로 쓴다
+        usage = envelope.get("usage", {})
+        models = list(envelope.get("modelUsage", {}))
+        self.last_meta = {
+            "model_id": models[0] if models else None,
+            "input_tokens": sum(usage.get(k, 0) for k in
+                                ("input_tokens", "cache_read_input_tokens", "cache_creation_input_tokens")),
+            "output_tokens": usage.get("output_tokens"),
+            "cost_usd_list": envelope.get("total_cost_usd"),
+        }
+        if self.last_meta["model_id"]:
+            self.name = f"claude-cli:{self.last_meta['model_id']}"
+        return text
 
 
 class AnthropicLLM:
