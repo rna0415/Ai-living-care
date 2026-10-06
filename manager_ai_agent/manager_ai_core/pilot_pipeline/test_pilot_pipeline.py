@@ -268,6 +268,17 @@ class RetrievalTest(unittest.TestCase):
         c = retrieval.retrieve(["냉장고"], self.g, threshold=0.5)
         self.assertEqual(c["actions"], [])
 
+    def test_ties_at_the_cutoff_are_kept(self):
+        # 네 기기가 같은 별칭 '켜다' 를 가져도 top_k=1 이 이름 순서로 일부를 자르면 안 된다
+        tds = []
+        for i in range(4):
+            td = lamp(f"lamp-{i}", "room_a", f"조명{i}")
+            td["aliases"] = [f"조명{i}"]
+            tds.append(td)
+        g = StubGraph(tds, PLACES, VOCAB)
+        c = retrieval.retrieve(["켜다"], g, top_k=1)
+        self.assertEqual(sorted(c["devices"]), [f"lamp-{i}" for i in range(4)])
+
     def test_object_class_alias(self):
         c = retrieval.retrieve(["사람", "확인하다"], self.g)
         self.assertIn("person", c["classes"])

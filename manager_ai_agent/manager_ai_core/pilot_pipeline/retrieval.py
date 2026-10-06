@@ -1,7 +1,7 @@
 """검색 — 분해된 어구를 그래프 노드에 연결하고 후보 집합을 만든다.
 
 점수: 이름·별칭 정확 일치 1.0, 포함 0.9, 그 밖에는 문자 bigram 유사도(최대 0.8).
-임베딩이 주어지면 코사인 유사도와 둘 중 큰 값을 쓴다. 어구마다 상위 top_k 노드(점수 ≥ threshold)를
+임베딩이 주어지면 코사인 유사도와 둘 중 큰 값을 쓴다. 어구마다 상위 top_k 노드(점수 ≥ threshold, 경계의 동점은 모두 포함)를
 시드로 삼고 hops 단계 이웃까지 넓혀 후보(동작·기기·장소·객체 클래스)를 만든다. 읽기만 한다.
 """
 
@@ -74,7 +74,11 @@ def retrieve(phrases: list[str], graph, embedder=None, top_k: int = 3,
                 s = max(s, float(emb[i][j]))
             if s >= threshold:
                 scored.append((s, node["node_id"]))
-        for s, nid in sorted(scored, reverse=True)[:top_k]:
+        ranked = sorted(scored, reverse=True)
+        if len(ranked) > top_k:  # 동점은 자르지 않는다: 같은 별칭을 가진 기기가 이름 순서로 잘리면 모호 판정이 틀어진다
+            cutoff = ranked[top_k - 1][0]
+            ranked = [x for x in ranked if x[0] >= cutoff]
+        for s, nid in ranked:
             scores[nid] = max(scores.get(nid, 0.0), s)
 
     selected = set(scores)
