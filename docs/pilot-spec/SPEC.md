@@ -25,7 +25,7 @@
 | 항목 | 결정 |
 |---|---|
 | Rule JSON 범위 | event는 `user-request`만. 조건은 장소 지정(`geographic-location.destination`)만. 슬롯은 `motion-action` · `perception-action` · `control-action` · `report-action`. 조건부 발화(배터리·시간 등)는 이번 파일럿에서 제외하고 한정어에 적는다 |
-| `control-action` | `{step, action-type, target[], args}`. `target`은 대상 **기기** ID이고 생략하면 "대상 미지정"이다 |
+| 동작 항목의 필드 | 세 슬롯(motion·perception·control) 모두 `{step, action-type, target[], args}`를 쓸 수 있다. `target`은 대상 **기기** ID이고 생략하면 "대상 미지정"이다. 슬롯 고유 필드는 motion의 `destination`(장소), perception의 `object-class`다 |
 | identity 표기 | LLM 출력과 gold 모두 **접두사 없이** `navigate-to`. YANG의 `iot-intent-capability:` 접두사는 저장·변환 시 후처리로 붙인다 |
 | 발화 범위 | 단일 요청 위주. 순차 2단계까지 허용 |
 | 그래프 구조 | **Function 층 없음.** Device가 Action·Property·Event를 직접 가진다 |
@@ -50,6 +50,8 @@
 
 - `action-type`, `object-class`는 **Identity ID**(`vocab.json`), `destination`은 **장소 ID**(`places.json`), `target`은 **기기 ID**(TD의 `title`)다.
 - LLM은 이 안의 값을 **검색이 준 후보 안에서만** 고른다.
+- **`args`와 `destination`의 역할 분담:** `args`는 TD `input`의 값 입력(층수, 적재 패턴, 명령어 등)이다. 좌표를 받는 입력(`x`, `y`, `frame`, `yaw_deg`, `waypoints`)과 `destination`이라는 이름의 입력은 Rule의 **`destination`(장소 ID)에서 채워진다**(장소의 좌표는 `places.json`의 `pose`). 그래서 Rule에 좌표를 쓰지 않고 `args`에도 넣지 않는다. 이런 입력은 `destination`이 있을 때만 필수에서 면제된다.
+- **기본값이 있는 입력은 선택이다.** TD `input`의 속성에 `default`가 있으면 `args`에서 생략해도 된다(예: `look-around`의 `steps`, `step_deg`). 사용자가 말하지 않아도 되는 값은 TD에 `default`를 쓰고 `required`에서 뺀다.
 - **실행 순서 관례:** 슬롯 순서 motion → control → perception → report, 같은 슬롯 안에서는 `step` 순서. 채점은 이 관례를 따른다.
 - 판정(`execute` / `ask-clarification` / `reject`)은 LLM이 내지 않고 파이프라인이 정한다(§9).
 
@@ -112,7 +114,7 @@
 | 스키마 | `schema` | `rule.schema.json` 구조·타입·범위 (정적) |
 | 참조 해소 | `reference` | `action-type`·`object-class`가 어휘에 있고 어떤 기기가 제공하는가, `destination`이 장소에 있는가, `target`이 기기인가 |
 | 슬롯 종류 | `slot` | `action-type`의 조상 클래스가 들어 있는 슬롯과 맞는가 |
-| 인자 | `args` | `args` 값이 TD의 `input` 스키마를 만족하는가 |
+| 인자 | `args` | 세 슬롯의 `args`가 TD `input` 스키마를 만족하는가(필수 입력 누락, 타입, 범위, 허용값, 정의되지 않은 키). 위 두 규칙(`destination`이 채우는 입력, 기본값 있는 입력)은 필수에서 면제 |
 
 **LLM의 거부 경로.** 후보 안에서 요청을 이행할 수 없으면 LLM은 Rule 대신 `{"unsupported": "<이유>"}`를 낼 수 있다. 이것은 검증 실패로 기록하고(`first_failed_check`는 `"declined"`) 판정은 `reject`다. 후보 중 가장 비슷한 것으로 억지로 채우는 것이 가장 위험한 오류(무효 → execute)이므로 이 경로를 둔다. LLM 출력이 JSON으로 파싱되지 않으면 `"schema"`(상세에 `unparseable`)로 기록한다.
 
@@ -130,7 +132,9 @@
 **C**
 - [ ] `limo-1.td.json`, `factory.td.json`이 JSON으로 파싱된다
 - [ ] 모든 `@type`이 `vocab.json`에 있다(`python3 check_spec.py`로 확인)
-- [ ] 모든 항목에 한국어 `description`이 있고, 값이 있는 action에 `input`이 있다
+- [ ] 모든 항목에 한국어 `description`이 있고, 값이 있는 action에 `input`이 있다. 사용자가 말하지 않아도 되는 입력은 `default`를 쓰고 `required`에서 뺐다
+- [ ] 모든 동작·속성에 `aliases`(어간형 어구)가 있다
+- [ ] **정답 점검:** `python3 -m manager_ai_agent.manager_ai_core.pilot_pipeline.check_gold --td data/limo-1.td.json --td data/cobot.td.json --td data/amr.td.json --places data/places.json --vocab docs/pilot-spec/vocab.json --gold data/gold_smoke.jsonl` 가 모든 발화에서 통과한다(정답이 검증을 통과하고, 검색이 정답의 노드를 후보로 올린다)
 - [ ] `places.json`에 별칭이 있고 TD의 `location`이 모두 장소 ID다
 - [ ] 같은 동작을 가진 기기가 2개 이상, 어디에도 없는 능력도 알고 있다
 - [ ] `gold_smoke.jsonl` 8줄

@@ -54,6 +54,40 @@ def rule(**action):
     return {"name": "t", "event": {"request-event": ["user-request"]}, "action": action}
 
 
+# C 의 실제 TD 와 같은 모양: 이동 입력이 좌표(x, y, waypoints)이거나 인자(target_floor)
+LIMO_LIKE = {
+    "title": "limo-x", "@type": "id:mobile-robot", "description": "이동 로봇", "location": "room_a",
+    "aliases": ["리모"], "properties": {}, "events": {},
+    "actions": {
+        "navigate": {"@type": "id:navigate-to", "description": "좌표로 이동한다.",
+                     "input": {"type": "object", "required": ["x", "y"],
+                               "properties": {"x": {"type": "number"}, "y": {"type": "number"}}}},
+        "waypoints": {"@type": "id:follow-waypoints", "description": "경유지를 순서대로 이동한다.",
+                      "input": {"type": "object", "required": ["waypoints"],
+                                "properties": {"waypoints": {"type": "array"}}}},
+        "look": {"@type": "id:look-around", "description": "제자리에서 둘러본다.",
+                 "input": {"type": "object", "required": ["steps", "step_deg"],
+                           "properties": {"steps": {"type": "integer", "default": 8},
+                                          "step_deg": {"type": "number", "default": 45}}}},
+        "detect": {"@type": "id:detect-objects", "description": "물체를 검출한다."},
+    },
+}
+AMR_LIKE = {
+    "title": "amr-x", "@type": "id:mobile-robot", "description": "물류 로봇", "location": "room_b",
+    "aliases": ["물류로봇"], "properties": {}, "events": {},
+    "actions": {
+        "elevator": {"@type": "id:ride-elevator", "description": "목적 층으로 이동한다.",
+                     "input": {"type": "object", "required": ["target_floor"],
+                               "properties": {"target_floor": {"type": "integer",
+                                                               "minimum": -5, "maximum": 100}}}},
+    },
+}
+
+
+def make_motion_graph():
+    return StubGraph([LIMO_LIKE, AMR_LIKE], PLACES, VOCAB)
+
+
 class GraphStubTest(unittest.TestCase):
     def setUp(self):
         self.g = make_graph()
@@ -134,6 +168,58 @@ class ValidatorTest(unittest.TestCase):
 
     def test_non_object_is_schema_failure(self):
         self.assertEqual(self.check(["not", "a", "rule"])["first_failed_check"], "schema")
+
+
+class MotionArgsTest(unittest.TestCase):
+    """이동·인식 슬롯의 target/args 와, 좌표 입력이 destination 에서 채워지는 규칙."""
+
+    def setUp(self):
+        self.g = make_motion_graph()
+
+    def check(self, **action):
+        return validator.validate_rule(rule(**action), self.g)
+
+    def test_pose_inputs_are_filled_from_destination(self):
+        r = self.check(**{"motion-action": [
+            {"step": 1, "action-type": "navigate-to", "destination": ["room_a"], "target": ["limo-x"]}]})
+        self.assertTrue(r["passed"], r)  # x, y 를 args 로 안 줘도 destination 이 채운다
+        r = self.check(**{"motion-action": [
+            {"step": 1, "action-type": "follow-waypoints", "destination": ["room_a", "room_b"]}]})
+        self.assertTrue(r["passed"], r)
+
+    def test_pose_inputs_without_destination_fail(self):
+        r = self.check(**{"motion-action": [{"step": 1, "action-type": "navigate-to", "target": ["limo-x"]}]})
+        self.assertEqual(r["first_failed_check"], "args")
+        self.assertIn("destination", r["detail"])
+
+    def test_motion_args_are_checked_against_the_td(self):
+        ok = self.check(**{"motion-action": [
+            {"step": 1, "action-type": "ride-elevator", "target": ["amr-x"], "args": {"target_floor": 20}}]})
+        self.assertTrue(ok["passed"], ok)
+        for bad in ({}, {"target_floor": 150}, {"target_floor": "twenty"}, {"floor": 20}):
+            r = self.check(**{"motion-action": [
+                {"step": 1, "action-type": "ride-elevator", "target": ["amr-x"], "args": bad}]})
+            self.assertEqual(r["first_failed_check"], "args", bad)
+
+    def test_inputs_with_defaults_are_optional(self):
+        r = self.check(**{"motion-action": [{"step": 1, "action-type": "look-around"}]})
+        self.assertTrue(r["passed"], r)  # steps, step_deg 에 default 가 있으므로 생략 가능
+        r = self.check(**{"motion-action": [
+            {"step": 1, "action-type": "look-around", "args": {"steps": 4, "step_deg": 90}}]})
+        self.assertTrue(r["passed"], r)
+
+    def test_perception_accepts_target_and_args_schema(self):
+        r = self.check(**{"perception-action": [
+            {"step": 1, "action-type": "detect-objects", "object-class": ["person"], "target": ["limo-x"]}]})
+        self.assertTrue(r["passed"], r)
+        r = self.check(**{"perception-action": [
+            {"step": 1, "action-type": "detect-objects", "args": {"min_conf": 0.4}}]})
+        self.assertEqual(r["first_failed_check"], "args")  # 입력이 없는 동작은 인자를 받지 않는다
+
+    def test_target_must_offer_the_motion_action(self):
+        r = self.check(**{"motion-action": [
+            {"step": 1, "action-type": "ride-elevator", "target": ["limo-x"], "args": {"target_floor": 3}}]})
+        self.assertEqual(r["first_failed_check"], "reference")
 
 
 class AssignTest(unittest.TestCase):
