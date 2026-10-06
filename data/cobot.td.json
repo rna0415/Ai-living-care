@@ -1,0 +1,116 @@
+{
+  "@context": [
+    "https://www.w3.org/2022/wot/td/v1.1",
+    { "id": "https://example.org/pilot-vocab#" }
+  ],
+  "title": "cobot-arm-1",
+  "@type": "id:robot-arm",
+  "description": "작업자와 안전 펜스 없이 같은 공간에서 부품 조립, 볼팅, 팔레타이징을 함께 수행할 수 있는 협동로봇입니다.",
+  "aliases": ["코봇", "협동로봇", "조립 로봇"],
+  "location": "assembly_line_A",
+  "properties": {
+    "location": {
+      "@type": "id:current-location",
+      "type": "string",
+      "enum": [
+        "assembly_line_A",
+        "assembly_line_B",
+        "cnc_machine_1",
+        "press_machine_2",
+        "inspection_desk",
+        "packing_area"
+      ],
+      "readOnly": true
+    },
+    "current_task": {
+      "@type": "id:running-state",
+      "type": "string",
+      "readOnly": true
+    },
+    "battery": {
+      "@type": "id:battery-level",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "unit": "%",
+      "readOnly": true
+    },
+    "available_tools": {
+      "@type": "id:equipment-state",
+      "type": "array",
+      "items": { "type": "string" },
+      "readOnly": true
+    }
+  },
+  "actions": {
+    "pick_and_place": {
+      "@type": "id:pick-and-place",
+      "input": {
+        "type": "object",
+        "required": ["tool_type", "target_object"],
+        "properties": {
+          "tool_type": {
+            "type": "string",
+            "enum": ["vacuum_pad", "electric_gripper", "electromagnet"]
+          },
+          "target_object": { "type": "string" }
+        }
+      }
+    },
+    "palletize": {
+      "@type": "id:palletize",
+      "input": {
+        "type": "object",
+        "required": ["pattern"],
+        "properties": {
+          "pattern": {
+            "type": "string",
+            "enum": ["zigzag", "cross", "straight"]
+          }
+        }
+      }
+    },
+    "depalletize": {
+      "@type": "id:depalletize"
+    },
+    "bin_picking": {
+      "@type": "id:bin-picking",
+      "input": {
+        "type": "object",
+        "required": ["target_part"],
+        "properties": {
+          "target_part": { "type": "string" }
+        }
+      }
+    },
+    "machine_tending": {
+      "@type": "id:machine-tending",
+      "input": {
+        "type": "object",
+        "required": ["machine_name"],
+        "properties": {
+          "machine_name": { "type": "string" }
+        }
+      }
+    },
+    "sort": {
+      "@type": "id:sort-item"
+    },
+    "orient": {
+      "@type": "id:orient-item",
+      "input": {
+        "type": "object",
+        "required": ["angle_deg"],
+        "properties": {
+          "angle_deg": {
+            "type": "number",
+            "minimum": -360.0,
+            "maximum": 360.0,
+            "unit": "degree"
+          }
+        }
+      }
+    }
+  },
+  "events": {}
+}
