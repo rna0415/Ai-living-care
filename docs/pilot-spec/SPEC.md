@@ -67,6 +67,7 @@
 **동작·속성·이벤트 수준** (`actions`, `properties`, `events`)
 - 모든 항목에 `@type`(`id:` + `vocab.json`의 이름)과 **한국어 `description`**을 쓴다. 검색은 이 설명으로 노드를 찾는다.
 - 모든 action에 `input` 스키마가 필요한 만큼 있어야 한다. 값이 있는 인자는 `type`, `minimum`/`maximum` 또는 `enum`, 필수 여부(`required`)를 적는다. 입력이 없는 동작은 `input`을 생략한다.
+- 모든 동작·속성·이벤트에 **`aliases`**(확장 필드)를 쓴다. 사람이 분해한 어구와 같은 형태(어간형: `켜다`, `끄다`, `이동하다`)로 적는다. 검색이 어구를 이 값에 직접 대응시키므로 임베딩이 없어도 동작한다.
 - `@type`에 쓸 새 Identity가 필요하면 `vocab.json`에 **기존 부모 아래로 먼저 추가**하고 B에게 알린다.
 
 **도메인 구성 (공장 TD 권장)**
@@ -112,6 +113,8 @@
 | 참조 해소 | `reference` | `action-type`·`object-class`가 어휘에 있고 어떤 기기가 제공하는가, `destination`이 장소에 있는가, `target`이 기기인가 |
 | 슬롯 종류 | `slot` | `action-type`의 조상 클래스가 들어 있는 슬롯과 맞는가 |
 | 인자 | `args` | `args` 값이 TD의 `input` 스키마를 만족하는가 |
+
+**LLM의 거부 경로.** 후보 안에서 요청을 이행할 수 없으면 LLM은 Rule 대신 `{"unsupported": "<이유>"}`를 낼 수 있다. 이것은 검증 실패로 기록하고(`first_failed_check`는 `"declined"`) 판정은 `reject`다. 후보 중 가장 비슷한 것으로 억지로 채우는 것이 가장 위험한 오류(무효 → execute)이므로 이 경로를 둔다. LLM 출력이 JSON으로 파싱되지 않으면 `"schema"`(상세에 `unparseable`)로 기록한다.
 
 배정은 검증을 통과한 Rule에서 정한다.
 - 필요한 동작을 가진 기기가 **1개** → `execute`

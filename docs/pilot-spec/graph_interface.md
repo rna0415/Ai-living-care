@@ -40,10 +40,13 @@ class Graph:
     def input_schema(self, device_id: str, action_identity_id: str) -> dict | None: ...
     def device_location(self, device_id: str) -> str | None: ...
 
-    # 검색용: 노드와 설명 텍스트 (이름·별칭·description)
+    # 검색용: 노드와 설명 텍스트
     def searchable_nodes(self) -> list[dict]: ...
-        # [{"node_id": "lamp-a/turnOn", "kind": "action", "identity": "turn-on",
-        #   "device": "lamp-a", "text": "..."}, ...]
+        # kind는 "device" | "action" | "property" | "event" | "place" | "object-class"
+        # {"node_id": "lamp-a/turnOn", "kind": "action", "identity": "turn-on",
+        #  "device": "lamp-a", "names": ["turnOn", "켜다", "점등"], "text": "조명을 켠다. ..."}
+        # names: 정확히 일치를 볼 이름과 별칭(TD의 aliases 포함), text: 설명 전체
+        # place는 node_id=장소 ID, device는 node_id=기기 ID, object-class는 node_id=identity ID
     def neighbors(self, node_id: str, hops: int = 1) -> list[str]: ...
 ```
 

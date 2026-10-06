@@ -54,7 +54,7 @@
     { "id": "jam-detected", "parent": "system-event" },
 
     { "id": "ObjectClass", "parent": null },
-    { "id": "person", "parent": "ObjectClass" },
+    { "id": "person", "parent": "ObjectClass", "description": "사람", "aliases": ["사람", "인물"] },
 
     { "id": "DeviceType", "parent": null },
     { "id": "mobile-robot", "parent": "DeviceType" },

@@ -18,6 +18,7 @@
 | `query_composing/` | 바인딩 → L1 Intent Query JSON |
 | `policy_generation/` | L1 → L2 High-level Policy (ECA) |
 | `session_key_manager/` | IF-4 세션 키 발급·갱신 (파이프라인과 직교) |
+| `pilot_pipeline/` | KG 스키마 파일럿 — 분해된 발화 → Rule JSON 검색·생성·검증·배정 (`docs/pilot-spec/`, 참고용 · 정본 아님) |
 
 ## 파이프라인
 
