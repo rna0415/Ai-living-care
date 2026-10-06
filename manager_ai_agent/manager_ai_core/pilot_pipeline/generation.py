@@ -129,6 +129,8 @@ class ClaudeCLILLM:
 
     - 빈 임시 폴더에서 실행한다: 현재 폴더의 CLAUDE.md·프로젝트 메모리가 입력에 섞이지 않게 하려는 것이다.
     - `--tools ""` 로 도구를 끄고 `--system-prompt` 로 기본 시스템 프롬프트를 바꾼다.
+    - `--strict-mcp-config` 로 MCP 서버를 하나도 싣지 않는다. 빼면 사소한 호출도 입력이 약 12만 토큰이 된다
+      (2026-10-07 실측: 사용자 환경의 MCP 서버 설명이 전부 실려 576 토큰 → 123,823 토큰).
     - `--bare` 는 쓰지 않는다(구독 OAuth 를 읽지 않고 API 키만 받는다).
     - CLI 에 temperature 옵션이 없어 `temperature` 인자는 무시된다. 같은 입력이라도 출력이 달라질 수 있다.
     """
@@ -150,7 +152,8 @@ class ClaudeCLILLM:
     def _command(self, system: str) -> list[str]:
         return [self._bin, "-p", "--model", self._model, "--output-format", "text",
                 "--tools", "", "--system-prompt", system,
-                "--no-session-persistence", "--disable-slash-commands"]
+                "--no-session-persistence", "--disable-slash-commands",
+                "--strict-mcp-config"]  # 연결된 MCP 서버의 도구 설명이 호출마다 12만 토큰씩 딸려 오는 것을 막는다
 
     def complete(self, messages: list[dict], temperature: float = 0.0) -> str:
         system = "\n".join(m["content"] for m in messages if m["role"] == "system")

@@ -337,6 +337,7 @@ class ClaudeCLITest(unittest.TestCase):
         self.assertEqual(cmd[cmd.index("--tools") + 1], "")  # 도구 끔
         self.assertEqual(cmd[cmd.index("--system-prompt") + 1], "시스템 지시")
         self.assertNotIn("--bare", cmd)  # --bare 는 구독 로그인을 못 읽는다
+        self.assertIn("--strict-mcp-config", cmd)  # 빠지면 호출마다 입력이 12만 토큰이 된다
         self.assertTrue(seen["cwd_existed"])
         self.assertNotIn(str(ROOT), seen["cwd"])  # 레포 밖의 빈 폴더 → CLAUDE.md 가 섞이지 않는다
         self.assertIn("출력(JSON): " + '{"ex": 1}', seen["input"])  # 예시 출력이 보존된다
